@@ -38,7 +38,7 @@ func Hellos(names []string) (map[string]string, error) {
 func randomFormat() string {
 	// A slice of message formats.
 
-	//TIP array: var arr [3]int
+	// array: var arr [3]int
 	// slice: var sli []int
 	formats := []string{
 		"Hi, %v. Welcome!",
