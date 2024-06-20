@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# At the command line in the greetings directory, 
+# At the command line in the greetings directory,
 # run the go test command to execute the test.
 go test
 

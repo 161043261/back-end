@@ -6,8 +6,8 @@ import (
 	"math/rand"
 )
 
-// Hello returns a greeting for the named person.
-func Hello(name string) (string, error) {
+// hello returns a greeting for the named person.
+func hello(name string) (string, error) {
 	// If no name was given, return an error with a message.
 	if name == "" {
 		return "", errors.New("empty name")
@@ -17,13 +17,13 @@ func Hello(name string) (string, error) {
 	return message, nil
 }
 
-// Hellos returns a map that associates each of the named people with a greeting message.
+// hellos returns a map that associates each of the named people with a greeting message.
 func Hellos(names []string) (map[string]string, error) {
 	// A map to associate names with messages.
 	messages := make(map[string]string)
-	// Loop through the received slice of names, calling the Hello function to get a message for each name.
+	// Loop through the received slice of names, calling the hello function to get a message for each name.
 	for _, name := range names {
-		message, err := Hello(name)
+		message, err := hello(name)
 		if err != nil {
 			return nil, err
 		}
