@@ -1,4 +1,4 @@
-package greetings
+package greeting
 
 import (
 	"errors"
@@ -41,9 +41,9 @@ func randomFormat() string {
 	// array: var arr [3]int
 	// slice: var sli []int
 	formats := []string{
-		"Hi, %v. Welcome!",
-		"Great to see you, %v!",
-		"Hail, %v! Well met!",
+		"Hi, %v!",
+		"Hey, %v!",
+		"Hello, %v!",
 	}
 	// Return a randomly selected message format by
 	// specifying a random index for the slice of formats.

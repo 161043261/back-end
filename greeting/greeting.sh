@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
+go mod init njupt.edu.cn/greeting
 
-# At the command line in the greetings directory,
+# At the command line in the greeting directory,
 # run the go test command to execute the test.
 go test
 

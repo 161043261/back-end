@@ -12,5 +12,9 @@ go run .
 # where Go tools could find it to download it.
 # For now because you haven't published the module yet,
 # you need to adapt the module so it can find the code on your local file system.
-go mod edit -replace njupt.edu.cn/greetings=../greetings
+go mod edit -replace njupt.edu.cn/greeting=../greeting
 go mod tidy
+
+# The go install command compiles and installs the packages.
+# export GOBIN="$HOME/gobin"
+go install

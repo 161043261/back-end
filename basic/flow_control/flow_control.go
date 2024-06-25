@@ -65,7 +65,7 @@ func switchTrue() {
 	t := time.Now()
 	switch { // switch true {...}
 	case t.Hour() < 12:
-		fmt.Println("Good morning!")
+		fmt.Println("Good morning.")
 	case t.Hour() < 17:
 		fmt.Println("Good afternoon.")
 	default:

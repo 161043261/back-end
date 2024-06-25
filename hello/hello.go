@@ -3,19 +3,19 @@ package main
 import (
 	"fmt"
 	"log"
-	"njupt.edu.cn/greetings"
+	"njupt.edu.cn/greeting"
 )
 
 func main() {
 	// Set properties of the predefined Logger, including the log entry prefix
 	// and a flag to disable printing the time, source file, and line number.
-	log.SetPrefix("greetings: ")
+	log.SetPrefix("greeting: ")
 	log.SetFlags(0)
 
 	// A slice of names.
-	names := []string{"Gladys", "Samantha", "Darrin"}
+	names := []string{"OS X", "Ubuntu", "Fedora"}
 	// Request greeting messages for the names.
-	messages, err := greetings.Hellos(names)
+	messages, err := greeting.Hellos(names)
 	if err != nil {
 		log.Fatal(err)
 	}
