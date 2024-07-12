@@ -47,7 +47,7 @@ func main() {
 	a = u
 	fmt.Println(a.Abs()) // -1
 
-	// The empty interface: interface{}, specifies zero methods
+	//TODO The empty interface: interface{}, specifies zero methods
 	// An empty interface can hold values of ANY type (Every type implements at least zero methods.)
 	var i interface{}
 	desc(i) // nil
