@@ -19,8 +19,16 @@ func Index[T comparable](s []T, x T) int {
 	return -1
 }
 
+// List In addition to generic functions, Go also supports generic types.
+// A type can be parameterized with a type parameter,
+// which could be useful for implementing generic data structures.
+type List[T any] struct { // type any = interface{}
+	next *List[T]
+	val  T
+}
+
 func main() {
-	// Index works on a slice of ints
+	// Index works on a slice of integers
 	si := []int{10, 20, 15, -10}
 	fmt.Println(Index(si, 15)) // 2
 

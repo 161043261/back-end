@@ -58,12 +58,7 @@ func main() {
 	f := []struct {
 		i int
 		b bool
-	}{{2, true},
-		{3, false},
-		{5, true},
-		{7, true},
-		{11, false},
-		{13, true}}
+	}{{2, true}, {3, false}}
 	fmt.Println(f)
 
 	// The default is zero for the low bound and
