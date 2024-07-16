@@ -20,7 +20,7 @@ public class HttpServletResponseTest extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // Response Line
-        resp.setStatus(200);
+        resp.setStatus(HttpServletResponse.SC_OK); // 200
 
         // Response Headers
         resp.setHeader("Content-Type", "text/html");

@@ -10,10 +10,9 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) throws LifecycleException {
-        final int port = 8080;
-        String webapp = new File("./src/main/webapp").getAbsolutePath();
+        final String webapp = new File("./src/main/webapp").getAbsolutePath();
         Tomcat tomcat = new Tomcat();
-        tomcat.setPort(port);
+        tomcat.setPort(8080);
         tomcat.getConnector();
         Context context = tomcat.addWebapp("servlet", webapp); // contextPath = "servlet"
         WebResourceRoot root = new StandardRoot(context);

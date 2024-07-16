@@ -21,21 +21,21 @@ import java.io.IOException;
 public class LifeCycle extends HttpServlet {
 
     public LifeCycle() {
-        System.out.println("construct");
+        System.out.println("Constructing...");
     }
 
     @Override
     public void init() throws ServletException {
-        System.out.println("init");
+        System.out.println("Initializing...");
     }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("service");
+        System.out.println("Serving...");
     }
 
     @Override
     public void destroy() {
-        System.out.println("destroy");
+        System.out.println("Destroying");
     }
 }

@@ -16,11 +16,10 @@ public class Hello extends HttpServlet {
         resp.setContentType("text/html"); // resp.setHeader("Content-Type", "text/html");
         resp.setStatus(HttpServletResponse.SC_OK); // StatusCode_OK
         PrintWriter writer = resp.getWriter();
-        // req.getParameter("key");
         req.getParameterMap().forEach((name, value) -> writer.write(name + ": " + Arrays.toString(value) + ", "));
         writer.write("<h1>Hello World</h1>");
-        writer.flush(); // can be omitted
-        writer.close(); // can be omitted
+        writer.flush(); // this can be omitted
+        writer.close(); // this can be omitted
     }
 
     @Override

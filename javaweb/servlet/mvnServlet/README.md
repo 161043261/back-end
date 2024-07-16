@@ -5,7 +5,7 @@ The key point of Learning Java is to deprecate XML, except Maven.
 Tomcat 9.x (Tomcat 10.x is NOT supported)
 
 ### Test
-[Hello](http://127.0.0.1:8080/servlet/hello?username=root&password=1024)
+[Hello](http://127.0.0.1:8080/servlet/hello?username=hello&password=1024)
 
 [ServletConfigTest](http://127.0.0.1:8080/servlet/config)
 
@@ -20,6 +20,10 @@ Tomcat 9.x (Tomcat 10.x is NOT supported)
 [HttpServletRequestTest](http://127.0.0.1:8080/servlet/req)
 
 [HttpServletResponseTest](http://127.0.0.1:8080/servlet/resp)
+
+[Forward](http://127.0.0.1:8080/servlet/forward?username=forward&password=2048)
+
+[Redirect](http://127.0.0.1:8080/servlet/redirect)
 
 ### Tree
 ```tex
