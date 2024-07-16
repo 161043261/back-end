@@ -44,13 +44,11 @@ Tomcat 9.x (Tomcat 10.x is NOT supported)
 │           └── static  % ** Path.java: servletContext.getRealPath("./static"); **
 │               └── forward.html
 ├── target
-│   ├── classes
-│   │   ├── Main.class
-│   │   └── com/bronya/servlet/servlets
-│   │                          ├── Path.class
-│   │                          └── *.class
-│   └── generated-sources
-│       └── annotations
+│   └── classes
+│       ├── Main.class
+│       └── com/bronya/servlet/servlets
+│                              ├── Path.class
+│                              └── *.class
 └── tomcat.8080
     └── work
         └── Tomcat
