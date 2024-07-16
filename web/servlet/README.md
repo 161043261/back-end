@@ -34,42 +34,26 @@ Tomcat 9.x (Tomcat 10.x is NOT supported)
 │   └── main
 │       ├── java
 │       │   ├── Main.java
-│       │   └── com
-│       │       └── bronya
-│       │           └── mvnTomcat
-│       │               └── servlet
-│       │                   └── *.java
-│       └── webapp % servletContext.getRealPath("./");
-│           ├── WEB-INF % servletContext.getRealPath("./WEB-INF");
+│       │   └── com/bronya/servlet/servlets
+│       │                          ├── Path.java
+│       │                          └── *.java
+│       └── webapp      % ** Main.java: final String docBase = new File("./src/main/webapp").getAbsolutePath(); **
+│           ├── WEB-INF % ** Path.java: servletContext.getRealPath("./forward"); **
 │           │   └── web.xml
-│           └── index.html
+│           ├── index.html
+│           └── static  % ** Path.java: servletContext.getRealPath("./static"); **
+│               └── forward.html
 ├── target
 │   ├── classes
 │   │   ├── Main.class
-│   │   └── com
-│   │       └── bronya
-│   │           └── mvnTomcat
-│   │               └── servlet
-│   │                   └── *.class
-│   ├── servlet
-│   │   ├── META-INF
-│   │   ├── WEB-INF
-│   │   │   ├── classes
-│   │   │   │   ├── Main.class
-│   │   │   │   └── com
-│   │   │   │       └── bronya
-│   │   │   │           └── mvnTomcat
-│   │   │   │               └── servlet
-│   │   │   │                   └── *.class
-│   │   │   ├── lib
-│   │   │   │   └── *.jar
-│   │   │   └── web.xml
-│   │   └── index.html
-│   └── servlet.war
+│   │   └── com/bronya/servlet/servlets
+│   │                          ├── Path.class
+│   │                          └── *.class
+│   └── generated-sources
+│       └── annotations
 └── tomcat.8080
     └── work
         └── Tomcat
             └── localhost
-                ├── ROOT
-                └── servlet % contextPath
+                └── servlet % ** Main.java: Context context = tomcat.addWebapp("/servlet", docBase); **
 ```

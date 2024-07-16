@@ -10,11 +10,15 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) throws LifecycleException {
-        final String webapp = new File("./src/main/webapp").getAbsolutePath();
+        final String docBase = new File("./src/main/webapp").getAbsolutePath();
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
         tomcat.getConnector();
-        Context context = tomcat.addWebapp("servlet", webapp); // contextPath = "servlet"
+
+        // contextPath = "servlet"
+        // docBase = "./src/main/webapp"
+        Context context = tomcat.addWebapp("/servlet", docBase);
+
         WebResourceRoot root = new StandardRoot(context);
         root.addPreResources(new DirResourceSet(root, "/WEB-INF/classes", // the webAppMount must begin with "/"
                 new File("./target/classes").getAbsolutePath(), "/"));

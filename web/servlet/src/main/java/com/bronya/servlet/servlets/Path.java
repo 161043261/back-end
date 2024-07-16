@@ -18,12 +18,17 @@ public class Path extends HttpServlet {
         // cd ./src/webapp
         // servletContext.getRealPath("./") == pwd
 
-        String webInf = servletContext.getRealPath("./WEB-INF");
-        System.out.println(webInf);
+        String statik = servletContext.getRealPath("./static");
+        System.out.println(statik);
+        // cd ./src/webapp/static
+        // servletContext.getRealPath("./static") == pwd
+
+        String webInformation = servletContext.getRealPath("./WEB-INF");
+        System.out.println(webInformation);
         // cd ./src/webapp/WEB-INF
         // servletContext.getRealPath("./WEB-INF") == pwd
 
         String contextPath = servletContext.getContextPath();
-        System.out.println(contextPath); // servlet
+        System.out.println(contextPath); // /servlet
     }
 }
