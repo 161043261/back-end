@@ -10,15 +10,14 @@ import java.util.Arrays;
 
 // value equals to urlPatterns
 @WebServlet(name = "helloServlet ", value = "/hello") // urlPatterns = {"/hello"}
-public class HelloServlet extends HttpServlet {
+public class Hello extends HttpServlet {
 
     private void handle(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html"); // resp.setHeader("Content-Type", "text/html");
         resp.setStatus(HttpServletResponse.SC_OK); // StatusCode_OK
         PrintWriter writer = resp.getWriter();
         // req.getParameter("key");
-        req.getParameterMap().forEach((name, value) ->
-                writer.write(name + ": " + Arrays.toString(value) + ", "));
+        req.getParameterMap().forEach((name, value) -> writer.write(name + ": " + Arrays.toString(value) + ", "));
         writer.write("<h1>Hello World</h1>");
         writer.flush(); // can be omitted
         writer.close(); // can be omitted

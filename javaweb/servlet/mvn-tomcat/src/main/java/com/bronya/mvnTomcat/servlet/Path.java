@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 @WebServlet("/upload")
-public class UploadServlet extends HttpServlet {
+public class Upload extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
