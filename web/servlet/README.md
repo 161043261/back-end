@@ -5,25 +5,25 @@ The key point of Learning Java is to deprecate XML, except Maven.
 Tomcat 9.x (Tomcat 10.x is NOT supported)
 
 ### Test
-[Hello](http://127.0.0.1:8080/servlet/hello?username=hello&password=1024)
+[Hello](http://127.0.0.1:8080/serve/hello?username=hello&password=1024)
 
-[ServletConfigTest](http://127.0.0.1:8080/servlet/config)
+[ServletConfigTest](http://127.0.0.1:8080/serve/config)
 
-[ServletContextTest](http://127.0.0.1:8080/servlet/context)
+[ServletContextTest](http://127.0.0.1:8080/serve/context)
 
-[LifeCycle](http://127.0.0.1:8080/servlet/lifecycle)
+[LifeCycle](http://127.0.0.1:8080/serve/lifecycle)
 
-[Path](http://127.0.0.1:8080/servlet/path)
+[Path](http://127.0.0.1:8080/serve/path)
 
-[Attribute](http://127.0.0.1:8080/servlet/attribute)
+[Attribute](http://127.0.0.1:8080/serve/attribute)
 
-[HttpServletRequestTest](http://127.0.0.1:8080/servlet/req)
+[HttpServletRequestTest](http://127.0.0.1:8080/serve/req)
 
-[HttpServletResponseTest](http://127.0.0.1:8080/servlet/resp)
+[HttpServletResponseTest](http://127.0.0.1:8080/serve/resp)
 
-[Forward](http://127.0.0.1:8080/servlet/forward?username=forward&password=2048)
+[Forward](http://127.0.0.1:8080/serve/forward?username=forward&password=2048)
 
-[Redirect](http://127.0.0.1:8080/servlet/redirect)
+[Redirect](http://127.0.0.1:8080/serve/redirect)
 
 ### Tree
 ```tex
@@ -37,21 +37,36 @@ Tomcat 9.x (Tomcat 10.x is NOT supported)
 │       │   └── com/bronya/servlet/servlets
 │       │                          ├── Path.java
 │       │                          └── *.java
-│       └── webapp      % ** Main.java: final String docBase = new File("./src/main/webapp").getAbsolutePath(); **
-│           ├── WEB-INF % ** Path.java: servletContext.getRealPath("./forward"); **
+│       └── webapp % Main.java: final String docBase = new File("./src/main/webapp").getAbsolutePath();
+│           ├── WEB-INF % Path.java: servletContext.getRealPath("./WEB-INF");
 │           │   └── web.xml
 │           ├── index.html
-│           └── static  % ** Path.java: servletContext.getRealPath("./static"); **
+│           └── static % Path.java: servletContext.getRealPath("./static");
 │               └── forward.html
 ├── target
-│   └── classes
-│       ├── Main.class
-│       └── com/bronya/servlet/servlets
-│                              ├── Path.class
-│                              └── *.class
+│   ├── classes % Main.java: final String base = new File("./target/classes").getAbsolutePath();
+│   │   ├── Main.class
+│   │   └── com/bronya/servlet/servlets
+│   │                          ├── Path.class
+│   │                          └── *.class
+│   ├── servlet
+│   │   ├── META-INF
+│   │   ├── WEB-INF
+│   │   │   ├── classes % Main.java: final String webAppMount = "/WEB-INF/classes";
+│   │   │   │   ├── Main.class
+│   │   │   │   └── com/bronya/servlet/servlets
+│   │   │   │                          ├── Path.class
+│   │   │   │                          └── *.class
+│   │   │   ├── lib
+│   │   │   │   └── *.jar
+│   │   │   └── web.xml
+│   │   ├── index.html
+│   │   └── static
+│   │       └── forward.html
+│   └── servlet.war
 └── tomcat.8080
     └── work
         └── Tomcat
             └── localhost
-                └── servlet % ** Main.java: Context context = tomcat.addWebapp("/servlet", docBase); **
+                └── serve % Main.java: Context context = tomcat.addWebapp("/serve", docBase);
 ```

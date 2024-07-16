@@ -17,11 +17,14 @@ public class Main {
 
         // contextPath = "servlet"
         // docBase = "./src/main/webapp"
-        Context context = tomcat.addWebapp("/servlet", docBase);
-
+        Context context = tomcat.addWebapp("/serve", docBase);
         WebResourceRoot root = new StandardRoot(context);
-        root.addPreResources(new DirResourceSet(root, "/WEB-INF/classes", // the webAppMount must begin with "/"
-                new File("./target/classes").getAbsolutePath(), "/"));
+        final String webAppMount = "/WEB-INF/classes";
+        final String base = new File("./target/classes").getAbsolutePath();
+        final String internalPath = "/";
+        root.addPreResources(
+                new DirResourceSet(root, webAppMount, // the webAppMount must begin with "/"
+                        base, internalPath));
         context.setResources(root);
         tomcat.start();
         tomcat.getServer().await();
