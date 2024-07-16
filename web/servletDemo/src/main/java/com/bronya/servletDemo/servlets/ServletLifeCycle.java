@@ -1,10 +1,10 @@
 package com.bronya.servletDemo.servlets;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -18,14 +18,14 @@ import java.io.IOException;
  * *----------------------------------------------*
  */
 @WebServlet(value = "/lifecycle", loadOnStartup = -1) // redundant
-public class LifeCycle extends HttpServlet {
+public class ServletLifeCycle extends HttpServlet {
 
-    public LifeCycle() {
+    public ServletLifeCycle() {
         System.out.println("Constructing...");
     }
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         System.out.println("Initializing...");
     }
 

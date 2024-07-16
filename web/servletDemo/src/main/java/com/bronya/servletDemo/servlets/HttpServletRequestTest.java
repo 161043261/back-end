@@ -1,9 +1,9 @@
 package com.bronya.servletDemo.servlets;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Map;
@@ -27,7 +27,7 @@ import java.util.Map;
  * req.getInputStream();
  * req.getServletPath()
  */
-@WebServlet("/req")
+@WebServlet("/request")
 public class HttpServletRequestTest extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
@@ -35,7 +35,7 @@ public class HttpServletRequestTest extends HttpServlet {
         System.out.println("********** Request Line ********** ");
         System.out.println(req.getMethod());     // GET/POST
         System.out.println(req.getRequestURI()); // /req
-        System.out.println(req.getRequestURL()); // http://127.0.0.1:8080/req
+        System.out.println(req.getRequestURL()); // http://127.0.0.1:8080/serve/request
         System.out.println(req.getScheme());     // http
         System.out.println(req.getProtocol());   // HTTP/1.1
         // Remote Browser => Proxy Server => Local Tomcat

@@ -1,19 +1,19 @@
 package com.bronya.servletDemo.servlets;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/forward")
-public class Forward extends HttpServlet {
+public class RequestForward extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // // ***** 1. You can forward to another servlet *****
-        // System.out.println("Forwarding to http://127.0.0.1/servlet/hello");
+        // System.out.println("Forwarding to http://127.0.0.1/serve/hello?username=forward&password=1024");
         // RequestDispatcher dispatcher = req.getRequestDispatcher("hello");
         // dispatcher.forward(req, resp);
 

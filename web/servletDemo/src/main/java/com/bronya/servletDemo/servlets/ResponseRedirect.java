@@ -1,18 +1,18 @@
 package com.bronya.servletDemo.servlets;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/redirect")
-public class Redirect extends HttpServlet {
+public class ResponseRedirect extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // // ***** 1. You can redirect to another servlet *****
-        // System.out.println("Redirecting to http://127.0.0.1/servlet/hello");
+        // System.out.println("Redirecting to http://127.0.0.1/serve/hello");
         // resp.setStatus(HttpServletResponse.SC_FOUND); // 302, this can be omitted
         // resp.sendRedirect("hello");
 

@@ -1,16 +1,16 @@
 package com.bronya.servletDemo.servlets;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
 // value equals to urlPatterns
 @WebServlet(name = "helloServlet ", value = "/hello") // urlPatterns = {"/hello"}
-public class Hello extends HttpServlet {
+public class HelloServlet extends HttpServlet {
 
     private void handle(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html"); // resp.setHeader("Content-Type", "text/html");

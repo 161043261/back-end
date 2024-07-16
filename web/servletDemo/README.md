@@ -1,29 +1,30 @@
 # Servlet
 The key point of Learning Java is to deprecate XML, except Maven.
 
-### Requirement
-Tomcat 9.x (Tomcat 10.x is NOT supported)
+**Based on Tomcat 10.1.25**
 
 ### Test
-[Hello](http://127.0.0.1:8080/serve/hello?username=hello&password=1024)
+[HelloServlet](http://127.0.0.1:8080/serve/hello?username=hello&password=1024)
+
+[HttpServletRequestTest](http://127.0.0.1:8080/serve/request)
+
+[HttpServletResponseTest](http://127.0.0.1:8080/serve/response)
+
+[RequestForward](http://127.0.0.1:8080/serve/forward?username=forward&password=1024)
+
+[ResourcePath](http://127.0.0.1:8080/serve/path)
+
+[ResponseCookie](http://127.0.0.1:8080/serve/cookie)
+
+[ResponseRedirect](http://127.0.0.1:8080/serve/redirect)
+
+[ServletAttribute](http://127.0.0.1:8080/serve/attribute)
 
 [ServletConfigTest](http://127.0.0.1:8080/serve/config)
 
 [ServletContextTest](http://127.0.0.1:8080/serve/context)
 
-[LifeCycle](http://127.0.0.1:8080/serve/lifecycle)
-
-[Path](http://127.0.0.1:8080/serve/path)
-
-[Attribute](http://127.0.0.1:8080/serve/attribute)
-
-[HttpServletRequestTest](http://127.0.0.1:8080/serve/req)
-
-[HttpServletResponseTest](http://127.0.0.1:8080/serve/resp)
-
-[Forward](http://127.0.0.1:8080/serve/forward?username=forward&password=2048)
-
-[Redirect](http://127.0.0.1:8080/serve/redirect)
+[ServletLifeCycle](http://127.0.0.1:8080/serve/lifecycle)
 
 ### Tree
 ```tex
@@ -69,4 +70,14 @@ Tomcat 9.x (Tomcat 10.x is NOT supported)
         └── Tomcat
             └── localhost
                 └── serve % Main.java: Context context = tomcat.addWebapp("/serve", docBase);
+```
+
+# WSL
+```shell
+java -classpath ./target/classes:\
+$HOME/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/9.0.87/tomcat-embed-core-9.0.87.jar:\
+$HOME/.m2/repository/org/apache/tomcat/tomcat-annotations-api/9.0.87/tomcat-annotations-api-9.0.87.jar:\
+$HOME/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/9.0.87/tomcat-embed-jasper-9.0.87.jar:\
+$HOME/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/9.0.87/tomcat-embed-el-9.0.87.jar:\
+$HOME/.m2/repository/org/eclipse/jdt/ecj/3.26.0/ecj-3.26.0.jar Main
 ```
