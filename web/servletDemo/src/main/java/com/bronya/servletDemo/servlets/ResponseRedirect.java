@@ -11,15 +11,15 @@ import java.io.IOException;
 public class ResponseRedirect extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // // ***** 1. You can redirect to another servlet *****
-        // System.out.println("Redirecting to http://127.0.0.1/serve/hello");
-        // resp.setStatus(HttpServletResponse.SC_FOUND); // 302, this can be omitted
-        // resp.sendRedirect("hello");
+        // ***** 1. You can redirect to another servlet *****
+        System.out.println("Redirecting to http://127.0.0.1/serve/hello");
+        resp.setStatus(HttpServletResponse.SC_FOUND); // 302, this can be omitted
+        resp.sendRedirect("hello");
 
         // ***** 2. You can NOT redirect to internal web resource (client cannot find it) *****
 
-        // ***** 3. You can also redirect to external web resource *****
-        System.out.println("Redirecting to https://ys.mihoyo.com");
-        resp.sendRedirect("https://ys.mihoyo.com");
+        // // ***** 3. You can also redirect to external web resource *****
+        // System.out.println("Redirecting to https://ys.mihoyo.com");
+        // resp.sendRedirect("https://ys.mihoyo.com");
     }
 }

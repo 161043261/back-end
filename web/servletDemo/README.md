@@ -6,17 +6,7 @@ The key point of Learning Java is to deprecate XML, except Maven.
 ### Test
 [HelloServlet](http://127.0.0.1:8080/serve/hello?username=hello&password=1024)
 
-[HttpServletRequestTest](http://127.0.0.1:8080/serve/request)
-
-[HttpServletResponseTest](http://127.0.0.1:8080/serve/response)
-
-[RequestForward](http://127.0.0.1:8080/serve/forward?username=forward&password=1024)
-
-[ResourcePath](http://127.0.0.1:8080/serve/path)
-
-[ResponseCookie](http://127.0.0.1:8080/serve/cookie)
-
-[ResponseRedirect](http://127.0.0.1:8080/serve/redirect)
+[ServletLifeCycle](http://127.0.0.1:8080/serve/life/cycle)
 
 [ServletAttribute](http://127.0.0.1:8080/serve/attribute)
 
@@ -24,7 +14,17 @@ The key point of Learning Java is to deprecate XML, except Maven.
 
 [ServletContextTest](http://127.0.0.1:8080/serve/context)
 
-[ServletLifeCycle](http://127.0.0.1:8080/serve/lifecycle)
+[ResourcePath](http://127.0.0.1:8080/serve/path)
+
+[HttpServletRequestTest](http://127.0.0.1:8080/serve/request)
+
+[HttpServletResponseTest](http://127.0.0.1:8080/serve/response)
+
+[RequestForward](http://127.0.0.1:8080/serve/forward?username=forward&password=1024)
+
+[ResponseRedirect](http://127.0.0.1:8080/serve/redirect)
+
+[CookieTest](http://127.0.0.1:8080/serve/cookie)
 
 ### Tree
 ```tex

@@ -17,7 +17,7 @@ import java.io.IOException;
  * | 4 | Destroying the Servlet   | destroy()     |
  * *----------------------------------------------*
  */
-@WebServlet(value = "/lifecycle", loadOnStartup = -1) // redundant
+@WebServlet(value = "/life/cycle", loadOnStartup = -1) // redundant
 public class ServletLifeCycle extends HttpServlet {
 
     public ServletLifeCycle() {
