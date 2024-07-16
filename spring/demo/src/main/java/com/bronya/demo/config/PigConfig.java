@@ -1,7 +1,7 @@
-package com.cognosphere.demo.config;
+package com.bronya.demo.config;
 
-import com.cognosphere.demo.bean.Kun;
-import com.cognosphere.demo.bean.Pig;
+import com.bronya.demo.bean.Kun;
+import com.bronya.demo.bean.Pig;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 
 // @EnableConfigurationProperties is commonly used to enable properties configuration for third-party class
 @SpringBootConfiguration
-public class PkConfig {
+public class PigConfig {
 
     @Bean(name = "pigBean")
     @ConfigurationProperties(prefix = "pig")

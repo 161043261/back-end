@@ -1,7 +1,7 @@
-package com.cognosphere.demo.config;
+package com.bronya.demo.config;
 
 
-import com.cognosphere.demo.bean.Usr;
+import com.bronya.demo.bean.Usr;
 import com.mysql.cj.jdbc.Driver; // "com.mysql.jdbc.Driver" is deprecated
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.cognosphere.demo.bean;
+package com.bronya.demo.bean;
 
 public class Dog {
     private int id;

@@ -22,7 +22,7 @@
 @Import
 
 @ComponentScan
-# 1. SpringBoot scans the package "com.cognosphere.demo" where the main application is located and the subpackage "Controller" of this package, etc.
+# 1. SpringBoot scans the package "com.bronya.demo" where the main application is located and the subpackage "Controller" of this package, etc.
 # 2. The class annotated with "@SpringBootApplication" is the main application class
 
 @ConditionalOnXxx

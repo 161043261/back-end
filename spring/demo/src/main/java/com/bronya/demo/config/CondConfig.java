@@ -1,8 +1,8 @@
-package com.cognosphere.demo.config;
+package com.bronya.demo.config;
 
-import com.cognosphere.demo.bean.Cat;
-import com.cognosphere.demo.bean.Dog;
-import com.cognosphere.demo.bean.User;
+import com.bronya.demo.bean.Cat;
+import com.bronya.demo.bean.Dog;
+import com.bronya.demo.bean.User;
 import com.mysql.cj.jdbc.Driver;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClas
 import org.springframework.context.annotation.Bean;
 
 @SpringBootConfiguration
-public class ConConfig {
+public class CondConfig {
 
     @Bean("catBean")
     @ConditionalOnClass(value = Driver.class)

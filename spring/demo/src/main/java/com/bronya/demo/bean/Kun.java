@@ -1,11 +1,9 @@
-package com.cognosphere.demo.bean;
+package com.bronya.demo.bean;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
-@Component
-// @ConfigurationProperties(prefix = "pig")
-public class Pig {
+@ConfigurationProperties(prefix = "kun")
+public class Kun {
     private int id;
     private String name;
 
@@ -27,7 +25,7 @@ public class Pig {
 
     @Override
     public String toString() {
-        return "Pig{" +
+        return "Kun{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

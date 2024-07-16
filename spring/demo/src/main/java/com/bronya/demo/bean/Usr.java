@@ -1,6 +1,6 @@
-package com.cognosphere.demo.bean;
+package com.bronya.demo.bean;
 
-public class User {
+public class Usr {
     private int id;
     private String name;
 
