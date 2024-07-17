@@ -29,9 +29,9 @@ public class HttpServletResponseDemo extends HttpServlet {
         // getBytes(): String => byte[]
         resp.setContentLength("response body".getBytes().length);
 
-        // response body
+        // Response Body
         PrintWriter writer = resp.getWriter(); // character output stream
-        writer.write("response body");
+        writer.write("<h1>Response Body</h1>");
         // ServletOutputStream stream = resp.getOutputStream(); // byte output stream
     }
 }

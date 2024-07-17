@@ -29,6 +29,6 @@ public class ResourcePath extends HttpServlet {
         // servletContext.getRealPath("./WEB-INF") == pwd
 
         String contextPath = servletContext.getContextPath();
-        System.out.println(contextPath); // /servlet
+        System.out.println(contextPath); // /demo
     }
 }

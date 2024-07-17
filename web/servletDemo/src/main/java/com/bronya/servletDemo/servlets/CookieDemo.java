@@ -21,10 +21,7 @@ public class CookieDemo extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                writer.write(cookie.getName()
-                        + ": "
-                        + cookie.getValue()
-                        + "<br>");
+                writer.write(cookie.getName() + ": " + cookie.getValue() + "<br>");
             }
         } else { // cookies == null
             // ***** Set Cookies *****

@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
-@WebServlet(urlPatterns = "/config",
-        initParams = {@WebInitParam(name = "username", value = "root"),
-                @WebInitParam(name = "password", value = "1024")})
+@WebServlet(urlPatterns = "/config", initParams = {@WebInitParam(name = "username", value = "root"), @WebInitParam(name = "password", value = "1024")})
 public class ServletConfigDemo extends HttpServlet {
 
     @Override

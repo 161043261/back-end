@@ -36,13 +36,13 @@ public class FilterDemo implements Filter {
 
         // Before doFilter() invoked
         long beginTimeMillis = System.currentTimeMillis();
-        System.out.println(GREEN + "FilterDemo Filtering: URI=" + requestURI + " @ " + dateFormat.format(new Date()) + RESET);
+        System.out.println(GREEN + "FilterDemo Filtering, URI=" + requestURI + " @ " + dateFormat.format(new Date()) + RESET);
 
         // Invoke doFilter() to pass req and resp to the next filter
         filterChain.doFilter(req, resp);
 
         // After doFilter() invoked
         long endTimeMillis = System.currentTimeMillis();
-        System.out.println(GREEN + "Demo Filtered: Total: " + (endTimeMillis - beginTimeMillis) + "ms" + RESET);
+        System.out.println(GREEN + "Demo Filtered, Total: " + (endTimeMillis - beginTimeMillis) + "ms" + RESET);
     }
 }
