@@ -25,9 +25,9 @@ public class FilterA implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("FilterA Filtering...");
+        System.out.println("A Filtering...");
         filterChain.doFilter(servletRequest, servletResponse);
-        System.out.println("FilterA Filtered...");
+        System.out.println("A Filtered...");
     }
 
     @Override

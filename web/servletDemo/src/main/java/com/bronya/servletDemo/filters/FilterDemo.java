@@ -43,6 +43,6 @@ public class FilterDemo implements Filter {
 
         // After doFilter() invoked
         long endTimeMillis = System.currentTimeMillis();
-        System.out.println(GREEN + "FilterDemo Filtered: Total: " + (endTimeMillis - beginTimeMillis) + "ms" + RESET);
+        System.out.println(GREEN + "Demo Filtered: Total: " + (endTimeMillis - beginTimeMillis) + "ms" + RESET);
     }
 }

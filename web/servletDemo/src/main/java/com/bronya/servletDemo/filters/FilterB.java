@@ -10,8 +10,8 @@ public class FilterB implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("FilterB Filtering...");
+        System.out.println("B Filtering...");
         filterChain.doFilter(servletRequest, servletResponse);
-        System.out.println("FilterB Filtered...");
+        System.out.println("B Filtered...");
     }
 }

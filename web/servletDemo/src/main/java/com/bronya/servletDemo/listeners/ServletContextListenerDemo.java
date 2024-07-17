@@ -11,13 +11,13 @@ public class ServletContextListenerDemo implements ServletContextListener, Servl
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        System.out.println(BLUE + servletContext.hashCode() + " ServletContext Initialized" + RESET);
+        System.out.println(BLUE + "hash=" + servletContext.hashCode() + " ServletContext Initialized" + RESET);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        System.out.println(BLUE + servletContext.hashCode() + " ServletContext Destroyed" + RESET);
+        System.out.println(BLUE + "hash=" + servletContext.hashCode() + " ServletContext Destroyed" + RESET);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class ServletContextListenerDemo implements ServletContextListener, Servl
         ServletContext servletContext = scae.getServletContext();
         String key = scae.getName();
         Object value = scae.getValue();
-        System.out.println(BLUE + servletContext.hashCode() + " ServletContextAttribute " // insert
+        System.out.println(BLUE + "hash=" + servletContext.hashCode() + " ServletContextAttribute " // insert
                 + key + ": " + value + " Added" + RESET);
     }
 
@@ -34,7 +34,7 @@ public class ServletContextListenerDemo implements ServletContextListener, Servl
         ServletContext servletContext = scae.getServletContext();
         String key = scae.getName();
         Object value = scae.getValue();
-        System.out.println(BLUE + servletContext.hashCode() + " ServletContextAttribute " // insert
+        System.out.println(BLUE + "hash=" + servletContext.hashCode() + " ServletContextAttribute " // delete
                 + key + ": " + value + " Removed" + RESET);
     }
 
@@ -44,7 +44,7 @@ public class ServletContextListenerDemo implements ServletContextListener, Servl
         String key = scae.getName();
         Object value = scae.getValue();
         Object newValue = servletContext.getAttribute(key);
-        System.out.println(BLUE + servletContext.hashCode() + " ServletContextAttribute " // update
-                + key + ": " + value + " -> Replaced -> " + key + ": " + newValue + RESET);
+        System.out.println(BLUE + "hash=" + servletContext.hashCode() + " ServletContextAttribute " // update
+                + key + ": " + value + "--Replaced->" + newValue + RESET);
     }
 }
