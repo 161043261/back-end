@@ -29,7 +29,7 @@ import java.util.Map;
  * req.getServletPath()
  */
 @WebServlet("/request")
-public class HttpServletRequestTest extends HttpServlet {
+public class HttpServletRequestDemo extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
         // Request Line

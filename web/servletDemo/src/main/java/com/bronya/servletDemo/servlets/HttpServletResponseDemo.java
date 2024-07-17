@@ -16,7 +16,7 @@ import java.io.PrintWriter;
  * resp.getOutputStream();
  */
 @WebServlet("/response")
-public class HttpServletResponseTest extends HttpServlet {
+public class HttpServletResponseDemo extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // Response Line

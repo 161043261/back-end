@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 
 @WebServlet("/session")
-public class SessionTest extends HttpServlet {
+public class SessionDemo extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, String[]> paramMap = req.getParameterMap();

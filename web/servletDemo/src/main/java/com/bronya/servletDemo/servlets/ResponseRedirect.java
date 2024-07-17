@@ -14,7 +14,7 @@ public class ResponseRedirect extends HttpServlet {
         // ***** 1. You can redirect to another servlet *****
         System.out.println("Redirecting to http://127.0.0.1/serve/hello");
         resp.setStatus(HttpServletResponse.SC_FOUND); // 302, this can be omitted
-        resp.sendRedirect("hello");
+        resp.sendRedirect("./hello"); // equivalent to resp.sendRedirect("/serve/hello");
 
         // ***** 2. You can NOT redirect to internal web resource (client cannot find it) *****
 

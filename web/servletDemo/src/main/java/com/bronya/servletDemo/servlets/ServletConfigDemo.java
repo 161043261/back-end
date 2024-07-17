@@ -11,8 +11,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
-@WebServlet(name = "config", urlPatterns = "/config", initParams = {@WebInitParam(name = "username", value = "root"), @WebInitParam(name = "password", value = "1024")})
-public class ServletConfigTest extends HttpServlet {
+@WebServlet(urlPatterns = "/config",
+        initParams = {@WebInitParam(name = "username", value = "root"),
+                @WebInitParam(name = "password", value = "1024")})
+public class ServletConfigDemo extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {

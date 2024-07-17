@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.util.Enumeration;
 
 @WebServlet("/context")
-public class ServletContextTest extends HttpServlet {
+public class ServletContextDemo extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {

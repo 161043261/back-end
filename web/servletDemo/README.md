@@ -3,28 +3,28 @@ The key point of Learning Java is to deprecate XML, except Maven.
 
 **Based on Tomcat 10.1.25**
 
-### Test
+### Demo
 [HelloServlet](http://127.0.0.1:8080/serve/hello?username=hello&password=1024)
 
 [ServletLifeCycle](http://127.0.0.1:8080/serve/life/cycle)
 
-[ServletConfigTest](http://127.0.0.1:8080/serve/config)
+[ServletConfigDemo](http://127.0.0.1:8080/serve/config)
 
-[ServletContextTest](http://127.0.0.1:8080/serve/context)
+[ServletContextDemo](http://127.0.0.1:8080/serve/context)
 
 [ResourcePath](http://127.0.0.1:8080/serve/path)
 
-[HttpServletRequestTest](http://127.0.0.1:8080/serve/request)
+[HttpServletRequestDemo](http://127.0.0.1:8080/serve/request)
 
-[HttpServletResponseTest](http://127.0.0.1:8080/serve/response)
+[HttpServletResponseDemo](http://127.0.0.1:8080/serve/response)
 
 [RequestForward](http://127.0.0.1:8080/serve/forward?username=forward&password=1024)
 
 [ResponseRedirect](http://127.0.0.1:8080/serve/redirect)
 
-[CookieTest](http://127.0.0.1:8080/serve/cookie)
+[CookieDemo](http://127.0.0.1:8080/serve/cookie)
 
-[SessionTest](http://127.0.0.1:8080/serve/session?account=bronya)
+[SessionDemo](http://127.0.0.1:8080/serve/session?account=bronya)
 
 ### Tree
 ```tex
@@ -36,19 +36,19 @@ The key point of Learning Java is to deprecate XML, except Maven.
 │       ├── java
 │       │   ├── Main.java
 │       │   └── com/bronya/servlet/servlets
-│       │                          ├── Path.java
+│       │                          ├── ResourcePath.java
 │       │                          └── *.java
 │       └── webapp % Main.java: final String docBase = new File("./src/main/webapp").getAbsolutePath();
-│           ├── WEB-INF % Path.java: servletContext.getRealPath("./WEB-INF");
+│           ├── WEB-INF % ResourcePath.java: servletContext.getRealPath("./WEB-INF");
 │           │   └── web.xml
 │           ├── index.html
-│           └── static % Path.java: servletContext.getRealPath("./static");
+│           └── static % ResourcePath.java: servletContext.getRealPath("./static");
 │               └── forward.html
 ├── target
 │   ├── classes % Main.java: final String base = new File("./target/classes").getAbsolutePath();
 │   │   ├── Main.class
 │   │   └── com/bronya/servlet/servlets
-│   │                          ├── Path.class
+│   │                          ├── ResourcePath.class
 │   │                          └── *.class
 │   ├── servletDemo
 │   │   ├── META-INF
@@ -56,7 +56,7 @@ The key point of Learning Java is to deprecate XML, except Maven.
 │   │   │   ├── classes % Main.java: final String webAppMount = "/WEB-INF/classes";
 │   │   │   │   ├── Main.class
 │   │   │   │   └── com/bronya/servlet/servlets
-│   │   │   │                          ├── Path.class
+│   │   │   │                          ├── ResourcePath.class
 │   │   │   │                          └── *.class
 │   │   │   ├── lib
 │   │   │   │   └── *.jar
