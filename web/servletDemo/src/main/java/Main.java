@@ -14,7 +14,7 @@ public class Main {
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
         tomcat.getConnector();
-        Context context = tomcat.addWebapp("/serve", docBase);
+        Context context = tomcat.addWebapp("/demo", docBase);
         WebResourceRoot root = new StandardRoot(context);
         String webAppMount = "/WEB-INF/classes";
         String base = new File("./target/classes").getAbsolutePath();

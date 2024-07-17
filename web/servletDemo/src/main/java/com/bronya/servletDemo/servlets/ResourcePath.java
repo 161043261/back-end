@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/path")
+@WebServlet("/resource/path")
 public class ResourcePath extends HttpServlet {
 
     @Override

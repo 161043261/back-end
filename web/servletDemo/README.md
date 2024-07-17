@@ -1,32 +1,42 @@
 # Servlet
+
 The key point of Learning Java is to deprecate XML, except Maven.
 
 **Based on Tomcat 10.1.25**
 
-### Demo
-[HelloServlet](http://127.0.0.1:8080/serve/hello?username=hello&password=1024)
+### Servlet Demo
 
-[ServletLifeCycle](http://127.0.0.1:8080/serve/life/cycle)
+[HelloServlet](http://127.0.0.1:8080/demo/hello?username=hello&password=1024)
 
-[ServletConfigDemo](http://127.0.0.1:8080/serve/config)
+[ServletLifeCycle](http://127.0.0.1:8080/demo/life/cycle)
 
-[ServletContextDemo](http://127.0.0.1:8080/serve/context)
+[ServletConfigDemo](http://127.0.0.1:8080/demo/config)
 
-[ResourcePath](http://127.0.0.1:8080/serve/path)
+[ServletContextDemo](http://127.0.0.1:8080/demo/context)
 
-[HttpServletRequestDemo](http://127.0.0.1:8080/serve/request)
+[ResourcePath](http://127.0.0.1:8080/demo/resource/path)
 
-[HttpServletResponseDemo](http://127.0.0.1:8080/serve/response)
+[HttpServletRequestDemo](http://127.0.0.1:8080/demo/request)
 
-[RequestForward](http://127.0.0.1:8080/serve/forward?username=forward&password=1024)
+[HttpServletResponseDemo](http://127.0.0.1:8080/demo/response)
 
-[ResponseRedirect](http://127.0.0.1:8080/serve/redirect)
+[RequestForward](http://127.0.0.1:8080/demo/forward?username=forward&password=1024)
 
-[CookieDemo](http://127.0.0.1:8080/serve/cookie)
+[ResponseRedirect](http://127.0.0.1:8080/demo/redirect)
 
-[SessionDemo](http://127.0.0.1:8080/serve/session?account=bronya)
+[CookieDemo](http://127.0.0.1:8080/demo/cookie)
+
+[SessionDemo](http://127.0.0.1:8080/demo/session?company=bronya)
+
+### Listeners Demo
+[listeners/ServletContextInsert](http://127.0.0.1:8080/demo/context/insert)
+
+[listeners/ServletContextDelete](http://127.0.0.1:8080/demo/context/delete)
+
+[listeners/ServletContextUpdate](http://127.0.0.1:8080/demo/context/update)
 
 ### Tree
+
 ```tex
 .
 ├── README.md
@@ -69,10 +79,11 @@ The key point of Learning Java is to deprecate XML, except Maven.
     └── work
         └── Tomcat
             └── localhost
-                └── serve % Main.java: Context context = tomcat.addWebapp("/serve", docBase);
+                └── demo % Main.java: Context context = tomcat.addWebapp("/demo", docBase);
 ```
 
 # WSL
+
 ```shell
 java -classpath ./target/classes:\
 $HOME/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.25/tomcat-embed-core-10.1.25.jar:\

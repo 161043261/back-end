@@ -10,14 +10,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static com.bronya.servletDemo.util.Colors.GREEN;
+import static com.bronya.servletDemo.util.Colors.RESET;
+
 @WebFilter(filterName = "filterDemo", initParams = {@WebInitParam(name = "pattern", value = "HH:mm:ss")},
         // urlPatterns is equivalent to value
         urlPatterns = {"*.html",// filter HTML resources
-                "/*"}, // filter http://127.0.0.1:8080/serve/*
+                "/*"}, // filter http://127.0.0.1:8080/demo/*
         servletNames = "helloServlet") // filter the specified servlet
 public class FilterDemo implements Filter {
-    private static final String GREEN = "\033[0;32m";
-    private static final String RESET = "\033[0m";
     private static SimpleDateFormat dateFormat;
 
 
@@ -43,6 +44,5 @@ public class FilterDemo implements Filter {
         // After doFilter() invoked
         long endTimeMillis = System.currentTimeMillis();
         System.out.println(GREEN + "FilterDemo Filtered: Total: " + (endTimeMillis - beginTimeMillis) + "ms" + RESET);
-
     }
 }

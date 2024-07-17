@@ -36,7 +36,7 @@ public class HttpServletRequestDemo extends HttpServlet {
         System.out.println("********** Request Line ********** ");
         System.out.println(req.getMethod());     // GET/POST
         System.out.println(req.getRequestURI()); // /req
-        System.out.println(req.getRequestURL()); // http://127.0.0.1:8080/serve/request
+        System.out.println(req.getRequestURL()); // http://127.0.0.1:8080/demo/request
         System.out.println(req.getScheme());     // http
         System.out.println(req.getProtocol());   // HTTP/1.1
         // Remote Browser => Proxy Server => Local Tomcat

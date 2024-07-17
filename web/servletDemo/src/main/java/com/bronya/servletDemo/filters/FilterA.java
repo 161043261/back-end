@@ -15,7 +15,7 @@ import java.io.IOException;
 @WebFilter(filterName = "FilterA", urlPatterns = "/hello")
 public class FilterA implements Filter {
     public FilterA() {
-        System.out.println("Constructing Filter..."); // Revoked when the Tomcat starts
+        System.out.println("Constructing Filter..."); // Invoked when the Tomcat starts
     }
 
     @Override

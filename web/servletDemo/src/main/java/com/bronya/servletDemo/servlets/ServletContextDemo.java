@@ -50,6 +50,7 @@ public class ServletContextDemo extends HttpServlet {
             return;
         }
 
+        // Set servletContext attributes (use firefox)
         // ***** insert *****
         context[0].setAttribute("serverName", "Tomcat");
         context[0].setAttribute("serverPort", "8000");

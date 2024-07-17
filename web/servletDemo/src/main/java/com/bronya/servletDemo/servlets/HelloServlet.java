@@ -1,5 +1,6 @@
 package com.bronya.servletDemo.servlets;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -18,6 +19,8 @@ public class HelloServlet extends HttpServlet {
         resp.setContentType("text/html"); // resp.setHeader("Content-Type", "text/html");
         resp.setStatus(HttpServletResponse.SC_OK); // StatusCode_OK
         PrintWriter writer = resp.getWriter();
+        writer.write("<h1>Hello World</h1>");
+
         // get parameters from Request Line and Request Body
         req.getParameterMap().forEach((name, value) -> writer.write(name + ": " + Arrays.toString(value) + "<br>"));
         // get cookies from Request Headers
@@ -27,7 +30,12 @@ public class HelloServlet extends HttpServlet {
                 writer.write(cookie.getName() + ": " + cookie.getValue() + "<br>");
             });
         }
-        writer.write("<h1>Hello World</h1>");
+        writer.write("<h3>Get servletContext attributes</h3>");
+        ServletContext context = this.getServletContext();
+        String serverName = (String) context.getAttribute("serverName");
+        if (serverName != null) {
+            writer.write("serverName: " + serverName);
+        }
         // can be omitted
         writer.flush();
         writer.close();

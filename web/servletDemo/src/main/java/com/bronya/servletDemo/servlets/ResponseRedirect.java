@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 @WebServlet("/redirect")
@@ -12,9 +13,9 @@ public class ResponseRedirect extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // ***** 1. You can redirect to another servlet *****
-        System.out.println("Redirecting to http://127.0.0.1/serve/hello");
+        System.out.println("Redirecting to http://127.0.0.1/demo/hello");
         resp.setStatus(HttpServletResponse.SC_FOUND); // 302, this can be omitted
-        resp.sendRedirect("./hello"); // equivalent to resp.sendRedirect("/serve/hello");
+        resp.sendRedirect("./hello"); // equivalent to resp.sendRedirect("/demo/hello");
 
         // ***** 2. You can NOT redirect to internal web resource (client cannot find it) *****
 

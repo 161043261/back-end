@@ -32,8 +32,8 @@ public class CookieDemo extends HttpServlet {
             Cookie password = new Cookie("password", "1024");
             password.setMaxAge(60 /* seconds */);  // persistent storage (TTL = 60s)
             // The 'password' cookie will be carried
-            // ONLY when requesting http://127.0.0.1:8080/serve/hello
-            password.setPath("/serve/hello");
+            // ONLY when requesting http://127.0.0.1:8080/demo/hello
+            password.setPath("/demo/hello");
 
             // ***** Add Cookies to Response Headers *****
             resp.addCookie(username); // resp.setHeader("Set-Cookie", "username=cookie");

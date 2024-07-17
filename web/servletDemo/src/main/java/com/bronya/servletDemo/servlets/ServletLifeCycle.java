@@ -19,7 +19,7 @@ import java.io.IOException;
 public class ServletLifeCycle extends HttpServlet {
 
     public ServletLifeCycle() {
-        System.out.println("Constructing Servlet..."); // Revoked when the 1st request is received
+        System.out.println("Constructing Servlet..."); // Invoked when the 1st request is received
     }
 
     @Override

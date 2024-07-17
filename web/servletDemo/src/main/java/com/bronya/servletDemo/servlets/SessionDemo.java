@@ -20,23 +20,17 @@ public class SessionDemo extends HttpServlet {
         HttpSession session = req.getSession();
         if (!session.isNew()) {
             System.out.println("session is NOT new");
-            // (String) session.getAttribute("account");
-            System.out.println((String) session.getAttribute("account"));
+            // (String) session.getAttribute("company");
+            System.out.println((String) session.getAttribute("company"));
         } else { // session.isNew() == true
             System.out.println("session is new");
             session.setMaxInactiveInterval(120 /* seconds */);
-            session.setAttribute("account", paramMap.get("account")[0]);
+            session.setAttribute("company", paramMap.get("company")[0]);
         }
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
         writer.write("JSESSIONID: " + session.getId() + "<br>");
 
-        /* Append: set servletContext attributes (use firefox) */
-        ServletContext context = this.getServletContext();
-
-        String serverName = (String) context.getAttribute("serverName");
-        if (serverName != null) {
-            writer.write("serverName: " + serverName);
-        }
+        session.invalidate();
     }
 }

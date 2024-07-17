@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>./index.html</title>
     <style>
         input {
@@ -13,15 +13,15 @@
 </head>
 
 <body>
-    <form method="post" action="http://127.0.0.1:8080/serve/req">
-        <input type="text" name="username">
-        <input type="password" name="password">
-        <input type="checkbox" name="kun" value="sing"> sing
-        <input type="checkbox" name="kun" value="dance"> dance
-        <input type="checkbox" name="kun" value="rap"> rap
-        <input type="checkbox" name="kun" value="basketball"> basketball
-        <input type="submit">
-    </form>
+<form action="http://127.0.0.1:8080/demo/req" method="post">
+    <input name="username" type="text">
+    <input name="password" type="password">
+    <input name="kun" type="checkbox" value="sing"> sing
+    <input name="kun" type="checkbox" value="dance"> dance
+    <input name="kun" type="checkbox" value="rap"> rap
+    <input name="kun" type="checkbox" value="basketball"> basketball
+    <input type="submit">
+</form>
 </body>
 
 </html>
