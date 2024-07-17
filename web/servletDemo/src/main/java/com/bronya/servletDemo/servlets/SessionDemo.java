@@ -30,6 +30,6 @@ public class SessionDemo extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         writer.write("JSESSIONID: " + session.getId() + "<br>");
 
-        session.invalidate();
+        // session.invalidate();
     }
 }
