@@ -28,8 +28,9 @@ public class HelloServlet extends HttpServlet {
             });
         }
         writer.write("<h1>Hello World</h1>");
-        writer.flush(); // this can be omitted
-        writer.close(); // this can be omitted
+        // can be omitted
+        writer.flush();
+        writer.close();
     }
 
     @Override

@@ -25,13 +25,12 @@ public class HttpServletResponseTest extends HttpServlet {
         // Response Headers
         resp.setHeader("Content-Type", "text/html");
         resp.setContentType("text/html");
-        String responseBody = "Response Body";
         // getBytes(): String => byte[]
-        resp.setContentLength(responseBody.getBytes().length);
+        resp.setContentLength("response body".getBytes().length);
 
-        // Response Body
+        // response body
         PrintWriter writer = resp.getWriter(); // character output stream
-        writer.write(responseBody);
+        writer.write("response body");
         // ServletOutputStream stream = resp.getOutputStream(); // byte output stream
     }
 }

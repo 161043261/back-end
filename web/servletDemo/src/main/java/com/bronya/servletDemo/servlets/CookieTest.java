@@ -14,28 +14,30 @@ import java.io.PrintWriter;
 public class CookieTest extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        StringBuilder builder = new StringBuilder();
+        resp.setContentType("text/html");
+        PrintWriter writer = resp.getWriter();
+
         // ***** Get Cookies from Request Headers *****
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                builder.append(cookie.getName()).append(": ").append(cookie.getValue()).append("<br>");
+                writer.write(cookie.getName()
+                        + ": "
+                        + cookie.getValue()
+                        + "<br>");
             }
         } else { // cookies == null
-            // ***** Create Cookies *****
+            // ***** Set Cookies *****
             Cookie username = new Cookie("username", "cookie");
-            username.setMaxAge(3600 /* seconds */);  // persistent storage (TTL = 3600s)
-            // The 'username' cookie will be carried
-            // ONLY when requesting http://127.0.0.1:8080/serve/hello
-            username.setPath("/serve/hello");
             Cookie password = new Cookie("password", "1024");
+            password.setMaxAge(60 /* seconds */);  // persistent storage (TTL = 60s)
+            // The 'password' cookie will be carried
+            // ONLY when requesting http://127.0.0.1:8080/serve/hello
+            password.setPath("/serve/hello");
 
             // ***** Add Cookies to Response Headers *****
             resp.addCookie(username); // resp.setHeader("Set-Cookie", "username=cookie");
             resp.addCookie(password); // resp.setHeader("Set-Cookie", "password=1024");
         }
-        resp.setContentType("text/html");
-        PrintWriter writer = resp.getWriter();
-        writer.write(builder.toString());
     }
 }

@@ -6,16 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
-@WebServlet(name = "config",
-        urlPatterns = "/config",
-        initParams = {
-                @WebInitParam(name = "username", value = "root"),
-                @WebInitParam(name = "password", value = "1024")
-        })
+@WebServlet(name = "config", urlPatterns = "/config", initParams = {@WebInitParam(name = "username", value = "root"), @WebInitParam(name = "password", value = "1024")})
 public class ServletConfigTest extends HttpServlet {
 
     @Override
@@ -28,12 +24,10 @@ public class ServletConfigTest extends HttpServlet {
             return;
         }
         resp.setContentType("text/html");
-        StringBuilder builder = new StringBuilder();
         while (names.hasMoreElements()) {
             String name = names.nextElement();
             String value = config.getInitParameter(name);
-            builder.append(name).append(": ").append(value).append("<br>");
+            writer.write(name + ": " + value + "<br>");
         }
-        writer.write(builder.toString());
     }
 }
