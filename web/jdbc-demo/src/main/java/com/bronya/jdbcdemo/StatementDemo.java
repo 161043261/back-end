@@ -4,24 +4,24 @@ import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
 
-public class JDBCQuickStart {
+public class StatementDemo {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         String qualifiedName = Driver.class.getName();
         System.out.println(qualifiedName); // com.mysql.cj.jdbc.Driver
 
-        // Get Connection
+        // get connection
         String url = "jdbc:mysql://localhost:3306/bronya";
         String user = "root";
         String password = "0228";
         Connection connection = DriverManager.getConnection(url, user, password);
 
-        // Create Statement to Execute Query
-        Statement statement = connection.createStatement();
+        // create statement to execute query
         final String sql = "SELECT emp_id, emp_name, emp_salary, emp_age FROM t_emp";
+        Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
 
-        // Iterate the resultSet
+        // iterate the resultSet
         while (resultSet.next()) {
             int empId = resultSet.getInt("emp_id");
             String empName = resultSet.getString("emp_name");
@@ -30,7 +30,7 @@ public class JDBCQuickStart {
             System.out.println(empId + "\t" + empName + "\t" + empSalary + "\t" + empAge);
         }
 
-        // Close Resource in Reverse Order (optional)
+        // close resource in reverse order (optional)
         resultSet.close();
         statement.close();
         connection.close();
