@@ -1,4 +1,4 @@
-# back-end
+# backend
 
 ### Minimal Roadmap
 1. Java, [Go](https://go.dev/learn/)
