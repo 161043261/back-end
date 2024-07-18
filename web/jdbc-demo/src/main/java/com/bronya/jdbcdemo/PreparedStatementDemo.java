@@ -4,7 +4,8 @@ import java.sql.*;
 import java.util.Scanner;
 
 /**
- * Use PreparedStatement to Prevent SQL Injection
+ * Use PreparedStatement to Prevent
+ * <a href="https://en.wikipedia.org/wiki/SQL_injection">SQL Injection</a>
  */
 public class PreparedStatementDemo {
 
@@ -27,8 +28,8 @@ public class PreparedStatementDemo {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         // iterate the resultSet
-        while (resultSet.next()) {
-            int empId = resultSet.getInt("emp_id");
+        while (resultSet.next()) { // Moves the cursor forward one row from its current position.
+            int empId = resultSet.getInt("emp_id"/* columnLabel */);
             double empSalary = resultSet.getDouble("emp_salary");
             int empAge = resultSet.getInt("emp_age");
             System.out.println(empName + ": " + empId + "\t" + empSalary + "\t" + empAge);
