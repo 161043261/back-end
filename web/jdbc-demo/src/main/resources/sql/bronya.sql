@@ -1,6 +1,8 @@
 # create database bronya;
 use bronya;
 
+drop table if exists t_emp;
+
 create table t_emp
 (
     emp_id     int auto_increment comment 'employee id' primary key,

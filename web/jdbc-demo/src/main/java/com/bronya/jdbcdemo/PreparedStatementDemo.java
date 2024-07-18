@@ -19,12 +19,12 @@ public class PreparedStatementDemo {
         // create preparedStatement to execute query
         String sql = "SELECT emp_id, emp_salary, emp_age FROM t_emp WHERE emp_name = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        Scanner in = new Scanner(System.in);
 
-        // replace the ? placeholder with string
+        Scanner in = new Scanner(System.in);
+        System.out.print("emp_name = ");
         String empName = in.nextLine();
-        // parameterIndex starts from 1
-        preparedStatement.setString(1/* parameterIndex */, empName);
+        // replace the ? placeholder with string
+        preparedStatement.setString(1, empName); // the first parameterIndex is 1
         ResultSet resultSet = preparedStatement.executeQuery();
 
         // iterate the resultSet
@@ -32,7 +32,7 @@ public class PreparedStatementDemo {
             int empId = resultSet.getInt("emp_id"/* columnLabel */);
             double empSalary = resultSet.getDouble("emp_salary");
             int empAge = resultSet.getInt("emp_age");
-            System.out.println(empName + ": " + empId + "\t" + empSalary + "\t" + empAge);
+            System.out.println(empName + " -> " + empId + "\t" + empSalary + "\t" + empAge);
         }
     }
 }
