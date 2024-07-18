@@ -1,6 +1,6 @@
-package com.bronya.demo.bean;
+package com.bronya.bootdemo.bean;
 
-public class User {
+public class Cat {
     private int id;
     private String name;
 

@@ -1,8 +1,8 @@
-package com.bronya.demo.config;
+package com.bronya.bootdemo.config;
 
 
-import com.bronya.demo.bean.Usr;
-import com.mysql.cj.jdbc.Driver; // "com.mysql.jdbc.Driver" is deprecated
+import com.bronya.bootdemo.bean.Usr;
+import com.mysql.cj.jdbc.Driver;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;

@@ -1,8 +1,8 @@
-package com.bronya.demo.config;
+package com.bronya.bootdemo.config;
 
-import com.bronya.demo.bean.Cat;
-import com.bronya.demo.bean.Dog;
-import com.bronya.demo.bean.User;
+import com.bronya.bootdemo.bean.Cat;
+import com.bronya.bootdemo.bean.Dog;
+import com.bronya.bootdemo.bean.User;
 import com.mysql.cj.jdbc.Driver;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;

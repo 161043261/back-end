@@ -1,4 +1,4 @@
-package com.bronya.demo.bean;
+package com.bronya.bootdemo.bean;
 
 public class Dog {
     private int id;

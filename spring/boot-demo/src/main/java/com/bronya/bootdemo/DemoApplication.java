@@ -1,6 +1,6 @@
-package com.bronya.demo;
+package com.bronya.bootdemo;
 
-import com.bronya.demo.bean.*;
+import com.bronya.bootdemo.bean.*;
 import com.mysql.cj.jdbc.Driver;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.boot.SpringApplication;
@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // @SpringBootConfiguration
 // @EnableAutoConfiguration
-// @ComponentScan("com.bronya.demo")
-@SpringBootApplication(scanBasePackages = "com.bronya.demo")
+// @ComponentScan("com.bronya.bootdemo")
+@SpringBootApplication(scanBasePackages = "com.bronya.bootdemo")
 public class DemoApplication {
     public static void main(String[] args) {
         // IOC, Inversion of Control
@@ -36,7 +36,7 @@ public class DemoApplication {
 
         System.out.println(applicationContext.getBean(Cat.class));
         try {
-            System.out.println(applicationContext.getBean(Dog.class)); // com.bronya.demo.bean.Cat
+            System.out.println(applicationContext.getBean(Dog.class)); // com.bronya.bootdemo.bean.Cat
         } catch (NoSuchBeanDefinitionException e) {
             System.out.println("No such bean: " + Dog.class.getName());
         }

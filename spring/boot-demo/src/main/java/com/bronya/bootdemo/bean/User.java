@@ -1,6 +1,6 @@
-package com.bronya.demo.bean;
+package com.bronya.bootdemo.bean;
 
-public class Usr {
+public class User {
     private int id;
     private String name;
 

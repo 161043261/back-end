@@ -1,7 +1,7 @@
-package com.bronya.demo.config;
+package com.bronya.bootdemo.config;
 
-import com.bronya.demo.bean.Kun;
-import com.bronya.demo.bean.Pig;
+import com.bronya.bootdemo.bean.Kun;
+import com.bronya.bootdemo.bean.Pig;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
