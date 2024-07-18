@@ -1,18 +1,21 @@
 package com.bronya.jdbcdemo;
 
+import com.bronya.jdbcdemo.pojo.Employee;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-import static com.bronya.jdbcdemo.Colors.*;
+import static com.bronya.jdbcdemo.util.Colors.*;
 
 public class TestJdbc {
 
     @Test
     public void testQueryValue() throws SQLException {
         // regular
-        System.out.println(GREEN + "testQueryValue" + RESET);
+        System.out.println(YELLOW + "test Querying a Value" + RESET);
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya"/* url */, "root"/* user */, "0228"/* password */);
         String sql = "select count(*) as count from t_emp";
         // Use PreparedStatement to prevent sql injection
@@ -27,11 +30,10 @@ public class TestJdbc {
         connection.close();
     }
 
-
     @Test
     public void testQueryRow() throws SQLException {
         // bold
-        System.out.println(GREEN_BD + "testQueryRow" + RESET);
+        System.out.println(YELLOW_BD + "Test Querying a Row" + RESET);
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "select emp_name, emp_salary, emp_age from t_emp where emp_id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -39,21 +41,31 @@ public class TestJdbc {
         System.out.println("emp_id = " + empId);
         statement.setInt(1, empId);
         ResultSet resultSet = statement.executeQuery();
+        List<Employee> empList = new ArrayList<>();
         while (resultSet.next()) {
             String empName = resultSet.getString("emp_name");
             double empSalary = resultSet.getDouble("emp_salary");
             int empAge = resultSet.getInt("emp_age");
-            System.out.println(empId + " -> " + empName + "\t" + empSalary + "\t" + empAge);
+            Employee employee = new Employee();
+            employee.setEmpId(empId);
+            employee.setEmpName(empName);
+            employee.setEmpSalary(empSalary);
+            employee.setEmpAge(empAge);
+            empList.add(employee);
+            // System.out.println(empId + " -> " + empName + "\t" + empSalary + "\t" + empAge);
         }
+        empList.forEach((employee) -> {
+            System.out.println(employee.toString());
+        });
         resultSet.close();
         statement.close();
         connection.close();
     }
 
     @Test
-    public void testQueryRows() throws SQLException {
+    public void testQueryMultiRows() throws SQLException {
         // bold bright
-        System.out.println(GREEN_BD_BR + "testQueryRows" + RESET);
+        System.out.println(YELLOW_BD_BR + "Test Querying a Rows" + RESET);
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "select * from t_emp where emp_age > ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -61,13 +73,23 @@ public class TestJdbc {
         System.out.println("emp_age > " + minEmpAge);
         statement.setInt(1, minEmpAge);
         ResultSet resultSet = statement.executeQuery();
+        List<Employee> empList = new ArrayList<Employee>();
         while (resultSet.next()) {
             int empId = resultSet.getInt("emp_id");
             String empName = resultSet.getString("emp_name");
             double empSalary = resultSet.getDouble("emp_salary");
             int empAge = resultSet.getInt("emp_age");
-            System.out.println(empId + "\t" + empName + "\t" + empSalary + "\t" + empAge);
+            Employee employee = new Employee();
+            employee.setEmpId(empId);
+            employee.setEmpName(empName);
+            employee.setEmpSalary(empSalary);
+            employee.setEmpAge(empAge);
+            empList.add(employee);
+            // System.out.println(empId + "\t" + empName + "\t" + empSalary + "\t" + empAge);
         }
+        empList.forEach((employee) -> {
+            System.out.println(employee.toString());
+        });
         resultSet.close();
         statement.close();
         connection.close();
@@ -76,15 +98,32 @@ public class TestJdbc {
     @Test
     public void testInsert() throws SQLException {
         // background
-        System.out.println(GREEN_BG + "testInsert" + RESET);
+        System.out.println(YELLOW_BG + "Test a Insert Operation" + RESET);
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "insert into t_emp (emp_name, emp_salary, emp_age) values (?, ?, ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, "Nilou"); // emp_name
-        statement.setDouble(2, 555.5); // emp_salary
-        statement.setInt(3, 5); // emp_age
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); // Magic Constant
+
+        // Key Returning
+        Employee employee = new Employee(null, "Nilou", 555.5, 5);
+        statement.setString(1, employee.getEmpName()); // emp_name
+        statement.setDouble(2, employee.getEmpSalary()); // emp_salary
+        statement.setInt(3, employee.getEmpAge()); // emp_age
+
         int rowCount = statement.executeUpdate(); // number of rows affected
-        System.out.println(rowCount == 1 ? "ok" : "err");
+        System.out.println(rowCount > 0 ? "ok" : "err");
+
+        ResultSet generatedKeys = null;
+        if (rowCount > 0) {
+            System.out.println("Before Key Returning: " + employee);
+            generatedKeys = statement.getGeneratedKeys(); // the generatedKeys is 1 row, 1 column
+            while (generatedKeys.next()) {
+                int empId = generatedKeys.getInt(1);
+                System.out.println("GeneratedKey: emp_id=" + empId);
+                employee.setEmpId(empId);
+            }
+            System.out.println("After Key Returning: " + employee);
+        }
+        if (generatedKeys != null) generatedKeys.close();
         statement.close();
         connection.close();
     }
@@ -92,7 +131,7 @@ public class TestJdbc {
     @Test
     public void testUpdate() throws SQLException {
         // background bright
-        System.out.println(GREEN_BG_BR + "testUpdate" + RESET);
+        System.out.println(YELLOW_BG_BR + "Test an Update Operation" + RESET);
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "update t_emp set emp_salary = ? where emp_id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -100,8 +139,8 @@ public class TestJdbc {
         System.out.println("emp_id = " + empId);
         statement.setDouble(1, 888.8);
         statement.setInt(2, empId);
-        int rowCount = statement.executeUpdate();
-        System.out.println(rowCount == 1 ? "ok" : "err");
+        int rowCount = statement.executeUpdate(); // number of rows affected
+        System.out.println(rowCount > 0 ? "ok" : "err");
         statement.close();
         connection.close();
     }
@@ -109,15 +148,66 @@ public class TestJdbc {
     @Test
     public void testDelete() throws SQLException {
         // underlined
-        System.out.println(GREEN_UL + "testDelete" + RESET);
+        System.out.println(YELLOW_UL + "Test a Delete Operation" + RESET);
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "delete from t_emp where emp_id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         int empId = new Random().nextInt(1, 5);
         System.out.println("emp_id = " + empId);
         statement.setInt(1, empId);
-        int rowCount = statement.executeUpdate();
-        System.out.println(rowCount == 1 ? "ok" : "err");
+        int rowCount = statement.executeUpdate(); // number of rows affected
+        System.out.println(rowCount > 0 ? "ok" : "err");
+        statement.close();
+        connection.close();
+    }
+
+    @Test
+    @Deprecated
+    public void testMultiInsert() throws SQLException {
+        // background
+        System.out.println(RED_BG_BR + "Test Multiple Insert Operation" + RESET);
+        Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
+        String sql = "insert into t_emp (emp_name, emp_salary, emp_age) values (?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        // benchmark
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10_000; i++) {
+            statement.setString(1, "Nilou" + i); // emp_name
+            statement.setDouble(2, 555.5 + i); // emp_salary
+            statement.setInt(3, 5 + i); // emp_age
+            statement.executeUpdate();
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Total " + (endTime - startTime) + "ms"); // Total 12238
+        statement.close();
+        connection.close();
+    }
+
+    /*
+      1. url = jdbc:mysql:///bronya?rewriteBatchedStatements=true
+      2. value × values √
+      3. No trailing ';'
+      4. statement.addBatch();
+      5. statement.executeBatch();
+     */
+    @Test
+    public void testBatchInsert() throws SQLException {
+        System.out.println(RED_BG_BR + "Test Batch Insert Operation" + RESET);
+        Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya?rewriteBatchedStatements=true", // batch operation
+                "root", "0228");
+        String sql = "insert into t_emp (emp_name, emp_salary, emp_age) values (?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        // benchmark
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10_000; i++) {
+            statement.setString(1, "Ayaka" + i); // emp_name
+            statement.setDouble(2, 666.6 + i); // emp_salary
+            statement.setInt(3, 6 + i); // emp_age
+            statement.addBatch(); // concat SQL statements
+        }
+        statement.executeBatch();
+        long endTime = System.currentTimeMillis();
+        System.out.println("Total " + (endTime - startTime) + "ms"); // Total 182ms
         statement.close();
         connection.close();
     }

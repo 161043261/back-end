@@ -1,10 +1,12 @@
 package com.bronya.jdbcdemo;
 
+import com.bronya.jdbcdemo.pojo.Employee;
+
 import java.sql.*;
 import java.util.Scanner;
 
 /**
- * Use PreparedStatement to Prevent
+ * Use PreparedStatement to prevent
  * <a href="https://en.wikipedia.org/wiki/SQL_injection">SQL Injection</a>
  */
 public class PreparedStatementDemo {
@@ -27,12 +29,23 @@ public class PreparedStatementDemo {
         preparedStatement.setString(1, empName); // the first parameterIndex is 1
         ResultSet resultSet = preparedStatement.executeQuery();
 
+        // Object Relational Mapping (ORM)
+        Employee employee = new Employee();
+
         // iterate the resultSet
         while (resultSet.next()) { // Moves the cursor forward one row from its current position.
             int empId = resultSet.getInt("emp_id"/* columnLabel */);
             double empSalary = resultSet.getDouble("emp_salary");
             int empAge = resultSet.getInt("emp_age");
-            System.out.println(empName + " -> " + empId + "\t" + empSalary + "\t" + empAge);
+
+            // Object Relational Mapping (ORM)
+            employee.setEmpId(empId);
+            employee.setEmpName(empName);
+            employee.setEmpSalary(empSalary);
+            employee.setEmpAge(empAge);
+
+            // System.out.println(empName + " -> " + empId + "\t" + empSalary + "\t" + empAge);
+            System.out.println(employee.toString());
         }
 
         resultSet.close();

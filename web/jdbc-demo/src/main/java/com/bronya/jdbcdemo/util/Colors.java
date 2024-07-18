@@ -1,4 +1,4 @@
-package com.bronya.jdbcdemo;
+package com.bronya.jdbcdemo.util;
 
 /**
  * BD: bold

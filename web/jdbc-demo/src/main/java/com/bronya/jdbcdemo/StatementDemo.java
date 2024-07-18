@@ -4,9 +4,14 @@ import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
 
+/**
+ * 1. Use PreparedStatement instead of Statement to prevent SQL Injection
+ * 2. Object Relational Mapping (ORM) is recommended
+ */
+@Deprecated
 public class StatementDemo {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    public static void main(String[] args) throws SQLException {
         String qualifiedName = Driver.class.getName();
         System.out.println(qualifiedName); // com.mysql.cj.jdbc.Driver
 
@@ -18,6 +23,7 @@ public class StatementDemo {
 
         // create statement to execute query
         final String sql = "SELECT emp_id, emp_name, emp_salary, emp_age FROM t_emp";
+        // deprecated, use PreparedStatement instead
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
 
