@@ -22,6 +22,9 @@ public class TestJdbc {
             System.out.println(resultSet.getInt("count"/* columnLabel */));
             System.out.println(resultSet.getInt(1/* columnIndex */));
         }
+        resultSet.close();
+        statement.close();
+        connection.close();
     }
 
 
@@ -42,6 +45,9 @@ public class TestJdbc {
             int empAge = resultSet.getInt("emp_age");
             System.out.println(empId + " -> " + empName + "\t" + empSalary + "\t" + empAge);
         }
+        resultSet.close();
+        statement.close();
+        connection.close();
     }
 
     @Test
@@ -62,6 +68,9 @@ public class TestJdbc {
             int empAge = resultSet.getInt("emp_age");
             System.out.println(empId + "\t" + empName + "\t" + empSalary + "\t" + empAge);
         }
+        resultSet.close();
+        statement.close();
+        connection.close();
     }
 
     @Test
@@ -76,6 +85,8 @@ public class TestJdbc {
         statement.setInt(3, 5); // emp_age
         int rowCount = statement.executeUpdate(); // number of rows affected
         System.out.println(rowCount == 1 ? "ok" : "err");
+        statement.close();
+        connection.close();
     }
 
     @Test
@@ -91,6 +102,8 @@ public class TestJdbc {
         statement.setInt(2, empId);
         int rowCount = statement.executeUpdate();
         System.out.println(rowCount == 1 ? "ok" : "err");
+        statement.close();
+        connection.close();
     }
 
     @Test
@@ -105,5 +118,7 @@ public class TestJdbc {
         statement.setInt(1, empId);
         int rowCount = statement.executeUpdate();
         System.out.println(rowCount == 1 ? "ok" : "err");
+        statement.close();
+        connection.close();
     }
 }

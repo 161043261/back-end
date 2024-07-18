@@ -34,5 +34,9 @@ public class PreparedStatementDemo {
             int empAge = resultSet.getInt("emp_age");
             System.out.println(empName + " -> " + empId + "\t" + empSalary + "\t" + empAge);
         }
+
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
     }
 }
