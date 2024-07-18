@@ -6,13 +6,14 @@
 3. Javaweb: Servlet, Tomcat
 4. Git, Maven...
 5. Redis
-6. MySQL
-7. MyBatis
-8. Spring Boot
-9. Spring Security
-10. Docker
-11. Kafka
-12. JUC
-13. Netty
-14. Nginx
-15. CDN
+6. MongoDB
+7. MySQL
+8. MyBatis
+9. Spring Boot
+10. Spring Security
+11. Docker
+12. Kafka
+13. JUC
+14. Netty
+15. Nginx
+16. CDN ...
