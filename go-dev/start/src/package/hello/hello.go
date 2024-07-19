@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"njupt.edu.cn/greeting"
+	"bronya.com/greeting"
 )
 
 func main() {

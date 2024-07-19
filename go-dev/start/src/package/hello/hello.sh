@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-go mod init njupt.edu.cn/hello
+go mod init bronya.com/hello
 
 # >>> Add new module requirements and sums >>>
 # Go will add the quote module as a requirement,
@@ -12,7 +12,7 @@ go run .
 # where Go tools could find it to download it.
 # For now because you haven't published the module yet,
 # you need to adapt the module so it can find the code on your local file system.
-go mod edit -replace njupt.edu.cn/greeting=../greeting
+go mod edit -replace bronya.com/greeting=../greeting
 go mod tidy
 
 # The go install command compiles and installs the packages.

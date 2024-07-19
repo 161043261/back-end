@@ -1,6 +1,5 @@
 package com.bronya.mybatisdemo;
 
-
 import com.bronya.mybatisdemo.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 
+// POJO (entity classes) => Mapper (mybatis proxies interface) => tables
 class MybatisDemoTests {
 
     @Test
@@ -22,7 +22,7 @@ class MybatisDemoTests {
         // build a sqlSessionFactory
         SqlSessionFactory factory = builder.build(stream);
         // open a sqlSession
-        SqlSession session = factory.openSession();
+        SqlSession session = factory.openSession(false/* autoCommit = false */);
         // implement the interface UserMapper and initialized an instance userMapper
         UserMapper mapper = session.getMapper(UserMapper.class); // proxy
         int rowCount = mapper.insertUser();
