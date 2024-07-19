@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- IUserMapper.class.getName() = "com.bronya.mybatisdemo.mapper.UserMapper" -->
+<!-- UserMapper.class.getName() = "com.bronya.mybatisdemo.mapper.UserMapper" -->
 <mapper namespace="com.bronya.mybatisdemo.mapper.UserMapper">
     <!-- int insertUser(User user); -->
     <insert id="insertUser">
@@ -26,7 +26,7 @@
     </select>
 
     <!-- List<User> getUsers(); -->
-    <select id="getUsers" resultType="com.bronya.mybatisdemo.pojo.User">
+    <select id="getUsers" resultType="User">
         select * from t_user;
     </select>
 </mapper>
