@@ -1,6 +1,8 @@
 package com.bronya.mybatisdemo.pojo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data // @Data = @Getter + @Setter
 @AllArgsConstructor

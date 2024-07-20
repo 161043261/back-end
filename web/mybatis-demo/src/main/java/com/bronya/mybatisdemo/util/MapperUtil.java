@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class MapperUtil {
-    public static <T>T getMapper(Class<T> clazz) {
+    public static <T> T getMapper(Class<T> clazz) {
         T mapper = null;
         try {
             // read configuration (pwd = ${mybatis-demo}/src/main/resources)

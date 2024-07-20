@@ -9,6 +9,7 @@
     </select>
 
     <!-- User getUserByUsername(String username); -->
+    <!-- mybatis-config.xml line7 aliases "com.bronya.mybatisdemo.pojo.User" to "User" -->
     <select id="getUserByUsername" resultType="User">
         <!-- select * from t_user where username = '${username}'; -->
         select * from t_user where username = #{username};
@@ -38,5 +39,29 @@
         <!--TODO map[p1] = map[param1] = username -->
         <!--TODO map[p2] = map[param2] = password -->
         select * from t_user where username = #{p1} and password = #{p2};
+    </select>
+
+    <!-- int getUserCount(); -->
+    <!-- resultType: java.lang.Integer -->
+    <!-- MyBatis aliases "java.lang.Integer" to int, Integer, ... -->
+    <select id="getUserCount" resultType="int">
+        select count(*) from t_user;
+    </select>
+
+    <!-- Map<String, Object> getMapById(/* @Param("id") */ Integer id); -->
+    <!-- MyBatis aliases "java.util.Map" to Map -->
+    <select id="getMapById" resultType="Map">
+        select * from t_user where id = #{id};
+    </select>
+
+    <!-- List<Map<String, Object>> getMapList(); -->
+    <select id="getMapList" resultType="Map">
+        select * from t_user;
+    </select>
+
+    <!-- @MapKey("id") -->
+    <!-- Map<Integer, Object> getMap(); -->
+    <select id="getMap" resultType="Map">
+        select * from t_user;
     </select>
 </mapper>
