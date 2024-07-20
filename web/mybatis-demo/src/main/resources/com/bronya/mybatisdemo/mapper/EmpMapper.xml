@@ -1,8 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bronya.mybatisdemo.mapper.EmpMapper">
-    <!-- Employee getEmpByParam(@Param("emp_name") String empName); -->
-    <select id="getEmpByParam" resultType="Employee">
-        select * from t_emp where emp_name = #{emp_name};
+    <!-- List<Emp> getEmpList(); -->
+    <select id="getEmpList" resultType="com.bronya.mybatisdemo.pojo.Emp">
+        select * from t_emp; <!-- mybatis-config.xml:7 map emp_name to empName -->
+    </select>
+
+    <!-- List<Emp> getEmpListByAlias(); -->
+    <!-- mybatis-config.xml:11 aliases "com.bronya.mybatisdemo.pojo.Emp" to "Emp" -->
+    <select id="getEmpListByAlias" resultType="Emp">
+        select eid, emp_name AS empName, age, sex, email from t_emp;
+    </select>
+
+    <!-- List<Emp> getEmpListByResultMap(); -->
+    <resultMap id="empResultMap" type="Emp">
+        <id property="eid" column="eid"/>
+        <result property="empName" column="emp_name"/>
+    </resultMap>
+    <select id="getEmpListByResultMap" resultMap="empResultMap">
+        select * from t_emp;
+    </select>
+
+    <!-- t_dept
+     ~~~~~~~~~~~~~
+     | Field     |
+     ~~~~~~~~~~~~~
+     | did       |
+     | dept_name |
+     ~~~~~~~~~~~~~ -->
+    <!--  Emp getEmpAndDept(@Param("eid") int eid); -->
+    <resultMap id="empAndDeptResultMap" type="Emp">
+        <id property="eid" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="dept.did" column="did"/>
+        <result property="dept.deptName" column="dept_name"/>
+    </resultMap>
+    <select id="getEmpAndDept" resultMap="empAndDeptResultMap">
+        select * from t_emp left join t_dept on t_emp.did = t_dept.did where t_emp.eid = #{eid};
+    </select>
+
+    <!-- Emp getEmpAndDeptByAssociation(@Param("eid") int eid); -->
+    <resultMap id="empAndDeptByAssociation" type="Emp">
+        <id property="eid" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="email" column="email"/>
+        <association property="dept" javaType="Dept">
+            <id property="did" column="did"/>
+            <result property="deptName" column="dept_name"/>
+        </association>
+    </resultMap>
+    <select id="getEmpAndDeptByAssociation" resultMap="empAndDeptByAssociation">
+        select * from t_emp left join t_dept on t_emp.did = t_dept.did where t_emp.eid = #{eid};
+    </select>
+
+    <!-- Emp getEmpAndDeptByStep(@Param("eid") int eid); -->
+    <resultMap id="empAndDeptByStepResultMap" type="Emp">
+        <id property="eid" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="email" column="email"/>
+        <!-- select = 'DeptMapper.xml'.mapper["namespace"] + SQLid
+             select = DeptMapper.class.getName() + methodName -->
+
+        <!-- column: select condition 'where did = #{did}' -->
+        <!-- fetchType: eagerLoading, lazyLoading -->
+        <association property="dept"
+                     select="com.bronya.mybatisdemo.mapper.DeptMapper.getEmpAndDeptByStep"
+                     column="did"
+                     fetchType="lazy">
+        </association>
+    </resultMap>
+    <select id="getEmpAndDeptByStep" resultMap="empAndDeptByStepResultMap">
+        select * from t_emp where eid = #{eid};
     </select>
 </mapper>

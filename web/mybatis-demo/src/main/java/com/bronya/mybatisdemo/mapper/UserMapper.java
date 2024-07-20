@@ -24,7 +24,7 @@ public interface UserMapper {
 
     int getUserCount();
 
-    Map<String, Object> getMapById(/* @Param("id") */ Integer id);
+    Map<String, Object> getMapById(@Param("id") Integer id);
 
     // List<User> to List<Map<String, Object>>
     List<Map<String, Object>> getMapList();
@@ -33,4 +33,12 @@ public interface UserMapper {
     // List<User> to Map<Integer, Object>
     @MapKey("id")
     Map<Integer, Object> getMap();
+
+    List<User> fuzzyQuery(@Param("username") String username);
+
+    int batchDelete(@Param("ids") String ids);
+
+    List<User> dynamicTableName(@Param("tableName") String tableName);
+
+    void primaryKeyRetrieval(User user);
 }

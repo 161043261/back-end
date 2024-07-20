@@ -2,8 +2,13 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="./jdbc.properties"/>
+    <settings>
+        <!-- e.g. map user_attribute to userAttribute -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/> <!-- default false -->
+        <setting name="lazyLoadingEnabled" value="false"/> <!-- default false -->
+    </settings>
     <typeAliases>
-        <!-- alias "com.bronya.mybatisdemo.pojo.User" to "User" -->
+        <!-- e.g. alias "com.bronya.mybatisdemo.pojo.User" to "User" -->
         <package name="com.bronya.mybatisdemo.pojo"/>
     </typeAliases>
     <environments default="development">

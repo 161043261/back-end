@@ -14,9 +14,7 @@ import static com.bronya.mybatisdemo.util.Colors.RESET;
 
 // pojo/* (entity classes)
 // -> mapper/* (mapping interfaces)
-// -> MyBatis proxy
-// -> mapping classes
-// -> tables
+// -> MyBatis proxy -> mapping classes -> tables
 class UserTests {
 
     @Test
@@ -55,10 +53,10 @@ class UserTests {
         System.out.println(GREEN + user + RESET);
     }
 
-    // @Test
+    @Test
     public void testInsertUser() {
         UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
-        User user = new User(null, "Tomcat", "1234", 22, "male", "tomcat@bronya.com");
+        User user = new User(null, "Tom", "1234", 3, "male", "tom@bronya.com");
         int rowCount = mapper.insertUser(user);
         System.out.println(GREEN + "rowCount = " + rowCount + RESET);
     }
@@ -98,8 +96,40 @@ class UserTests {
         UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
         Map<Integer, Object> map = mapper.getMap();
         System.out.println(GREEN + map + RESET);
-        // {1={password=1024, sex=male, id=1, age=1, email=admin@bronya.com, username=admin},
-        //  2={password=2048, sex=female, id=2, age=2, email=root@bronya.com, username=root},
-        //  3={password=1234, sex=male, id=3, age=22, email=tomcat@bronya.com, username=Tomcat}}
+        // {1={password=1024, sex=male, id=1, age=1, email=admin@bronya.com, username=admin}, ...}
+    }
+
+    @Test
+    public void testFuzzyQuery() {
+        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
+        List<User> users = mapper.fuzzyQuery("o");
+        for (User user : users) {
+            System.out.println(GREEN + user + RESET);
+        }
+    }
+
+    @Test
+    public void testBatchDelete() {
+        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
+        int rowCount = mapper.batchDelete("2, 3");
+        System.out.println(GREEN + "rowCount = " + rowCount + RESET);
+    }
+
+    @Test
+    public void testDynamicTableName() {
+        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
+        List<User> users = mapper.dynamicTableName("t_user");
+        for (User user : users) {
+            System.out.println(GREEN + user + RESET);
+        }
+    }
+
+    @Test
+    public void testPrimaryKeyRetrieval() {
+        User user = new User(null, "Jerry", "5678", 4, "male", "jerry@bronya.com");
+        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
+        mapper.primaryKeyRetrieval(user);
+        // Primary Key Retrieval
+        System.out.println(GREEN + "generatedKey = " + user.getId() + RESET);
     }
 }

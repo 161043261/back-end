@@ -101,9 +101,9 @@ public class TestJdbc {
         System.out.println(YELLOW_BG + "Test a Insert Operation" + RESET);
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "insert into t_emp (emp_name, emp_salary, emp_age) values (?, ?, ?)";
-        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); // Magic Constant
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS/* 1 */); // Magic Constant
 
-        // Key Returning
+        // Primary Key Retrieval
         Employee employee = new Employee(null, "Nilou", 555.5, 5);
         statement.setString(1, employee.getEmpName()); // emp_name
         statement.setDouble(2, employee.getEmpSalary()); // emp_salary
@@ -114,14 +114,14 @@ public class TestJdbc {
 
         ResultSet generatedKeys = null;
         if (rowCount > 0) {
-            System.out.println("Before Key Returning: " + employee);
+            System.out.println("Before Primary Key Retrieval: " + employee);
             generatedKeys = statement.getGeneratedKeys(); // the generatedKeys is 1 row, 1 column
             while (generatedKeys.next()) {
                 int empId = generatedKeys.getInt(1);
                 System.out.println("GeneratedKey: emp_id=" + empId);
                 employee.setEmpId(empId);
             }
-            System.out.println("After Key Returning: " + employee);
+            System.out.println("After Primary Key Retrieval: " + employee);
         }
         if (generatedKeys != null) generatedKeys.close();
         statement.close();
