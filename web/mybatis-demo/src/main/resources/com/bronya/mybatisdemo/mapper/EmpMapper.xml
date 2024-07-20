@@ -76,4 +76,9 @@
     <select id="getEmpAndDeptByStep" resultMap="empAndDeptByStepResultMap">
         select * from t_emp where eid = #{eid};
     </select>
+
+    <!-- List<Emp> getDeptAndEmpListByStep(@Param("did") int did); -->
+    <select id="getDeptAndEmpListByStep" resultType="Emp">
+        select eid, emp_name AS empName, age, sex, email from t_emp where did = #{did};
+    </select>
 </mapper>

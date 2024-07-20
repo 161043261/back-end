@@ -5,7 +5,7 @@
     <settings>
         <!-- e.g. map user_attribute to userAttribute -->
         <setting name="mapUnderscoreToCamelCase" value="true"/> <!-- default false -->
-        <setting name="lazyLoadingEnabled" value="false"/> <!-- default false -->
+        <setting name="lazyLoadingEnabled" value="true"/> <!-- default false -->
     </settings>
     <typeAliases>
         <!-- e.g. alias "com.bronya.mybatisdemo.pojo.User" to "User" -->

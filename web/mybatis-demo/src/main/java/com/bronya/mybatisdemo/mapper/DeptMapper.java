@@ -7,4 +7,6 @@ public interface DeptMapper {
     Dept getEmpAndDeptByStep(@Param("did") int did); // methodName = "getEmpAndDeptByStep"
 
     Dept getDeptAndEmpList(@Param("did") int did);
+
+    Dept getDeptAndEmpListByStep(@Param("did") int did);
 }

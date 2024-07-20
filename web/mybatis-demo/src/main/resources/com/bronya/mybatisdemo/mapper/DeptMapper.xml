@@ -21,4 +21,17 @@
     <select id="getDeptAndEmpList" resultMap="deptAndEmpListResultMap">
         select * from t_dept left join t_emp on t_dept.did = t_emp.did where t_dept.did = #{did};
     </select>
+
+    <!-- Dept getDeptAndEmpListByStep(@Param("did") int did); -->
+    <resultMap id="deptAndEmpListByStepResultMap" type="Dept">
+        <id property="did" column="did"/>
+        <result property="deptName" column="dept_name"/>
+        <collection property="empList"
+                    select="com.bronya.mybatisdemo.mapper.EmpMapper.getDeptAndEmpListByStep"
+                    column="did"
+                    fetchType="lazy"/>
+    </resultMap>
+    <select id="getDeptAndEmpListByStep" resultMap="deptAndEmpListByStepResultMap">
+        select * from t_dept where did = #{did};
+    </select>
 </mapper>

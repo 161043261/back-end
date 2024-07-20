@@ -17,4 +17,6 @@ public interface EmpMapper {
     Emp getEmpAndDeptByAssociation(@Param("eid") int eid);
 
     Emp getEmpAndDeptByStep(@Param("eid") int eid);
+
+    List<Emp> getDeptAndEmpListByStep(@Param("did") int did);
 }
