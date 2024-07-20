@@ -3,15 +3,15 @@ package com.bronya.mybatisdemo.mapper;
 import com.bronya.mybatisdemo.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
-    int insertUser();
 
-    int updateUser();
+    List<User> getUserList();
 
-    int deleteUser();
+    User getUserByUsername(String username);
 
-    User getUserById();
+    User getUserByUsernamePassword(String username, String password);
 
-    List<User> getUsers();
+    User getUserByMap(Map<String, Object> map);
 }

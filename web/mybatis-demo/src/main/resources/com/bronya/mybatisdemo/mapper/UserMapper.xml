@@ -3,30 +3,26 @@
 
 <!-- UserMapper.class.getName() = "com.bronya.mybatisdemo.mapper.UserMapper" -->
 <mapper namespace="com.bronya.mybatisdemo.mapper.UserMapper">
-    <!-- int insertUser(User user); -->
-    <insert id="insertUser">
-        insert into t_user values
-        (null, 'admin', '1024', 1, 'male', 'admin@bronya.com'),
-        (null, 'root', '2048', 2, 'female', 'root@bronya.com');
-    </insert>
-
-    <!-- int updateUser(); -->
-    <update id="updateUser">
-        update t_user set password = "mamba" where id = 1;
-    </update>
-
-    <!-- int deleteUser(); -->
-    <delete id="deleteUser">
-        delete from t_user where id = 2;
-    </delete>
-
-    <!-- User getUserById()); -->
-    <select id="getUserById" resultType="com.bronya.mybatisdemo.pojo.User">
-        select * from t_user where id = 1;
+    <!-- List<User> getUserList(); -->
+    <select id="getUserList" resultType="com.bronya.mybatisdemo.pojo.User">
+        select * from t_user;
     </select>
 
-    <!-- List<User> getUsers(); -->
-    <select id="getUsers" resultType="User">
-        select * from t_user;
+    <!-- User getUserByUsername(String username); -->
+    <select id="getUserByUsername" resultType="User">
+        <!-- select * from t_user where username = "${username}"; -->
+        select * from t_user where username = #{username};
+    </select>
+
+    <!-- User getUserByUsernamePassword(String username, String password); -->
+    <select id="getUserByUsernamePassword" resultType="User">
+        <!-- map[arg0] = map[param1] = username -->
+        <!-- map[arg1] = map[param2] = password -->
+        select * from t_user where username = "${arg0}" and password = "${arg1}"
+    </select>
+
+    <!-- User getUserByMap(Map<String, Object> map); -->
+    <select id="getUserByMap" resultType="User">
+        select * from t_user where username = #{username} and password = #{password}
     </select>
 </mapper>

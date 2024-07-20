@@ -19,7 +19,7 @@ public class MapperUtil {
             // build a sqlSessionFactory
             SqlSessionFactory factory = builder.build(stream);
             // open a sqlSession
-            SqlSession session = factory.openSession(true); // autoCommit = true
+            SqlSession session = factory.openSession(true); // autoCommit = true, default false
             // implement the interface and initialized an instance
             mapper = session.getMapper(clazz);
         } catch (IOException e) {

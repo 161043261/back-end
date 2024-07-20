@@ -3,65 +3,48 @@ package com.bronya.mybatisdemo;
 import com.bronya.mybatisdemo.mapper.UserMapper;
 import com.bronya.mybatisdemo.pojo.User;
 import com.bronya.mybatisdemo.util.MapperUtil;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-// POJO (entity classes) => Mapper (interfaces) => MyBatis proxy => tables
+// pojo/* (entity classes)
+// -> mapper/* (mapping interfaces)
+// -> MyBatis proxy
+// -> mapping classes
+// -> tables
 class UserTests {
 
-    @Deprecated
-    private static UserMapper getUserMapper() throws IOException {
-        // read configuration (pwd = ${mybatis-demo}/src/main/resources)
-        InputStream stream = Resources.getResourceAsStream("./mybatis-config.xml");
-        // construct a sqlSessionFactoryBuilder
-        var builder = new SqlSessionFactoryBuilder();
-        // build a sqlSessionFactory
-        SqlSessionFactory factory = builder.build(stream);
-        // open a sqlSession
-        SqlSession session = factory.openSession(true/* autoCommit */); // default false
-        // implement the interface UserMapper and initialized an instance userMapper
-        return session.getMapper(UserMapper.class);
-    }
-
     @Test
-    public void testInsert() throws IOException {
+    public void testGetUserList() {
         UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
-        int rowCount = mapper.insertUser();
-        System.out.println(rowCount);
-    }
-
-    @Test
-    public void testUpdate() throws IOException {
-        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
-        int rowCount = mapper.updateUser();
-        System.out.println(rowCount);
-    }
-
-    @Test
-    public void testDelete() throws IOException {
-        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
-        int rowCount = mapper.deleteUser();
-        System.out.println(rowCount);
-    }
-
-    @Test
-    public void testGetUserById() throws IOException {
-        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
-        User user = mapper.getUserById();
-        System.out.println(user);
-    }
-
-    @Test
-    public void testGetUsers() throws IOException {
-        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
-        List<User> users = mapper.getUsers();
+        List<User> users = mapper.getUserList();
         users.forEach(System.out::println);
+        System.out.println();
+    }
+
+    @Test
+    public void testGetUserByName() {
+        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
+        User admin = mapper.getUserByUsername("admin");
+        System.out.println(admin + "\n");
+    }
+
+    @Test
+    public void testGetUserByUsernamePassword() {
+        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
+        User user = mapper.getUserByUsernamePassword("admin", "1024");
+        System.out.println(user + "\n");
+    }
+
+    @Test
+    public void testGetUserByMap() {
+        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", "admin");
+        map.put("password", "1024");
+        User user = mapper.getUserByMap(map);
+        System.out.println(user + "\n");
     }
 }
