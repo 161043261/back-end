@@ -2,14 +2,14 @@ package com.bronya.mybatisdemo.pojo;
 
 import lombok.*;
 
-@Data // @Getter + @Setter
+@Data // @Data = @Getter + @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
-    private Integer id;
-    private String username;
-    private String password;
-    private Integer age;
-    private String sex;
-    private String email;
+public class User { // tableName = t_user
+    private Integer id; // columnName = id
+    private String username; // columnName = username
+    private String password; // columnName = password
+    private Integer age; // columnName = age
+    private String sex; // columnName = sex
+    private String email; // columnName = email
 }

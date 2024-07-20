@@ -47,4 +47,19 @@ class UserTests {
         User user = mapper.getUserByMap(map);
         System.out.println(user + "\n");
     }
+
+    @Test
+    public void testInsertUser() {
+        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
+        User user = new User(null, "Tomcat", "1234", 22, "male", "tomcat@bronya.com");
+        int rowCount = mapper.insertUser(user);
+        System.out.println(rowCount + "\n");
+    }
+
+    @Test
+    public void testGetByParam() {
+        UserMapper mapper = MapperUtil.getMapper(UserMapper.class);
+        User user = mapper.getUserByParam("admin", "1024");
+        System.out.println(user + "\n");
+    }
 }

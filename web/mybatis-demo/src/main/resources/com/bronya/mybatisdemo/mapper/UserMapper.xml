@@ -10,19 +10,33 @@
 
     <!-- User getUserByUsername(String username); -->
     <select id="getUserByUsername" resultType="User">
-        <!-- select * from t_user where username = "${username}"; -->
+        <!-- select * from t_user where username = '${username}'; -->
         select * from t_user where username = #{username};
     </select>
 
     <!-- User getUserByUsernamePassword(String username, String password); -->
     <select id="getUserByUsernamePassword" resultType="User">
-        <!-- map[arg0] = map[param1] = username -->
-        <!-- map[arg1] = map[param2] = password -->
-        select * from t_user where username = "${arg0}" and password = "${arg1}"
+        <!--TODO map[arg0] = map[param1] = username -->
+        <!--TODO map[arg1] = map[param2] = password -->
+        select * from t_user where username = #{arg0} and password = #{arg1};
     </select>
 
     <!-- User getUserByMap(Map<String, Object> map); -->
     <select id="getUserByMap" resultType="User">
-        select * from t_user where username = #{username} and password = #{password}
+        select * from t_user where username = #{username} and password = #{password};
+    </select>
+
+    <!-- int insertUser(User user); -->
+    <insert id="insertUser">
+        <!-- com.bronya.mybatisdemo.pojo.User getAttribute(); -> #{attribute} -->
+        insert into t_user values
+        (null, #{username}, #{password}, #{age}, #{sex}, #{email});
+    </insert>
+
+    <!-- User getUserByParam(@Param("p1") String username, @Param("p2") String password);  -->
+    <select id="getUserByParam">
+        <!--TODO map[p1] = map[param1] = username -->
+        <!--TODO map[p2] = map[param2] = password -->
+        select * from t_user where username = #{p1} and password = #{p2};
     </select>
 </mapper>
