@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static com.bronya.mybatisdemo.util.Colors.GREEN;
 import static com.bronya.mybatisdemo.util.Colors.RESET;
 
-public class DeptTest {
+public class DeptTests {
     @Test
     public void testGetDeptAndEmpList() {
         DeptMapper mapper = MapperUtil.getMapper(DeptMapper.class);

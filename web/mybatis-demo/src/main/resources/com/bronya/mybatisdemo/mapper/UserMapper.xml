@@ -17,8 +17,8 @@
 
     <!-- User getUserByUsernamePassword(String username, String password); -->
     <select id="getUserByUsernamePassword" resultType="User">
-        <!--TODO map[arg0] = map[param1] = username -->
-        <!--TODO map[arg1] = map[param2] = password -->
+        <!-- default: mybatisMap[arg0] = mybatisMap[param1] = username -->
+        <!-- default: mybatisMap[arg1] = mybatisMap[param2] = password -->
         select * from t_user where username = #{arg0} and password = #{arg1};
     </select>
 
@@ -36,8 +36,11 @@
 
     <!-- User getUserByParam(@Param("p1") String username, @Param("p2") String password);  -->
     <select id="getUserByParam">
-        <!--TODO map[p1] = map[param1] = username -->
-        <!--TODO map[p2] = map[param2] = password -->
+        <!-- default: mybatisMap[arg0] = mybatisMap[param1] = username -->
+        <!-- default: mybatisMap[arg1] = mybatisMap[param2] = password -->
+
+        <!-- available: mybatisMap[p1] = mybatisMap[param1] = username (arg0 -> p1)-->
+        <!-- available: mybatisMap[p2] = mybatisMap[param2] = password (arg1 -> p2)-->
         select * from t_user where username = #{p1} and password = #{p2};
     </select>
 

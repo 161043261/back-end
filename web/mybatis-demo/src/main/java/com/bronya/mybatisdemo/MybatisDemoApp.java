@@ -1,6 +1,5 @@
 package com.bronya.mybatisdemo;
 
-
 import com.bronya.mybatisdemo.mapper.UserMapper;
 
 public class MybatisDemoApp {
