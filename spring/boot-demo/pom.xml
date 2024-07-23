@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.bronya</groupId>
-    <artifactId>boot-demo</artifactId>
+    <artifactId>boot-deprecated</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>boot-demo</name>
-    <description>boot-demo</description>
+    <description>boot-deprecated</description>
     <properties>
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
