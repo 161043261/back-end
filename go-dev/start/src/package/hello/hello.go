@@ -1,9 +1,9 @@
 package main
 
 import (
+	"bronya.com/greeting"
 	"fmt"
 	"log"
-	"bronya.com/greeting"
 )
 
 func main() {
