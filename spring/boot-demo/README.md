@@ -10,9 +10,9 @@
 
 [complex](http://127.0.0.1:8080/complex?name=tom&age=22&address.province=jiangsu&address.city=nanjing)
 
-[checkbox](http://127.0.0.1:8080/checkbox?like=sing&like=dance)
+[checkbox](http://127.0.0.1:8080/checkbox?like=sing&like=dance&like=rap&like=basketball)
 
-[checkbox/list](http://127.0.0.1:8080/checkbox/list?like=rap&like=basketball)
+[checkboxList](http://127.0.0.1:8080/checkbox/list?city=nanjing&city=suzhou&city=wuxi)
 
 [datetime](http://127.0.0.1:8080/date?date=2002-02-28)
 
@@ -30,3 +30,10 @@
   }
 }
 ```
+
+**Wrapped by Result**
+[peopleResult](http://127.0.1:8080/people/result?name=tom&age=22)
+
+[complexResult](http://127.0.0.1:8080/complex/result?name=tom&age=22&address.province=jiangsu&address.city=nanjing)
+
+[checkboxListResult](http://127.0.0.1:8080/checkbox/list/result?city=nanjing&city=suzhou&city=wuxi)

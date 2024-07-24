@@ -1,15 +1,18 @@
 package com.bronya.bootdemo.controller;
 
+import com.bronya.bootdemo.pojo.Address;
 import com.bronya.bootdemo.pojo.People;
+import com.bronya.bootdemo.pojo.Result;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@RestController
+@RestController // @RestController = @Controller + @ResponseBody
 public class DemoController {
 
     @RequestMapping("/people")
@@ -17,6 +20,14 @@ public class DemoController {
         String name = req.getParameter("name");
         int age = Integer.parseInt(req.getParameter("age"));
         return name + " " + age; // tom 22
+    }
+
+    // ***** Wrapped by Result *****
+    @RequestMapping("/people/result")
+    public Result<String> peopleResult(HttpServletRequest req) {
+        String name = req.getParameter("name");
+        int age = Integer.parseInt(req.getParameter("age"));
+        return Result.success(name + " " + age); // tom 22
     }
 
     // x-www-form-urlencoded (name=tom, age=22)
@@ -31,18 +42,40 @@ public class DemoController {
     }
 
     @RequestMapping("/complex") // complex object
-    public String complex(People p) {
-        return p.toString(); // People(name=tom, age=22, address=Address(province=jiangsu, city=nanjing))
+    public Address complex(People p) {
+        return p.getAddress();
+    }
+
+    // ***** Wrapped by Result *****
+    @RequestMapping("/complex/result") // complex object
+    public Result<Address> complexResult(People p) {
+        return Result.success(p.getAddress());
     }
 
     @RequestMapping("/checkbox") // checkbox
     public String checkbox(String[] like) {
-        return Arrays.toString(like); // [sing, dance]
+        return Arrays.toString(like); // [sing, dance, rap, basketball]
     }
 
     @RequestMapping("/checkbox/list") // checkbox
-    public String checkbox(@RequestParam List<String> like) {
-        return like.toString(); // [rap, basketball]
+    public List<Address> checkboxList(@RequestParam(name = "city") List<String> cityList) {
+        var addrList = new ArrayList<Address>();
+        for (String city : cityList) {
+            Address addr = new Address("jiangsu", city);
+            addrList.add(addr);
+        }
+        return addrList;
+    }
+
+    // ***** Wrapped by Result *****
+    @RequestMapping("/checkbox/list/result") // checkbox
+    public Result<List<Address>> checkboxListResult(@RequestParam(name = "city") List<String> cityList) {
+        var addrList = new ArrayList<Address>();
+        for (String city : cityList) {
+            Address addr = new Address("jiangsu", city);
+            addrList.add(addr);
+        }
+        return Result.success(addrList);
     }
 
     @RequestMapping("/date") // date
@@ -59,7 +92,7 @@ public class DemoController {
         "name": "tom",
         "age": 22,
         "address": { "province": "jiangsu", "city": "nanjing"}
-    } */
+    } */ // ResponseBody
     @RequestMapping("/json")
     public String json(@RequestBody People p) {
         return p.toString(); // People(name=tom, age=22, address=Address(province=jiangsu, city=nanjing))
