@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bronya.manage.mapper.EmpMapper">
+  <!-- List<Emp> getEmpList(int startIndex, int pageSize, String name, Short gender, LocalDate begin, LocalDate end); -->
+  <select id="getEmpList" resultType="com.bronya.manage.pojo.Emp">
+    select * from emp
+    <where>1=1
+      <if test="name != null and name != ''">
+        and username = #{username}
+      </if>
+      <if test="gender != null and gender != ''">
+        and gender = #{gender}
+      </if>
+      <if test="begin != null and end != null">
+        and entrydate between begin and end
+      </if>
+    </where>
+    limit #{startIndex}, #{pageSize}
+  </select>
+
+  <!-- int deleteEmpList(int[] idList); -->
+  <delete id="deleteEmpList">
+    delete from emp where id in
+    <foreach collection="idList" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <!-- int updateEmp(Emp emp); -->
+  <update id="updateEmp">
+    update emp set username = #{username}, name = #{name}, gender = #{gender}, update_time = #{updateTime}
+    <if test="image != null and image != ''">
+      , image = #{image}
+    </if>
+    <if test="deptId != null">
+      , dept_id = #{deptId}
+    </if>
+    <if test="entrydate != null">
+      , entrydate = #{entrydate}
+    </if>
+    <if test="job != null">
+      , job = #{job}
+    </if>
+    where id = #{id}
+  </update>
+</mapper>

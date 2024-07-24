@@ -5,17 +5,17 @@ drop table if exists dept;
 create table dept
 (
     id          int unsigned primary key auto_increment comment 'primary key id',
-    name        varchar(40) not null unique comment 'department name',
+    name        varchar(30) not null unique comment 'department name',
     create_time datetime    not null comment 'create timestamp',
     update_time datetime    not null comment 'update timestamp'
 ) comment 'department table';
 
 insert into dept (id, name, create_time, update_time)
-values (1, 'student affairs department', now(), now()),
-       (2, 'teaching and research department', now(), now()),
-       (3, 'consulting department', now(), now()),
-       (4, 'employment department', now(), now()),
-       (5, 'human resources department', now(), now());
+values (1, 'student affairs', now(), now()),
+       (2, 'teaching and research', now(), now()),
+       (3, 'consulting', now(), now()),
+       (4, 'employment', now(), now()),
+       (5, 'human resources', now(), now());
 
 drop table if exists emp;
 create table emp

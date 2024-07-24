@@ -58,3 +58,6 @@ DI, Dependency Injection
 
 1.  Setter Dependency Injection (SDI)
 2.  Constructor Dependency Injection (CDI)
+
+ request -> controller -> service -> mapper
+response <- controller <- service <- mapper

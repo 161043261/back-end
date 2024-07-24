@@ -7,16 +7,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Result<T> {
+public class Result<DataType> {
     private int code;
     private String msg;
-    private T data;
+    private DataType data; // human friendly
 
-    public static <T> Result<T> success(T data) {
+    public static <DataType> Result<DataType> success(DataType data) {
         return new Result<>(200, "success", data);
     }
 
-    public static <T> Result<T> fail(T data) {
+    public static <DataType> Result<DataType> fail(DataType data) {
         return new Result<>(500, "fail", data);
     }
 }
