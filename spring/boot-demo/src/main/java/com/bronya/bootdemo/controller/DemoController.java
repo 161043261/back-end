@@ -1,7 +1,7 @@
 package com.bronya.bootdemo.controller;
 
 import com.bronya.bootdemo.pojo.Address;
-import com.bronya.bootdemo.pojo.People;
+import com.bronya.bootdemo.pojo.Emp;
 import com.bronya.bootdemo.pojo.Result;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,76 +15,88 @@ import java.util.List;
 @RestController // @RestController = @Controller + @ResponseBody
 public class DemoController {
 
-    @RequestMapping("/people")
-    public String people(HttpServletRequest req) {
+    @RequestMapping("/emp")
+    public String emp(HttpServletRequest req) {
         String name = req.getParameter("name");
         int age = Integer.parseInt(req.getParameter("age"));
+        // write to response body
         return name + " " + age; // tom 22
     }
 
     // ***** Wrapped by Result *****
-    @RequestMapping("/people/result")
-    public Result<String> peopleResult(HttpServletRequest req) {
+    @RequestMapping("/emp/res")
+    public Result<String> empRes(HttpServletRequest req) {
         String name = req.getParameter("name");
         int age = Integer.parseInt(req.getParameter("age"));
-        return Result.success(name + " " + age); // tom 22
+        // convert to json and write to response body
+        return Result.success(name + " " + age);
     }
 
     // x-www-form-urlencoded (name=tom, age=22)
-    @RequestMapping("/simple") // simple object
-    public String simple(@RequestParam(name = "name") String uName, @RequestParam(name = "age", required = false/* default true */) int uAge) {
+    @RequestMapping("/str")
+    public String str(@RequestParam(name = "name") String uName,
+                      @RequestParam(name = "age", required = false/* default true */) int uAge) {
+        // write to response body
         return uName + " " + uAge; // tom 22
     }
 
     @RequestMapping("/orm") // object relational mapping
-    public String orm(People p) {
-        return p.toString(); // People(name=tom, age=22, address=null)
+    public String orm(Emp p) {
+        // write to response body
+        return p.toString(); // Emp(name=tom, age=22, address=null)
     }
 
-    @RequestMapping("/complex") // complex object
-    public Address complex(People p) {
+    @RequestMapping("/obj") // complex object
+    public Address obj(Emp p) {
+        // convert to json and write to response body
         return p.getAddress();
     }
 
     // ***** Wrapped by Result *****
-    @RequestMapping("/complex/result") // complex object
-    public Result<Address> complexResult(People p) {
+    @RequestMapping("/obj/res") // complex object
+    public Result<Address> objRes(Emp p) {
+        // convert to json and write to response body
         return Result.success(p.getAddress());
     }
 
-    @RequestMapping("/checkbox") // checkbox
-    public String checkbox(String[] like) {
+    @RequestMapping("/box")
+    public String box(String[] like) {
+        // write to response body
         return Arrays.toString(like); // [sing, dance, rap, basketball]
     }
 
-    @RequestMapping("/checkbox/list") // checkbox
-    public List<Address> checkboxList(@RequestParam(name = "city") List<String> cityList) {
+    @RequestMapping("/box/list")
+    public List<Address> boxList(@RequestParam(name = "city") List<String> cityList) {
         var addrList = new ArrayList<Address>();
         for (String city : cityList) {
             Address addr = new Address("jiangsu", city);
             addrList.add(addr);
         }
+        // convert to json and write to response body
         return addrList;
     }
 
     // ***** Wrapped by Result *****
-    @RequestMapping("/checkbox/list/result") // checkbox
-    public Result<List<Address>> checkboxListResult(@RequestParam(name = "city") List<String> cityList) {
+    @RequestMapping("/box/list/res")
+    public Result<List<Address>> boxListRes(@RequestParam(name = "city") List<String> cityList) {
         var addrList = new ArrayList<Address>();
         for (String city : cityList) {
             Address addr = new Address("jiangsu", city);
             addrList.add(addr);
         }
+        // convert to json and write to response body
         return Result.success(addrList);
     }
 
-    @RequestMapping("/date") // date
+    @RequestMapping("/date")
     public String date(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        // write to response body
         return date.toString(); // 2002-02-28
     }
 
     @RequestMapping("/path/{name}/{age}")
     public String path(@PathVariable String name, @PathVariable int age) {
+        // write to response body
         return name + " " + age; // tom 22
     }
 
@@ -92,9 +104,10 @@ public class DemoController {
         "name": "tom",
         "age": 22,
         "address": { "province": "jiangsu", "city": "nanjing"}
-    } */ // ResponseBody
+    } */
     @RequestMapping("/json")
-    public String json(@RequestBody People p) {
-        return p.toString(); // People(name=tom, age=22, address=Address(province=jiangsu, city=nanjing))
+    public String json(@RequestBody Emp p) {
+        // write to response body
+        return p.toString(); // Emp(name=tom, age=22, address=Address(province=jiangsu, city=nanjing))
     }
 }

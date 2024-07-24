@@ -1,24 +1,24 @@
 # boot-demo
 
-### PeopleController
+### DemoController
 
-[people](http://127.0.1:8080/people?name=tom&age=22)
+[emp](http://127.0.1:8080/emp?name=tom&age=22)
 
-[simple](http://127.0.1:8080/simple?name=tom&age=22)
+[str](http://127.0.1:8080/str?name=tom&age=22)
 
 [orm](http://127.0.0.1:8080/orm?name=tom&age=22)
 
-[complex](http://127.0.0.1:8080/complex?name=tom&age=22&address.province=jiangsu&address.city=nanjing)
+[obj](http://127.0.0.1:8080/obj?name=tom&age=22&address.province=jiangsu&address.city=nanjing)
 
-[checkbox](http://127.0.0.1:8080/checkbox?like=sing&like=dance&like=rap&like=basketball)
+[box](http://127.0.0.1:8080/box?like=sing&like=dance&like=rap&like=basketball)
 
-[checkboxList](http://127.0.0.1:8080/checkbox/list?city=nanjing&city=suzhou&city=wuxi)
+[boxList](http://127.0.0.1:8080/box/list?city=nanjing&city=suzhou&city=wuxi)
 
-[datetime](http://127.0.0.1:8080/date?date=2002-02-28)
+[date](http://127.0.0.1:8080/date?date=2002-02-28)
 
 [path](http://127.0.0.1:8080/path/tom/22)
 
-[json](http://127.0.0.1:8080/json)
+[json](http://127.0.0.1:8080/json) use postman
 
 ```json
 {
@@ -32,8 +32,9 @@
 ```
 
 **Wrapped by Result**
-[peopleResult](http://127.0.1:8080/people/result?name=tom&age=22)
 
-[complexResult](http://127.0.0.1:8080/complex/result?name=tom&age=22&address.province=jiangsu&address.city=nanjing)
+[empRes](http://127.0.1:8080/emp/res?name=tom&age=22)
 
-[checkboxListResult](http://127.0.0.1:8080/checkbox/list/result?city=nanjing&city=suzhou&city=wuxi)
+[objRes](http://127.0.0.1:8080/obj/res?name=tom&age=22&address.province=jiangsu&address.city=nanjing)
+
+[boxListRes](http://127.0.0.1:8080/box/list/res?city=nanjing&city=suzhou&city=wuxi)
