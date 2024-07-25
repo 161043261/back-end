@@ -14,8 +14,7 @@ public interface EmpMapper {
 
     int deleteEmpList(int[] idList);
 
-    @Insert("insert into emp (username, password, name, gender, image, job, entrydate, create_time, update_time) " +
-            "values (#{username}, #{password}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{createTime}, #{updateTime})")
+    @Insert("insert into emp (username, name, gender, image, job, entrydate, create_time, dept_id, update_time) values (#{username}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{deptId}, #{createTime}, #{updateTime})")
     int insertEmp(Emp emp);
 
     @Select("select * from emp where id = #{id}")
