@@ -6,6 +6,8 @@ Headers.Payload.Signature
 
 ### interceptor
 
--> **request** -> preFilterLogic -> filter.doFilter() -> dispatcherServlet -> interceptor.preHandle() -> controller ->
-
+```tex
+-> **request** -> preFilterLogic -> filter.doFilter() -> dispatcherServlet -> interceptor.preHandle() -> controller -->
+                                                                                                                      |
 <- postFilterLogic <- dispatcherServlet <- interceptor.afterCompletion() <- interceptor.postHandle() <- **response** <-
+```

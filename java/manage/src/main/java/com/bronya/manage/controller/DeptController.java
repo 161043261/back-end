@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.bronya.manage.utils.Colors.BLUE;
+import static com.bronya.manage.utils.Colors.RESET;
+
 @Slf4j // automatically generate line18
 @RestController
 public class DeptController {
@@ -35,6 +38,7 @@ public class DeptController {
 
     @RequestMapping(value = "/depts", method = RequestMethod.GET)
     public Result selectAll() {
+        System.out.println(BLUE + "controller" + RESET);
         log.info("select * from dept");
         List<Dept> deptList = deptService.selectAll();
         return Result.success(deptList);

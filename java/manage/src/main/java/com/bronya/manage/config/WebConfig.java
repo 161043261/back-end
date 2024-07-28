@@ -20,6 +20,7 @@ public class WebConfig implements WebMvcConfigurer { // Model-View-Controller
     // /** n-level path
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/login");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
+                // .excludePathPatterns("/login");
     }
 }
