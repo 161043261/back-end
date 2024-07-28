@@ -18,14 +18,16 @@ public class UploadController {
     public Result upload(String username, int age, @RequestParam("image") MultipartFile image) throws IOException {
         log.info("username={}, age={}, image={}", username, age, image);
         String filename = image.getOriginalFilename();
+        if (filename == null) {
+            return Result.error("error");
+        }
         String extname = filename.substring(filename.lastIndexOf("."));
-        filename = UUID.randomUUID().toString() + extname;
+        filename = UUID.randomUUID() + extname;
         if (System.getProperty("os.name").startsWith("Windows")) {
-            image.transferTo(new File("C:\\Users\\admin\\Downloads" + filename));
-        } else if (System.getProperty("os.name").startsWith("Mac")) {
-            image.transferTo(new File("/Users/admin/Downloads" + filename));
-        } else { // System.getProperty("os.name") == "Linux"
-            image.transferTo(new File("/home/user/" + filename));
+            image.transferTo(new File("C:\\Users\\admin\\Downloads\\" + filename));
+        }
+        if (System.getProperty("os.name").startsWith("Mac")) {
+            image.transferTo(new File("/Users/admin/Downloads/" + filename));
         }
         return Result.success();
     }

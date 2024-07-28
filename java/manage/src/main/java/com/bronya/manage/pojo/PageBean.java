@@ -7,5 +7,5 @@ import java.util.List;
 @Data
 public class PageBean {
     private long total;
-    private List rows;
+    private List<Object> rows;
 }
