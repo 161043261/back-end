@@ -10,11 +10,14 @@ import java.util.List;
 
 @Mapper
 public interface EmpMapper {
-    List<Emp> getEmpList(int startIndex, int pageSize, String name, Short gender, LocalDate begin, LocalDate end);
+    int getEmpCount(String name, Short gender, LocalDate begin, LocalDate end);
+
+    List<Emp> getEmpPage(int startIndex, int pageSize, String name, Short gender, LocalDate begin, LocalDate end);
 
     int deleteEmpList(int[] idList);
 
-    @Insert("insert into emp (username, name, gender, image, job, entrydate, create_time, dept_id, update_time) values (#{username}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{deptId}, #{createTime}, #{updateTime})")
+    @Insert("insert into emp (username, name, gender, image, job, entrydate, dept_id, create_time, update_time)" +
+            "values (#{username}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{deptId}, #{createTime}, #{updateTime})")
     int insertEmp(Emp emp);
 
     @Select("select * from emp where id = #{id}")

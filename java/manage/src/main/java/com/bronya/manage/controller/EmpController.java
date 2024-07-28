@@ -1,6 +1,7 @@
 package com.bronya.manage.controller;
 
 import com.bronya.manage.pojo.Emp;
+import com.bronya.manage.pojo.PageBean;
 import com.bronya.manage.pojo.Result;
 import com.bronya.manage.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +10,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -31,8 +31,8 @@ public class EmpController {
                              @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
                              @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end) {
         log.info("page={} pageSize={} name={} gender={} begin={} end={}", page, pageSize, name, gender, begin, end);
-        List<Emp> empList = empService.getEmpList(page, pageSize, name, gender, begin, end);
-        return Result.success(empList);
+        PageBean pageBean = empService.getEmpPage(page, pageSize, name, gender, begin, end);
+        return Result.success(pageBean);
     }
 
     @DeleteMapping("/{idList}")

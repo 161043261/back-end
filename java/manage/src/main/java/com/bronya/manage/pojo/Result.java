@@ -13,14 +13,14 @@ public class Result {
     private Object data;
 
     public static Result success() {
-        return new Result(200, "success", null);
+        return new Result(1, "success", null);
     }
 
     public static Result success(Object data) {
-        return new Result(200, "success", data);
+        return new Result(1, "success", data);
     }
 
     public static Result error(String msg) {
-        return new Result(500, msg, null);
+        return new Result(0, msg, null);
     }
 }
