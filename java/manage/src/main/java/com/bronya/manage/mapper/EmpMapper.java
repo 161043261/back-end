@@ -24,4 +24,7 @@ public interface EmpMapper {
     Emp getEmpById(int id);
 
     int updateEmp(Emp emp);
+
+    @Select("select * from emp where username = #{username} and password = #{password}")
+    Emp getEmpByUp(Emp emp);
 }

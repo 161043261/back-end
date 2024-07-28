@@ -44,13 +44,18 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
-    public PageBean getEmpPage(int page, int pageSize, String name, Short gender, LocalDate begin, LocalDate end) {
+    public PageBean<Emp> getEmpPage(int page, int pageSize, String name, Short gender, LocalDate begin, LocalDate end) {
         int startIndex = (page - 1) * pageSize;
         int empCount = empMapper.getEmpCount(name, gender, begin, end);
         List<Emp> empList = empMapper.getEmpPage(startIndex, pageSize, name, gender, begin, end);
-        PageBean pageBean = new PageBean();
+        PageBean<Emp> pageBean = new PageBean<>();
         pageBean.setTotal(empCount);
         pageBean.setRows(empList);
         return pageBean;
+    }
+
+    @Override
+    public Emp getEmpByUp(Emp emp) {
+        return empMapper.getEmpByUp(emp);
     }
 }

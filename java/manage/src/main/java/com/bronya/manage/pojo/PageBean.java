@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PageBean {
+public class PageBean<T> {
     private long total;
-    private List<Object> rows;
+    private List<T> rows;
 }

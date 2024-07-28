@@ -14,5 +14,7 @@ public interface EmpService {
 
     int updateEmp(Emp emp);
 
-    PageBean getEmpPage(int page, int pageSize, String name, Short gender, LocalDate begin, LocalDate end);
+    PageBean<Emp> getEmpPage(int page, int pageSize, String name, Short gender, LocalDate begin, LocalDate end);
+
+    Emp getEmpByUp(Emp emp);
 }
