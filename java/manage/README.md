@@ -11,3 +11,15 @@ Headers.Payload.Signature
                                                                                                                    |
 <- postFilterLogic <- dispatcherServlet <- interceptor.afterCompletion() <- interceptor.postHandle() <- response <-*
 ```
+
+### AOP, Aspect Oriented Programming
+
+```tex
+******************************************************************************************
+* 1. @Aspect                                               <- aspect = advice + pointcut *
+* 2. selectDeptList method                                 <- joinPoint                  *
+* 3. deptServiceImpl instance                              <- target                     *
+* 4. @Around @Before @After @AfterReturning @AfterThrowing <- pointcut                   *
+* 5. benchmark method                                      <- advice                     *
+******************************************************************************************
+```

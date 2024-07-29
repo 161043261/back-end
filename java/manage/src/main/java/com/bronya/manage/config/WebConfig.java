@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer { // Model-View-Controller
 
     private LoginInterceptor loginInterceptor;
 
-    @Autowired
+    @Autowired // inject by setter
     public void setLoginInterceptor(LoginInterceptor loginInterceptor) {
         this.loginInterceptor = loginInterceptor;
     }

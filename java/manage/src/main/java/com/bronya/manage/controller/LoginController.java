@@ -18,8 +18,8 @@ import java.util.Map;
 public class LoginController {
     private EmpService empService;
 
-    @Autowired
-    public void setEmpService(EmpService empService) {
+    @Autowired // inject by constructor
+    public LoginController(EmpService empService) {
         this.empService = empService;
     }
 

@@ -15,7 +15,7 @@ import java.util.List;
 public class EmpServiceImpl implements EmpService {
     private EmpMapper empMapper;
 
-    @Autowired
+    @Autowired // inject by setter
     public void setEmpMapper(EmpMapper empMapper) {
         this.empMapper = empMapper;
     }

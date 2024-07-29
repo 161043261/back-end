@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
-import static com.bronya.manage.utils.Colors.RED;
-import static com.bronya.manage.utils.Colors.RESET;
 import static com.bronya.manage.utils.JwtUtils.noJwsString;
 
 @Slf4j
@@ -44,9 +42,6 @@ public class LoginFilter implements Filter {
             noJwsString(resp);
             return;
         }
-
-        System.out.println(RED + "preFilterLogic" + RESET);
         chain.doFilter(req, resp);
-        System.out.println(RED + "postFilterLogic" + RESET);
     }
 }

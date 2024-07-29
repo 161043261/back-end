@@ -16,3 +16,7 @@ mybatis:
 
 # server:
 #   port: 9000
+
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug

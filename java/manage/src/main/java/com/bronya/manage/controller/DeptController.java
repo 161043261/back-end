@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.bronya.manage.utils.Colors.BLUE;
-import static com.bronya.manage.utils.Colors.RESET;
-
 @Slf4j // automatically generate line18
 @RestController
 public class DeptController {
@@ -31,14 +28,13 @@ public class DeptController {
     // TODO ***** 3. autowired (injected) by setter *****
     private DeptService deptService;
 
-    @Autowired
-    public void setDeptService(DeptService deptService) {
+    @Autowired // inject by constructor
+    public DeptController(DeptService deptService) {
         this.deptService = deptService;
     }
 
     @RequestMapping(value = "/depts", method = RequestMethod.GET)
     public Result selectDeptList() {
-        System.out.println(BLUE + "controller" + RESET);
         log.info("select * from dept");
         List<Dept> deptList = deptService.selectDeptList();
         return Result.success(deptList);

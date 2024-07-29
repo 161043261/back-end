@@ -18,8 +18,8 @@ public class EmpController {
 
     private EmpService empService;
 
-    @Autowired
-    public void setEmpService(EmpService empService) {
+    @Autowired // inject by constructor
+    public EmpController(EmpService empService) {
         this.empService = empService;
     }
 

@@ -7,10 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
-import static com.bronya.manage.utils.Colors.GREEN;
-import static com.bronya.manage.utils.Colors.RESET;
 import static com.bronya.manage.utils.JwtUtils.noJwsString;
 
 @Slf4j
@@ -22,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (url.contains("login")) {
             return true;
         }
-        System.out.println(GREEN + "preHandle" + RESET);
+
         String jwsString = req.getHeader("token");
         if (jwsString == null || jwsString.isEmpty()) {
             noJwsString(resp);
@@ -39,15 +36,5 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println(GREEN + "postHandle" + RESET);
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println(GREEN + "afterCompletion" + RESET);
     }
 }

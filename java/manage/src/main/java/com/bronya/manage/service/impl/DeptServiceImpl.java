@@ -7,6 +7,8 @@ import com.bronya.manage.service.DeptService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,12 +20,12 @@ public class DeptServiceImpl implements DeptService {
     private DeptMapper deptMapper;
     private EmpMapper empMapper;
 
-    @Autowired
+    @Autowired // inject by setter
     public void setDeptMapper(DeptMapper deptMapper) {
         this.deptMapper = deptMapper;
     }
 
-    @Autowired
+    @Autowired // inject by setter
     public void setEmpMapper(EmpMapper empMapper) {
         this.empMapper = empMapper;
     }
@@ -33,11 +35,19 @@ public class DeptServiceImpl implements DeptService {
         return deptMapper.selectDeptList();
     }
 
-    @Override // transaction
+    // ***** rollbackFor *****
+    // default: rollback if a RuntimeException occurs
+    // ***** propagation *****
+    // 1. Propagation.REQUIRED (default)
+    // 2. Propagation.REQUIRES_NEW
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    @Override
     public int deleteDeptById(int id) {
+        // start transaction (begin)
         int rowCount = empMapper.deleteEmpByDeptId(id);
         log.info("rowCount={}", rowCount);
         return deptMapper.deleteDeptById(id);
+        // error ? rollback : commit
     }
 
     @Override
