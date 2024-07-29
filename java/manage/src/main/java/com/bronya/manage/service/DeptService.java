@@ -5,13 +5,13 @@ import com.bronya.manage.pojo.Dept;
 import java.util.List;
 
 public interface DeptService {
-    List<Dept> selectAll();
+    List<Dept> selectDeptList();
 
-    int deleteById(int id);
+    int deleteDeptById(int id);
 
     int insertDept(Dept dept);
 
-    Dept selectById(int id);
+    Dept selectDeptById(int id);
 
     int updateDept(Dept dept);
 }

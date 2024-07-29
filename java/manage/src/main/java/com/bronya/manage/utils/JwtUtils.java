@@ -18,7 +18,7 @@ public class JwtUtils {
     private static final SecretKey secretKey = Jwts.SIG.HS256.key().build();
     private static final long expiration = 60 * 60_000; // expiration = 1h
 
-    public static String getJwsString(Map<String, Object> claims) {
+    public static String genJwsString(Map<String, Object> claims) {
         return Jwts.builder() // get a JwtBuilder
                 .header().keyId("bronya").and().claims(claims) // payload
                 .signWith(secretKey) // sign

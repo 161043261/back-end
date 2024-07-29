@@ -24,14 +24,14 @@ public class EmpController {
     }
 
     @GetMapping
-    public Result getEmpList(@RequestParam(defaultValue = "1") int page,
-                             @RequestParam(defaultValue = "10") int pageSize,
-                             String name,
-                             Short gender,
-                             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
-                             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end) {
+    public Result selectEmpList(@RequestParam(defaultValue = "1") int page,
+                                @RequestParam(defaultValue = "10") int pageSize,
+                                String name,
+                                Short gender,
+                                @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+                                @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end) {
         log.info("page={} pageSize={} name={} gender={} begin={} end={}", page, pageSize, name, gender, begin, end);
-        PageBean pageBean = empService.getEmpPage(page, pageSize, name, gender, begin, end);
+        PageBean<Emp> pageBean = empService.selectEmpPage(page, pageSize, name, gender, begin, end);
         return Result.success(pageBean);
     }
 
@@ -50,9 +50,9 @@ public class EmpController {
     }
 
     @GetMapping("/{id}")
-    public Result getEmpById(@PathVariable int id) {
+    public Result selectEmpById(@PathVariable int id) {
         log.info("id={}", id);
-        Emp emp = empService.getEmpById(id);
+        Emp emp = empService.selectEmpById(id);
         return Result.success(emp);
     }
 

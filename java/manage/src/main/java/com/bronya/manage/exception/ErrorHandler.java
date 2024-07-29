@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice
-public class GlobalErrorHandler {
+public class ErrorHandler { // global
 
     @ExceptionHandler(Exception.class)
-    public Result error(Exception e) {
+    public Result handler(Exception e) {
         log.error(e.getMessage());
         return Result.error("Fatal Error");
     }

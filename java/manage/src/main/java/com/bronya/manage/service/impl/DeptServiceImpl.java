@@ -1,32 +1,43 @@
 package com.bronya.manage.service.impl;
 
 import com.bronya.manage.mapper.DeptMapper;
+import com.bronya.manage.mapper.EmpMapper;
 import com.bronya.manage.pojo.Dept;
 import com.bronya.manage.service.DeptService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 public class DeptServiceImpl implements DeptService {
 
     private DeptMapper deptMapper;
+    private EmpMapper empMapper;
 
     @Autowired
     public void setDeptMapper(DeptMapper deptMapper) {
         this.deptMapper = deptMapper;
     }
 
-    @Override
-    public List<Dept> selectAll() {
-        return deptMapper.selectAll();
+    @Autowired
+    public void setEmpMapper(EmpMapper empMapper) {
+        this.empMapper = empMapper;
     }
 
     @Override
-    public int deleteById(int id) {
-        return deptMapper.deleteById(id);
+    public List<Dept> selectDeptList() {
+        return deptMapper.selectDeptList();
+    }
+
+    @Override // transaction
+    public int deleteDeptById(int id) {
+        int rowCount = empMapper.deleteEmpByDeptId(id);
+        log.info("rowCount={}", rowCount);
+        return deptMapper.deleteDeptById(id);
     }
 
     @Override
@@ -37,8 +48,8 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
-    public Dept selectById(int id) {
-        return deptMapper.selectById(id);
+    public Dept selectDeptById(int id) {
+        return deptMapper.selectDeptById(id);
     }
 
     @Override

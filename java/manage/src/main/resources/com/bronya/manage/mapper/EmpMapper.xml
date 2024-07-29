@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bronya.manage.mapper.EmpMapper">
-  <!-- int getEmpCount(String name, Short gender, LocalDate begin, LocalDate end); -->
-  <select id="getEmpCount">
+  <!-- int selectEmpCnt(String name, Short gender, LocalDate begin, LocalDate end); -->
+  <select id="selectEmpCnt">
     select count(*) from emp
     <where>
       <if test="name != null and name != ''">and name like concat('%', #{name}, '%')</if>
@@ -11,8 +11,8 @@
     </where>
   </select>
 
-  <!-- List<Emp> getEmpPage(int startIndex, int pageSize, String name, Short gender, LocalDate begin, LocalDate end); -->
-  <select id="getEmpPage" resultType="com.bronya.manage.pojo.Emp">
+  <!-- List<Emp> selectEmpPage(int startIndex, int pageSize, String name, Short gender, LocalDate begin, LocalDate end); -->
+  <select id="selectEmpPage" resultType="com.bronya.manage.pojo.Emp">
     select * from emp
     <where>
       <if test="name != null and name != ''">and name like concat('%', #{name}, '%')</if>

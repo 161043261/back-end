@@ -10,11 +10,11 @@ public interface EmpService {
 
     int insertEmp(Emp emp);
 
-    Emp getEmpById(int id);
+    Emp selectEmpById(int id);
 
     int updateEmp(Emp emp);
 
-    PageBean<Emp> getEmpPage(int page, int pageSize, String name, Short gender, LocalDate begin, LocalDate end);
+    PageBean<Emp> selectEmpPage(int page, int pageSize, String name, Short gender, LocalDate begin, LocalDate end);
 
-    Emp getEmpByUp(Emp emp);
+    Emp selectEmpByUp(Emp emp);
 }

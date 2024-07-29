@@ -37,10 +37,10 @@ public class DeptController {
     }
 
     @RequestMapping(value = "/depts", method = RequestMethod.GET)
-    public Result selectAll() {
+    public Result selectDeptList() {
         System.out.println(BLUE + "controller" + RESET);
         log.info("select * from dept");
-        List<Dept> deptList = deptService.selectAll();
+        List<Dept> deptList = deptService.selectDeptList();
         return Result.success(deptList);
     }
 
@@ -52,9 +52,9 @@ public class DeptController {
      * @return effected row count
      */
     @DeleteMapping("/depts/{id}")
-    public Result deleteById(@PathVariable int id) {
+    public Result deleteDeptById(@PathVariable int id) {
         log.info("id={}", id);
-        int rowCount = deptService.deleteById(id);
+        int rowCount = deptService.deleteDeptById(id);
         return Result.success(rowCount);
     }
 
@@ -73,9 +73,9 @@ public class DeptController {
     }
 
     @GetMapping("/depts/{id}")
-    public Result selectById(@PathVariable int id) {
+    public Result selectDeptById(@PathVariable int id) {
         log.info("id={}", id);
-        Dept dept = deptService.selectById(id);
+        Dept dept = deptService.selectDeptById(id);
         return Result.success(dept);
     }
 

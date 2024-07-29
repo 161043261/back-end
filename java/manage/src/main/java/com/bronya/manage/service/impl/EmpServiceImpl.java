@@ -33,8 +33,8 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
-    public Emp getEmpById(int id) {
-        return empMapper.getEmpById(id);
+    public Emp selectEmpById(int id) {
+        return empMapper.selectEmpById(id);
     }
 
     @Override
@@ -44,10 +44,10 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
-    public PageBean<Emp> getEmpPage(int page, int pageSize, String name, Short gender, LocalDate begin, LocalDate end) {
+    public PageBean<Emp> selectEmpPage(int page, int pageSize, String name, Short gender, LocalDate begin, LocalDate end) {
         int startIndex = (page - 1) * pageSize;
-        int empCount = empMapper.getEmpCount(name, gender, begin, end);
-        List<Emp> empList = empMapper.getEmpPage(startIndex, pageSize, name, gender, begin, end);
+        int empCount = empMapper.selectEmpCnt(name, gender, begin, end);
+        List<Emp> empList = empMapper.selectEmpPage(startIndex, pageSize, name, gender, begin, end);
         PageBean<Emp> pageBean = new PageBean<>();
         pageBean.setTotal(empCount);
         pageBean.setRows(empList);
@@ -55,7 +55,7 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
-    public Emp getEmpByUp(Emp emp) {
-        return empMapper.getEmpByUp(emp);
+    public Emp selectEmpByUp(Emp emp) {
+        return empMapper.selectEmpByUp(emp);
     }
 }

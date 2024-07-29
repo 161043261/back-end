@@ -26,13 +26,13 @@ public class LoginController {
     @PostMapping("/login")
     public Result login(@RequestBody Emp emp) {
         log.info("emp={}", emp);
-        Emp e = empService.getEmpByUp(emp);
+        Emp e = empService.selectEmpByUp(emp);
         if (e != null) {
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", e.getId());
             claims.put("name", e.getName());
             claims.put("username", e.getUsername());
-            String jws = JwtUtils.getJwsString(claims);
+            String jws = JwtUtils.genJwsString(claims);
             log.warn("jws={}", jws);
             return Result.success(jws);
         }
