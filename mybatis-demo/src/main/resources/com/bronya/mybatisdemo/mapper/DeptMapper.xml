@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bronya.mybatisdemo.mapper.DeptMapper">
+    <!-- Dept getEmpAndDeptByStep(@Param("did") int did); -->
+    <select id="getEmpAndDeptByStep" resultType="Dept"> <!-- SQLid = "getEmpAndDeptByStep" -->
+        select did, dept_name AS deptName from t_dept where did = #{did};
+    </select>
+
+    <!-- Dept getDeptAndEmpList(@Param("did") int did); -->
+    <resultMap id="deptAndEmpListResultMap" type="Dept">
+        <id property="did" column="did"/>
+        <result property="deptName" column="dept_name"/>
+        <collection property="empList" ofType="Emp">
+            <id property="eid" column="eid"/>
+            <result property="empName" column="emp_name"/>
+            <result property="age" column="age"/>
+            <result property="sex" column="sex"/>
+            <result property="email" column="email"/>
+        </collection>
+    </resultMap>
+    <select id="getDeptAndEmpList" resultMap="deptAndEmpListResultMap">
+        select * from t_dept left join t_emp on t_dept.did = t_emp.did where t_dept.did = #{did};
+    </select>
+
+    <!-- Dept getDeptAndEmpListByStep(@Param("did") int did); -->
+    <resultMap id="deptAndEmpListByStepResultMap" type="Dept">
+        <id property="did" column="did"/>
+        <result property="deptName" column="dept_name"/>
+        <collection property="empList"
+                    select="com.bronya.mybatisdemo.mapper.EmpMapper.getDeptAndEmpListByStep"
+                    column="did"
+                    fetchType="lazy"/>
+    </resultMap>
+    <select id="getDeptAndEmpListByStep" resultMap="deptAndEmpListByStepResultMap">
+        select * from t_dept where did = #{did};
+    </select>
+</mapper>

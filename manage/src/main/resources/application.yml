@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bronya
+    username: root
+    password: 0228
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+# server:
+#   port: 9000
+
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug

@@ -1,0 +1,1 @@
+About the directory name: either 'mapper' or 'dao, data access object' is ok.
