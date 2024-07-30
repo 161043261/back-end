@@ -19,7 +19,7 @@ public class DemoAspect {
     public void pointcut() {
     }
 
-    @Pointcut("@annotation(com.bronya.appdemo.aop.demoJoinPoint)")
+    @Pointcut("@annotation(com.bronya.appdemo.annotation.JoinPointAnnotation)")
     public void annotationPointcut() {
     }
 
@@ -50,12 +50,12 @@ public class DemoAspect {
      */
 
     @Around("pointcut()") // ./DemoAspect.java:23
-    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
         long begin = System.currentTimeMillis();
 
         // ***** AOP, Aspect Oriented Programming *****
         log.info("********** around begin **********");
-        // 1. get target class
+        // 1. get target className
         String className = joinPoint.getTarget().getClass().getName();
         log.info("className: {}", className);
         // 2. get joinPoint methodName
@@ -65,12 +65,12 @@ public class DemoAspect {
         // 3. get joinPoint arguments
         log.info("arguments: {}", Arrays.toString(args));
         // 4. revoke joinPoint method
-        Object joinPointResult = joinPoint.proceed(args); // revoke joinPoint method
+        Object returnValue = joinPoint.proceed(args); // revoke joinPoint method
         log.info("********** around end **********");
 
         long end = System.currentTimeMillis();
         log.info("{}: {}ms", joinPoint.getSignature().getName(), end - begin);
-        return joinPointResult;
+        return returnValue;
     }
 
     @After("com.bronya.appdemo.aop.DemoAspect.pointcut()") // ./DemoAspect.java:23

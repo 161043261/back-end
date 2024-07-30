@@ -29,14 +29,14 @@ create table emp
     job         tinyint unsigned comment 'job,
 1 as teacher, 2 as lecturer, 3 as student affairs supervisor, 4 as teaching and research supervisor, 5 as consultant',
     entrydate   date comment 'entry date',
-    dept_id     int unsigned comment 'department ID',
+    dept_id     int unsigned comment 'department id',
     create_time datetime         not null comment 'create time',
     update_time datetime         not null comment 'update time'
 ) comment 'employee table';
 
-INSERT INTO emp
+insert into emp
 (id, username, password, name, gender, image, job, entrydate, dept_id, create_time, update_time)
-VALUES (1, 'emp_a', '123456', 'emp_a', 1, '1.jpg', 4, '2000-01-01', 2, now(), now()),
+values (1, 'emp_a', '123456', 'emp_a', 1, '1.jpg', 4, '2000-01-01', 2, now(), now()),
        (2, 'emp_b', '123456', 'emp_b', 1, '2.jpg', 2, '2015-01-01', 2, now(), now()),
        (3, 'emp_c', '123456', 'emp_c', 1, '3.jpg', 2, '2008-05-01', 2, now(), now()),
        (4, 'emp_d', '123456', 'emp_d', 1, '4.jpg', 2, '2007-01-01', 2, now(), now()),
@@ -53,3 +53,16 @@ VALUES (1, 'emp_a', '123456', 'emp_a', 1, '1.jpg', 4, '2000-01-01', 2, now(), no
        (15, 'emp_o', '123456', 'emp_o', 1, '15.jpg', 2, '2011-05-01', 2, now(), now()),
        (16, 'emp_p', '123456', 'emp_p', 1, '16.jpg', 2, '2007-01-01', 2, now(), now()),
        (17, 'emp_q', '123456', 'emp_q', 1, '17.jpg', NULL, '2015-03-21', NULL, now(), now());
+
+drop table if exists operate_log;
+create table operate_log
+(
+    id             int unsigned primary key auto_increment comment 'id',
+    operate_user   int unsigned comment 'operate user (id)',
+    operate_time   datetime comment 'operate time',
+    class_name     varchar(100) comment 'class name',
+    method_name    varchar(100) comment 'method name',
+    args           varchar(1000) comment 'arguments',
+    return_value   varchar(2000) comment 'return value',
+    benchmark_time bigint comment 'benchmark time (ms)'
+) comment 'operate log table';

@@ -1,5 +1,6 @@
 package com.bronya.appdemo.controller;
 
+import com.bronya.appdemo.annotation.LogAnnotation;
 import com.bronya.appdemo.pojo.Emp;
 import com.bronya.appdemo.pojo.PageBean;
 import com.bronya.appdemo.pojo.Result;
@@ -35,6 +36,7 @@ public class EmpController {
         return Result.success(pageBean);
     }
 
+    @LogAnnotation
     @DeleteMapping("/{idList}")
     public Result deleteEmpList(@PathVariable int[] idList) { // List<Integer> idList
         log.info("idList={}", idList);
@@ -42,6 +44,7 @@ public class EmpController {
         return Result.success(rowCount);
     }
 
+    @LogAnnotation
     @PostMapping
     public Result insertEmp(@RequestBody Emp emp) {
         log.info("emp={}", emp);
@@ -56,6 +59,7 @@ public class EmpController {
         return Result.success(emp);
     }
 
+    @LogAnnotation
     @PutMapping
     public Result updateEmp(@RequestBody Emp emp) {
         log.info("emp={}", emp);

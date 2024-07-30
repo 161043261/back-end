@@ -1,6 +1,6 @@
 package com.bronya.appdemo.controller;
 
-import com.bronya.appdemo.aop.demoJoinPoint;
+import com.bronya.appdemo.annotation.JoinPointAnnotation;
 import com.bronya.appdemo.pojo.Emp;
 import com.bronya.appdemo.pojo.Result;
 import com.bronya.appdemo.service.EmpService;
@@ -24,7 +24,7 @@ public class LoginController {
         this.empService = empService;
     }
 
-    @demoJoinPoint
+    @JoinPointAnnotation
     @PostMapping("/login")
     public Result login(@RequestBody Emp emp) {
         log.info("emp={}", emp);

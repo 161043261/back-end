@@ -1,4 +1,4 @@
-package com.bronya.appdemo.aop;
+package com.bronya.appdemo.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME) // runtime annotation
 @Target(ElementType.METHOD) // method annotation
-public @interface demoJoinPoint {
+public @interface JoinPointAnnotation {
 }

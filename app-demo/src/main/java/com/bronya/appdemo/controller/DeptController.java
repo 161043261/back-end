@@ -1,5 +1,6 @@
 package com.bronya.appdemo.controller;
 
+import com.bronya.appdemo.annotation.LogAnnotation;
 import com.bronya.appdemo.pojo.Dept;
 import com.bronya.appdemo.pojo.Result;
 import com.bronya.appdemo.service.DeptService;
@@ -47,6 +48,7 @@ public class DeptController {
      * @param id number
      * @return effected row count
      */
+    @LogAnnotation
     @DeleteMapping("/depts/{id}")
     public Result deleteDeptById(@PathVariable int id) {
         log.info("id={}", id);
@@ -61,6 +63,7 @@ public class DeptController {
      * @param dept json
      * @return effected row count
      */
+    @LogAnnotation
     @PostMapping("/depts")
     public Result insertDept(@RequestBody Dept dept) {
         log.info("dept={})", dept);
@@ -75,6 +78,7 @@ public class DeptController {
         return Result.success(dept);
     }
 
+    @LogAnnotation
     @PutMapping("/depts")
     public Result updateDept(@RequestBody Dept dept) {
         log.info("dept={}", dept);
