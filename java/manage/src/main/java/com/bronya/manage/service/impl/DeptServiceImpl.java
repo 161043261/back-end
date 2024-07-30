@@ -31,7 +31,7 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
-    public List<Dept> selectDeptList() {
+    public List<Dept> selectDeptList(/* no args */) {
         return deptMapper.selectDeptList();
     }
 
