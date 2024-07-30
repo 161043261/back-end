@@ -1,21 +1,24 @@
 package com.bronya.jdbcdemo;
 
-import com.bronya.jdbcdemo.pojo.Employee;
-import org.junit.jupiter.api.Test;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.bronya.jdbcdemo.util.Colors.*;
+import org.junit.jupiter.api.Test;
+
+import com.bronya.jdbcdemo.pojo.Employee;
 
 public class TestJdbc {
 
     @Test
     public void testQueryValue() throws SQLException {
-        // regular
-        System.out.println(YELLOW + "test Querying a Value" + RESET);
+        System.out.println("test Querying a Value");
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya"/* url */, "root"/* user */, "0228"/* password */);
         String sql = "select count(*) as count from t_emp";
         // Use PreparedStatement to prevent sql injection
@@ -32,8 +35,7 @@ public class TestJdbc {
 
     @Test
     public void testQueryRow() throws SQLException {
-        // bold
-        System.out.println(YELLOW_BD + "Test Querying a Row" + RESET);
+        System.out.println("Test Querying a Row");
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "select emp_name, emp_salary, emp_age from t_emp where emp_id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -65,7 +67,7 @@ public class TestJdbc {
     @Test
     public void testQueryMultiRows() throws SQLException {
         // bold bright
-        System.out.println(YELLOW_BD_BR + "Test Querying a Rows" + RESET);
+        System.out.println("Test Querying a Rows");
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "select * from t_emp where emp_age > ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -98,7 +100,7 @@ public class TestJdbc {
     @Test
     public void testInsert() throws SQLException {
         // background
-        System.out.println(YELLOW_BG + "Test a Insert Operation" + RESET);
+        System.out.println("Test a Insert Operation");
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "insert into t_emp (emp_name, emp_salary, emp_age) values (?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS/* 1 */); // Magic Constant
@@ -131,7 +133,7 @@ public class TestJdbc {
     @Test
     public void testUpdate() throws SQLException {
         // background bright
-        System.out.println(YELLOW_BG_BR + "Test an Update Operation" + RESET);
+        System.out.println("Test an Update Operation");
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "update t_emp set emp_salary = ? where emp_id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -148,7 +150,7 @@ public class TestJdbc {
     @Test
     public void testDelete() throws SQLException {
         // underlined
-        System.out.println(YELLOW_UL + "Test a Delete Operation" + RESET);
+        System.out.println("Test a Delete Operation");
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "delete from t_emp where emp_id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -165,7 +167,7 @@ public class TestJdbc {
     @Deprecated
     public void testMultiInsert() throws SQLException {
         // background
-        System.out.println(RED_BG_BR + "Test Multiple Insert Operation" + RESET);
+        System.out.println("Test Multiple Insert Operation");
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya", "root", "0228");
         String sql = "insert into t_emp (emp_name, emp_salary, emp_age) values (?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -192,7 +194,7 @@ public class TestJdbc {
      */
     @Test
     public void testBatchInsert() throws SQLException {
-        System.out.println(RED_BG_BR + "Test Batch Insert Operation" + RESET);
+        System.out.println("Test Batch Insert Operation");
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya?rewriteBatchedStatements=true", // batch operation
                 "root", "0228");
         String sql = "insert into t_emp (emp_name, emp_salary, emp_age) values (?, ?, ?)";

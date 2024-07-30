@@ -1,23 +1,21 @@
 package com.bronya.mybatisdemo;
 
-import com.bronya.mybatisdemo.mapper.PageMapper;
-import com.bronya.mybatisdemo.pojo.Employee;
-import com.bronya.mybatisdemo.util.MapperUtil;
-import org.junit.jupiter.api.Test;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.bronya.mybatisdemo.util.Colors.RED_BG_BR;
-import static com.bronya.mybatisdemo.util.Colors.RESET;
+import org.junit.jupiter.api.Test;
+
+import com.bronya.mybatisdemo.mapper.PageMapper;
+import com.bronya.mybatisdemo.pojo.Employee;
+import com.bronya.mybatisdemo.util.MapperUtil;
 
 public class PageTests {
     @Test
     public void testBatchInsert() throws SQLException {
-        System.out.println(RED_BG_BR + "Test Batch Insert Operation" + RESET);
+        System.out.println("Test Batch Insert Operation");
         Connection connection = DriverManager.getConnection("jdbc:mysql:///bronya?rewriteBatchedStatements=true", // batch operation
                 "root", "0228");
         String sql = "insert into t_emp (emp_name, emp_salary, emp_age) values (?, ?, ?)";

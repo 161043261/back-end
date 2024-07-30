@@ -1,17 +1,19 @@
 package com.bronya.servletdemo.filters;
 
-import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.annotation.WebInitParam;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static com.bronya.servletdemo.util.Colors.GREEN;
-import static com.bronya.servletdemo.util.Colors.RESET;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebInitParam;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebFilter(filterName = "filterDemo", initParams = {@WebInitParam(name = "pattern", value = "HH:mm:ss")},
         // urlPatterns is equivalent to value
@@ -36,13 +38,13 @@ public class FilterDemo implements Filter {
 
         // Before doFilter() invoked
         long beginTimeMillis = System.currentTimeMillis();
-        System.out.println(GREEN + "FilterDemo Filtering, URI=" + requestURI + " @ " + dateFormat.format(new Date()) + RESET);
+        System.out.println("FilterDemo Filtering, URI=" + requestURI + " @ " + dateFormat.format(new Date()));
 
         // Invoke doFilter() to pass req and resp to the next filter
         filterChain.doFilter(req, resp);
 
         // After doFilter() invoked
         long endTimeMillis = System.currentTimeMillis();
-        System.out.println(GREEN + "Demo Filtered, Total: " + (endTimeMillis - beginTimeMillis) + "ms" + RESET);
+        System.out.println("Demo Filtered, Total: " + (endTimeMillis - beginTimeMillis) + "ms");
     }
 }
