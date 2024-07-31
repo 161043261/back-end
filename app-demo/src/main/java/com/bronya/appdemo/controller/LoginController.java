@@ -1,18 +1,20 @@
 package com.bronya.appdemo.controller;
 
-import com.bronya.appdemo.annotation.JoinPointAnnotation;
-import com.bronya.appdemo.pojo.Emp;
-import com.bronya.appdemo.pojo.Result;
-import com.bronya.appdemo.service.EmpService;
-import com.bronya.appdemo.utils.JwtUtils;
-import lombok.extern.slf4j.Slf4j;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.bronya.appdemo.annotation.JoinPointAnnotation;
+import com.bronya.appdemo.pojo.Emp;
+import com.bronya.appdemo.pojo.Result;
+import com.bronya.appdemo.service.EmpService;
+import com.bronya.appdemo.utils.JwtUtils;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
@@ -34,9 +36,9 @@ public class LoginController {
             claims.put("id", e.getId());
             claims.put("name", e.getName());
             claims.put("username", e.getUsername());
-            String jws = JwtUtils.genJwsString(claims);
-            log.warn("jws={}", jws);
-            return Result.success(jws);
+            String jwtString = JwtUtils.genJwtString(claims);
+            log.warn("jwtString={}", jwtString);
+            return Result.success(jwtString);
         }
         return Result.error("username or password incorrect");
     }

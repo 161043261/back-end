@@ -1,21 +1,19 @@
-package com.bronya.appdemo.utils;
+package com.bronya.projdemo.utils;
 
+import com.bronya.projdemo.pojo.Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import jakarta.servlet.http.HttpServletResponse;
+
+import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Map;
 
-import javax.crypto.SecretKey;
-
-import com.bronya.appdemo.pojo.Result;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import jakarta.servlet.http.HttpServletResponse;
-
-public class JwtUtils {
+public class JwtUtil { // token: jwtString
     private static final SecretKey secretKey = Jwts.SIG.HS256.key().build();
     private static final long expiration = 60 * 60_000; // expiration = 1h
 

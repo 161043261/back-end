@@ -1,21 +1,23 @@
 package com.bronya.appdemo.aop;
 
-import com.bronya.appdemo.mapper.OperateLogMapper;
-import com.bronya.appdemo.pojo.OperateLog;
-import com.bronya.appdemo.utils.JwtUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import io.jsonwebtoken.Claims;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
+import com.bronya.appdemo.mapper.OperateLogMapper;
+import com.bronya.appdemo.pojo.OperateLog;
+import com.bronya.appdemo.utils.JwtUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import io.jsonwebtoken.Claims;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
@@ -37,8 +39,8 @@ public class LogAspect {
 
     @Around("@annotation(com.bronya.appdemo.annotation.LogAnnotation)")
     public Object logAroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
-        String jwsString = req.getHeader("token");
-        Claims claims = JwtUtils.parseJwsString(jwsString);
+        String jwtString = req.getHeader("token");
+        Claims claims = JwtUtils.parseJwtString(jwtString);
         Integer operateUser = (Integer) claims.get("id");
         LocalDateTime operateTime = LocalDateTime.now();
         String className = joinPoint.getTarget().getClass().getName();

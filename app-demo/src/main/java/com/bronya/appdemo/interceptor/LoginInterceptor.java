@@ -1,14 +1,15 @@
 package com.bronya.appdemo.interceptor;
 
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+
 import com.bronya.appdemo.utils.JwtUtils;
+import static com.bronya.appdemo.utils.JwtUtils.noJwtString;
+
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
-
-import static com.bronya.appdemo.utils.JwtUtils.noJwsString;
 
 @Slf4j
 @Component
@@ -20,19 +21,19 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        String jwsString = req.getHeader("token");
-        if (jwsString == null || jwsString.isEmpty()) {
-            noJwsString(resp);
+        String jwtString = req.getHeader("token");
+        if (jwtString == null || jwtString.isEmpty()) {
+            noJwtString(resp);
             return false;
         }
         try {
-            Claims claims = JwtUtils.parseJwsString(jwsString);
+            Claims claims = JwtUtils.parseJwtString(jwtString);
             for (var key : claims.keySet()) {
                 log.info("interceptor => {}: {}", key, claims.get(key));
             }
         } catch (Exception e) {
             log.info("{}", e.getMessage());
-            noJwsString(resp);
+            noJwtString(resp);
             return false;
         }
         return true;
