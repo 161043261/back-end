@@ -26,7 +26,7 @@ public class User {
     private String password;
 
     @NotEmpty // nickname != null && nickname != ""
-    @Pattern(regexp = "^\\w{4,16}$")
+    @Pattern(regexp = "^\\S{4,16}$")
     private String nickname;
 
     @NotEmpty

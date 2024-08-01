@@ -16,5 +16,8 @@ mybatis:
 logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
-  file:
-    name: './proj-demo.log'
+#   file:
+#     name: './proj-demo.log'
+
+# server:
+#   address: 0.0.0.0

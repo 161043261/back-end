@@ -60,6 +60,4 @@ public class UserServiceImpl implements UserService {
         String encryption = DigestUtils.md5DigestAsHex(newPwd.getBytes());
         return userMapper.updatePwd(id, encryption);
     }
-
-
 }

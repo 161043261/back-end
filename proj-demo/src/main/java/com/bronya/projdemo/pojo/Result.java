@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Result<T> {
-    private Integer code; // 0 as succeed, 1 as fail
+    private Integer code; // 0 as successful, 1 as failed
     private String message;
     private T data;
 
-    public static <T> Result<T> success(T data) {
-        return new Result<>(0, "ok", data);
+    public static <T> Result<T> success(String message, T data) {
+        return new Result<>(0, message, data);
     }
 
     public static Result<String> error(String message) {

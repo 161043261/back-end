@@ -13,6 +13,6 @@ public class ErrorHandler { // global
     @ExceptionHandler(Exception.class)
     public Result<String> handler(Exception e) {
         log.error(e.getMessage());
-        return Result.error(StringUtils.hasLength(e.getMessage()) ? e.getMessage() : "Fatal error");
+        return Result.error(StringUtils.hasLength(e.getMessage()) ? e.getMessage() : "FATAL ERROR");
     }
 }
