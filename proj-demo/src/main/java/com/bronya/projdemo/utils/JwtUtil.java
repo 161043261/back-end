@@ -31,10 +31,11 @@ public class JwtUtil { // token: jwtString
                 .parseSignedClaims(jwtString).getPayload(); // parse jwtString
     }
 
-    public static void noJwtString(HttpServletResponse resp) throws IOException {
+    public static void noTokenHandler(HttpServletResponse resp) throws IOException {
+        resp.setStatus(401);
         resp.setContentType("application/json");
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String jsonString = ow.writeValueAsString(Result.error("NOT_LOGIN"));
+        String jsonString = ow.writeValueAsString(Result.error("Unauthorized"));
         System.out.println(jsonString);
         PrintWriter writer = resp.getWriter();
         writer.write(jsonString);

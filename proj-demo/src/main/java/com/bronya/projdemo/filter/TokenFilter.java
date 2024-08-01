@@ -10,8 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+@Deprecated
 @Slf4j
-@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/*") // uncomment com.bronya.projdemo.ProjDemoApplication:6 to enable this WebFilter
 public class TokenFilter implements Filter {
 
     @Override
@@ -27,7 +28,7 @@ public class TokenFilter implements Filter {
         String token = req.getHeader("Authorization");
         log.info("filter => token: {}", token);
         if (token == null || token.isEmpty()) {
-            JwtUtil.noJwtString(resp);
+            JwtUtil.noTokenHandler(resp);
             return;
         }
         try {
@@ -37,7 +38,7 @@ public class TokenFilter implements Filter {
             }
         } catch (Exception e) {
             log.info("error message: {}", e.getMessage());
-            JwtUtil.noJwtString(resp);
+            JwtUtil.noTokenHandler(resp);
             return;
         }
         chain.doFilter(req, resp);

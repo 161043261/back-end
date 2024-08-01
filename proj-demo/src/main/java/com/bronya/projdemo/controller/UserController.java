@@ -4,19 +4,15 @@ import com.bronya.projdemo.pojo.Result;
 import com.bronya.projdemo.pojo.User;
 import com.bronya.projdemo.service.UserService;
 import com.bronya.projdemo.utils.JwtUtil;
-import jakarta.validation.constraints.Pattern;
+import com.bronya.projdemo.utils.ThreadLocalUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
-@Validated
 @Slf4j
 @RestController // @Controller + @ResponseBody
 @RequestMapping("/user")
@@ -31,7 +27,6 @@ public class UserController {
 
     @PostMapping("/register")
     public Result<String> register(@RequestBody User user) {
-        check(user.getUsername(), user.getPassword());
         User existingUser = userService.selectUserByUsername(user.getUsername());
         if (existingUser != null) {
             return Result.error("username is already taken");
@@ -50,6 +45,7 @@ public class UserController {
         if (encryption.equals(existingUser.getPassword())) {
             var claims = new HashMap<String, Object>();
             claims.put("id", existingUser.getId());
+            // 1 httpServletRequest corresponds to 1 thread
             claims.put("username", existingUser.getUsername());
             String token = JwtUtil.genJwtString(claims);
             log.warn("token: {}", token);
@@ -58,9 +54,15 @@ public class UserController {
         return Result.error("password is incorrect");
     }
 
-    // fixme invalid
-    private void check(@Pattern(regexp = "[A-Za-z0-9]{4,16}") String username,
-                       @Pattern(regexp = "[A-Za-z0-9]{4,16}") String password) {
-        log.info("username: {}, password: {}", username, password);
+
+    @GetMapping("/userinfo")
+    public Result<User> userInfo(@RequestHeader(name = "Authorization") String token) {
+        log.info("JWT => username: {}", JwtUtil.parseJwtString(token).get("username", String.class));
+        Object claims = ThreadLocalUtil.get();
+        assert claims instanceof Map<?, ?>; // assert
+        Map<?, ?> claimsMap = (Map<?, ?>) claims;
+        log.info("ThreadLocal => username: {}", claimsMap.get("username"));
+        User user = userService.selectUserByUsername((String) claimsMap.get("username"));
+        return Result.success(user);
     }
 }

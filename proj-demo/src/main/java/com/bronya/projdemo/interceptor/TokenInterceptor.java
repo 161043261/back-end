@@ -1,6 +1,7 @@
 package com.bronya.projdemo.interceptor;
 
 import com.bronya.projdemo.utils.JwtUtil;
+import com.bronya.projdemo.utils.ThreadLocalUtil;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,7 +20,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         String token = request.getHeader("Authorization");
         log.info("interceptor => token: {}", token);
         if (token == null || token.isEmpty()) {
-            JwtUtil.noJwtString(response);
+            JwtUtil.noTokenHandler(response);
             return false;
         }
         try {
@@ -27,11 +28,17 @@ public class TokenInterceptor implements HandlerInterceptor {
             for (var key : claims.keySet()) {
                 log.info("interceptor => {}: {}", key, claims.get(key));
             }
+            ThreadLocalUtil.set(claims);
         } catch (Exception e) {
             log.info("error message: {}", e.getMessage());
-            JwtUtil.noJwtString(response);
+            JwtUtil.noTokenHandler(response);
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        ThreadLocalUtil.remove(); // preventing memory leaks
     }
 }
