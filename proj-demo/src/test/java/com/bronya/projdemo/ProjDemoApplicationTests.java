@@ -31,12 +31,12 @@ class ProjDemoApplicationTests {
         System.out.println(secretKey.equals(decoded));
 
         // generate payload
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("id", 1);
-        claims.put("name", "James Gosling");
+        Map<String, Object> claimsMap = new HashMap<>();
+        claimsMap.put("id", 1);
+        claimsMap.put("name", "James Gosling");
 
         String jwtString = Jwts.builder() // get a JwtBuilder
-                .header().keyId("bronya").and().claims(claims) // payload
+                .header().keyId("bronya").and().claims(claimsMap) // payload
                 .signWith(secretKey) // signature
                 .expiration(new Date(System.currentTimeMillis() + 60_000)) // expiration
                 .compact();
@@ -44,10 +44,10 @@ class ProjDemoApplicationTests {
         System.out.println(jwtString);
 
         // parse jwtString
-        Claims claimsMap = Jwts.parser() // get a JwtParserBuilder
+        Claims claims = Jwts.parser() // get a JwtParserBuilder
                 .verifyWith(decoded).build() // get a thread-safe JwtParser
                 .parseSignedClaims(jwtString).getPayload(); // parse jwtString
-        System.out.println(claimsMap);
+        System.out.println(claims);
     }
 
     @Test

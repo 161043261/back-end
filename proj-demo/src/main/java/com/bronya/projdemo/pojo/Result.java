@@ -16,10 +16,6 @@ public class Result<T> {
         return new Result<>(0, "ok", data);
     }
 
-    // public static Result<String> success() {
-    //     return new Result<>(0, "ok", "");
-    // }
-
     public static Result<String> error(String message) {
         return new Result<>(1, message, "");
     }

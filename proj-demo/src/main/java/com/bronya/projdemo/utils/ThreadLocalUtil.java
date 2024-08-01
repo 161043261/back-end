@@ -1,6 +1,6 @@
 package com.bronya.projdemo.utils;
 
-public class ThreadLocalUtil {
+public class ThreadLocalUtil { // thread-safe
     private static final ThreadLocal<Object> threadLocal = new ThreadLocal<>();
 
     public static Object get() {
