@@ -431,3 +431,5 @@
 2024-08-01T17:30:40.421+08:00  INFO 3176 --- [proj-demo] [http-nio-8080-exec-2] c.b.p.interceptor.TokenInterceptor       : interceptor => id: 6
 2024-08-01T17:30:40.422+08:00  INFO 3176 --- [proj-demo] [http-nio-8080-exec-2] c.b.p.interceptor.TokenInterceptor       : interceptor => username: tomcat
 2024-08-01T17:30:40.422+08:00  INFO 3176 --- [proj-demo] [http-nio-8080-exec-2] c.b.p.interceptor.TokenInterceptor       : interceptor => exp: 1722508172
+2024-08-01T17:31:48.362+08:00  INFO 3176 --- [proj-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-01T17:31:48.370+08:00  INFO 3176 --- [proj-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
