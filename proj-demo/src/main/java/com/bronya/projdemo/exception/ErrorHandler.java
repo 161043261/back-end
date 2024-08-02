@@ -14,6 +14,6 @@ public class ErrorHandler { // global
     public Result<String> handler(Exception e) {
         e.printStackTrace();
         log.error(e.getMessage());
-        return Result.error(StringUtils.hasLength(e.getMessage()) ? e.getMessage() : "Fatal ERROR");
+        return Result.err(StringUtils.hasLength(e.getMessage()) ? e.getMessage() : "Fatal Error");
     }
 }

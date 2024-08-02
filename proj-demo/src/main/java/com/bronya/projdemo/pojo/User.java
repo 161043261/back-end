@@ -1,6 +1,6 @@
 package com.bronya.projdemo.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -19,15 +19,15 @@ public class User {
     @NotNull // id != null
     private Integer id;
 
+    @Pattern(regexp = "^\\S{4,16}$")
     private String username;
 
-    // @JsonIgnore // let json string does NOT contain password
-    @JsonIgnoreProperties
+    @Pattern(regexp = "^\\S{4,16}$")
+    @JsonIgnore
     private String password;
 
-    @NotEmpty // nickname != null && nickname != ""
-    @Pattern(regexp = "^\\S{4,16}$")
-    private String nickname;
+    @NotEmpty // name != null && name != ""
+    private String name;
 
     @NotEmpty
     @Email

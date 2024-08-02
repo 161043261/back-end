@@ -3,7 +3,7 @@ package com.bronya.projdemo.service;
 import com.bronya.projdemo.pojo.User;
 
 public interface UserService {
-    User selectUserById(int id);
+    User selectUserById(Integer id);
 
     int insertUser(User user);
 
@@ -11,7 +11,7 @@ public interface UserService {
 
     int updateAvatar(String avatarUrl);
 
-    int updatePwd(int id, String newPwd);
+    int updatePwd(Integer id, String newPwd);
 
     User selectUserByUsername(String username);
 }

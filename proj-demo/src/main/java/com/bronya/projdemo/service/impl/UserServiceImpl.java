@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectUserById(int id) {
+    public User selectUserById(Integer id) {
         return userMapper.selectUserById(id);
     }
 
@@ -50,11 +50,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateAvatar(String avatarUrl) {
         Map<String, Object> claims = ThreadLocalUtil.get();
-        return userMapper.updateAvatar(avatarUrl, (int) claims.get("id"));
+        return userMapper.updateAvatar(avatarUrl, (Integer) claims.get("id"));
     }
 
     @Override
-    public int updatePwd(int id, String newPwd) {
+    public int updatePwd(Integer id, String newPwd) {
         String encryption = DigestUtils.md5DigestAsHex(newPwd.getBytes());
         return userMapper.updatePwd(id, encryption);
     }

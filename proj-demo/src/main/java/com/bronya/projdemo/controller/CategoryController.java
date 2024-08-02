@@ -3,8 +3,8 @@ package com.bronya.projdemo.controller;
 import com.bronya.projdemo.pojo.Category;
 import com.bronya.projdemo.pojo.Result;
 import com.bronya.projdemo.service.CategoryService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,14 +20,32 @@ public class CategoryController {
     }
 
     @PostMapping
-    public Result<String> insertCategory(@RequestBody @Valid Category category) {
+    public Result<String> insertCategory(@RequestBody @Validated(Category.Insert.class) Category category) {
         int rowCount = categoryService.insertCategory(category);
-        return Result.success("Insert Category OK", "rowCount=" + rowCount);
+        return Result.ok("Insert Category OK", "rowCount=" + rowCount);
     }
 
     @GetMapping
-    public Result<List<Category>> selectCategories() {
-        List<Category> categories = categoryService.selectCategories();
-        return Result.success("Select Categories OK", categories);
+    public Result<List<Category>> selectCategoryList() {
+        List<Category> categoryList = categoryService.selectCategoryList();
+        return Result.ok("Select Category List OK", categoryList);
+    }
+
+    @GetMapping("/detail")
+    public Result<Category> detail(Integer id) {
+        Category category = categoryService.selectCategoryById(id);
+        return Result.ok("Get Category Detail OK", category);
+    }
+
+    @PutMapping
+    public Result<String> updateCategory(@RequestBody @Validated(Category.Update.class) Category category) {
+        int rowCount = categoryService.updateCategory(category);
+        return Result.ok("Update Category OK", "rowCount=" + rowCount);
+    }
+
+    @DeleteMapping
+    public Result<String> deleteCategory(Integer id) {
+        int rowCount = categoryService.deleteCategoryById(id);
+        return Result.ok("Delete Category OK", "rowCount=" + rowCount);
     }
 }

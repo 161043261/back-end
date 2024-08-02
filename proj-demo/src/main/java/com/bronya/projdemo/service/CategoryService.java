@@ -7,5 +7,11 @@ import java.util.List;
 public interface CategoryService {
     int insertCategory(Category category);
 
-    List<Category> selectCategories();
+    List<Category> selectCategoryList();
+
+    Category selectCategoryById(Integer id);
+
+    int updateCategory(Category category);
+
+    int deleteCategoryById(Integer id);
 }

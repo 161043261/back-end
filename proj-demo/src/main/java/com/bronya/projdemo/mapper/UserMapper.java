@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 public interface UserMapper {
 
     @Select("select * from user where id = #{id}")
-    User selectUserById(int id);
+    User selectUserById(Integer id);
 
     @Select("select * from user where username = #{username}")
     User selectUserByUsername(String username);
@@ -18,7 +18,7 @@ public interface UserMapper {
     @Insert("insert into user (username, password, create_time, update_time) values (#{username}, #{password}, #{createTime}, #{updateTime})")
     int insertUser(User user);
 
-    @Update("update user set nickname = #{nickname}, email = #{email}, update_time = #{updateTime} where id = #{id}")
+    @Update("update user set name = #{name}, email = #{email}, update_time = #{updateTime} where id = #{id}")
     int updateUser(User user);
 
     @Update("update user set avatar = #{avatarUrl}, update_time = now() where id = #{id}")

@@ -8,7 +8,6 @@ import com.bronya.projdemo.utils.ThreadLocalUtil;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
@@ -30,23 +29,25 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public Result<String> register(@RequestParam("username") @Valid @Pattern(regexp = "^\\S{4,16}$") String username, @RequestParam("password") @Valid @Pattern(regexp = "^\\S{4,16}$") String password) {
+    public Result<String> register(@RequestParam("username") @Valid @Pattern(regexp = "^\\S{4,16}$") String username,
+                                   @RequestParam("password") @Valid @Pattern(regexp = "^\\S{4,16}$") String password) {
         User existingUser = userService.selectUserByUsername(username);
         if (existingUser != null) {
-            return Result.error("Username Already Exists");
+            return Result.err("Username Exists");
         }
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         int rowCount = userService.insertUser(user);
-        return Result.success("Register OK", "rowCount=" + rowCount);
+        return Result.ok("Register OK", "rowCount=" + rowCount);
     }
 
     @PostMapping("/login")
-    public Result<String> login(@RequestParam("username") @Valid @Pattern(regexp = "^\\S{4,16}$") String username, @RequestParam("password") @Valid @Pattern(regexp = "^\\S{4,16}$") String password) {
+    public Result<String> login(@RequestParam("username") @Valid @Pattern(regexp = "^\\S{4,16}$") String username,
+                                @RequestParam("password") @Valid @Pattern(regexp = "^\\S{4,16}$") String password) {
         User existingUser = userService.selectUserByUsername(username);
         if (existingUser == null) {
-            return Result.error("Username or Password ERROR");
+            return Result.err("Username or Password Error");
         }
         String encryption = DigestUtils.md5DigestAsHex(password.getBytes());
         if (encryption.equals(existingUser.getPassword())) {
@@ -56,30 +57,30 @@ public class UserController {
             claims.put("username", existingUser.getUsername());
             String token = JwtUtil.genJwtString(claims);
             log.warn("token: {}", token);
-            return Result.success("Login OK", token);
+            return Result.ok("Login OK", token);
         }
-        return Result.error("Password ERROR");
+        return Result.err("Password Error");
     }
 
-    @GetMapping("/userinfo")
-    public Result<User> userInfo(@RequestHeader(name = "Authorization") String token) {
+    @GetMapping("/profile")
+    public Result<User> profile(@RequestHeader(name = "Authorization") String token) {
         log.info("JWT => username: {}", JwtUtil.parseJwtString(token).get("username", String.class));
         Map<String, Object> claims = ThreadLocalUtil.get();
         log.info("ThreadLocal => username: {}", claims.get("username"));
-        User user = userService.selectUserById((int) claims.get("id"));
-        return Result.success("Get User Profile OK", user);
+        User user = userService.selectUserById((Integer) claims.get("id"));
+        return Result.ok("Get User Profile OK", user);
     }
 
     @PutMapping("/update")
     public Result<String> updateUser(@RequestBody @Valid User user) {
         int rowCount = userService.updateUser(user);
-        return Result.success("Update User Profile OK", "rowCount=" + rowCount);
+        return Result.ok("Update User Profile OK", "rowCount=" + rowCount);
     }
 
     @PatchMapping("/updateAvatar")
-    public Result<String> updateAvatar(@RequestParam @URL String avatarUrl) {
+    public Result<String> updateAvatar(@RequestParam String avatarUrl) {
         int rowCount = userService.updateAvatar(avatarUrl);
-        return Result.success("Update User Avatar OK", "rowCount=" + rowCount);
+        return Result.ok("Update User Avatar OK", "rowCount=" + rowCount);
     }
 
     // todo http://127.0.0.1:8080/user/updatePwd { "pwd": ?, "new_pwd": ?, "confirm_pwd": ? }
@@ -90,16 +91,16 @@ public class UserController {
         String newPwd = paramsMap.get("new_pwd");
         String confirmPwd = paramsMap.get("confirm_pwd");
         if (!java.util.regex.Pattern.matches("^\\S{4,16}$", newPwd) || newPwd.equals(pwd) || !newPwd.equals(confirmPwd)) {
-            return Result.error("Update ERROR");
+            return Result.err("Invalid Update");
         }
         Map<String, Object> claims = ThreadLocalUtil.get();
-        int id = (int) claims.get("id");
+        Integer id = (Integer) claims.get("id");
         User existingUser = userService.selectUserById(id);
         String encryption = DigestUtils.md5DigestAsHex(pwd.getBytes());
         if (!encryption.equals(existingUser.getPassword())) {
-            return Result.error("Password ERROR");
+            return Result.err("Update Password Error");
         }
         int rowCount = userService.updatePwd(existingUser.getId(), newPwd);
-        return Result.success("Update Password OK", "rowCount=" + rowCount);
+        return Result.ok("Update Password OK", "rowCount=" + rowCount);
     }
 }

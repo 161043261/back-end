@@ -12,11 +12,11 @@ public class Result<T> {
     private String message;
     private T data;
 
-    public static <T> Result<T> success(String message, T data) {
-        return new Result<>(0, message, data);
+    public static <T> Result<T> ok(String message, T data) {
+        return new Result<>(1, message, data); // 1 as ok
     }
 
-    public static Result<String> error(String message) {
-        return new Result<>(1, message, "");
+    public static Result<String> err(String message) {
+        return new Result<>(0, message, ""); // 0 as error
     }
 }
