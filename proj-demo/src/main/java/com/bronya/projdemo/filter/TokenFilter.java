@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 
@@ -27,7 +28,7 @@ public class TokenFilter implements Filter {
         }
         String token = req.getHeader("Authorization");
         log.info("filter => token: {}", token);
-        if (token == null || token.isEmpty()) {
+        if (!StringUtils.hasLength(token)) {
             JwtUtil.noTokenHandler(resp);
             return;
         }

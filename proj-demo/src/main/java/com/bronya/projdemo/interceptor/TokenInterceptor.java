@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 
@@ -19,7 +20,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         log.info("interceptor => uri: {}", uri);
         String token = request.getHeader("Authorization");
         log.info("interceptor => token: {}", token);
-        if (token == null || token.isEmpty()) {
+        if (!StringUtils.hasLength(token)) {
             JwtUtil.noTokenHandler(response);
             return false;
         }

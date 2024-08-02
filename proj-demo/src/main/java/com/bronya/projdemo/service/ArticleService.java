@@ -6,5 +6,5 @@ import com.bronya.projdemo.dao.Article;
 public interface ArticleService {
     int insertArticle(Article article);
 
-    Page<Article> selectArticleList(Integer pageNum, Integer pageSize, Integer categoryId, Integer state);
+    Page<Article> selectArticlePage(Integer pageNum, Integer pageSize, Integer categoryId, Integer state);
 }

@@ -2,6 +2,7 @@ package com.bronya.projdemo.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bronya.projdemo.dao.Article;
+import com.bronya.projdemo.dao.PageBean;
 import com.bronya.projdemo.dao.Result;
 import com.bronya.projdemo.service.ArticleService;
 import jakarta.validation.Valid;
@@ -28,10 +29,13 @@ public class ArticleController {
     }
 
     @GetMapping
-    public Result<List<Article>> selectArticleList(Integer pageNum, Integer pageSize,
-                                                   @RequestParam(required = false) Integer categoryId,
-                                                   @RequestParam(required = false) Integer state) {
-        Page<Article> articlePage = articleService.selectArticleList(pageNum, pageSize, categoryId, state);
-        return Result.ok("Select Article List OK", articlePage.getRecords());
+    public Result<PageBean<Article>> selectArticlePage(Integer pageNum, Integer pageSize,
+                                                       @RequestParam(required = false) Integer categoryId,
+                                                       @RequestParam(required = false) Integer state) {
+        Page<Article> articlePage = articleService.selectArticlePage(pageNum, pageSize, categoryId, state);
+        long total = articlePage.getTotal();
+        List<Article> articleList = articlePage.getRecords();
+        PageBean<Article> pageBean = new PageBean<>(total, articleList);
+        return Result.ok("Select Article List OK", pageBean);
     }
 }

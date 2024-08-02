@@ -1,7 +1,7 @@
 package com.bronya.projdemo.service.impl;
 
-import com.bronya.projdemo.mapper.UserMapper;
 import com.bronya.projdemo.dao.User;
+import com.bronya.projdemo.mapper.UserMapper;
 import com.bronya.projdemo.service.UserService;
 import com.bronya.projdemo.utils.ThreadLocalUtil;
 import lombok.extern.slf4j.Slf4j;
