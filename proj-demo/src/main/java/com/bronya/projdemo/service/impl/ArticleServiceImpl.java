@@ -1,7 +1,11 @@
 package com.bronya.projdemo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.OrderItem;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bronya.projdemo.mapper.ArticleMapper;
-import com.bronya.projdemo.pojo.Article;
+import com.bronya.projdemo.dao.Article;
 import com.bronya.projdemo.service.ArticleService;
 import com.bronya.projdemo.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @Service
-public class ArticleServiceImpl implements ArticleService {
+public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 
     private ArticleMapper articleMapper;
 
@@ -27,5 +31,19 @@ public class ArticleServiceImpl implements ArticleService {
         article.setCreateTime(LocalDateTime.now());
         article.setUpdateTime(LocalDateTime.now());
         return articleMapper.insertArticle(article);
+    }
+
+    @Override
+    public Page<Article> selectArticleList(Integer pageNum, Integer pageSize, Integer categoryId, Integer state) {
+        Page<Article> page = Page.of(pageNum, pageSize);
+        page.addOrder(OrderItem.desc("create_time"));
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        if (categoryId != null) {
+            queryWrapper.eq("category_id", categoryId);
+        }
+        if (state != null) {
+            queryWrapper.eq("state", state);
+        }
+        return articleMapper.selectPage(page, queryWrapper);
     }
 }

@@ -1,7 +1,7 @@
 package com.bronya.projdemo.controller;
 
-import com.bronya.projdemo.pojo.Category;
-import com.bronya.projdemo.pojo.Result;
+import com.bronya.projdemo.dao.Category;
+import com.bronya.projdemo.dao.Result;
 import com.bronya.projdemo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

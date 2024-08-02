@@ -1,4 +1,4 @@
-package com.bronya.projdemo.pojo;
+package com.bronya.projdemo.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

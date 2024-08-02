@@ -1,4 +1,4 @@
-package com.bronya.projdemo.pojo;
+package com.bronya.projdemo.dao;
 
 import com.bronya.projdemo.annotation.State;
 import jakarta.validation.constraints.NotEmpty;

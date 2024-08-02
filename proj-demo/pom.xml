@@ -82,6 +82,12 @@
       <artifactId>spring-boot-starter-aop</artifactId>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
+      <version>3.5.5</version>
+    </dependency>
   </dependencies>
 
   <build>

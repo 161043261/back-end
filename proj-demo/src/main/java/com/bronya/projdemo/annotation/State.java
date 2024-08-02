@@ -14,9 +14,9 @@ import java.lang.annotation.*;
 public @interface State {
     String message() default "state: 0 as BETA, 1 as RELEASE";
 
-    Class<?>[] groups() default {};
+    Class<?>[] groups() default {}; // !important
 
-    Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {}; // !important
 }
 
 class StateValidation implements ConstraintValidator<State, Integer> {

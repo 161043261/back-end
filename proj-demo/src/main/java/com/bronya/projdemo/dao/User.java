@@ -1,4 +1,4 @@
-package com.bronya.projdemo.pojo;
+package com.bronya.projdemo.dao;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Email;

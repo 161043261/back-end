@@ -1,6 +1,6 @@
 package com.bronya.projdemo.exception;
 
-import com.bronya.projdemo.pojo.Result;
+import com.bronya.projdemo.dao.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;

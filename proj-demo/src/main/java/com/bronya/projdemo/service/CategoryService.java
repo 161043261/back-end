@@ -1,6 +1,6 @@
 package com.bronya.projdemo.service;
 
-import com.bronya.projdemo.pojo.Category;
+import com.bronya.projdemo.dao.Category;
 
 import java.util.List;
 

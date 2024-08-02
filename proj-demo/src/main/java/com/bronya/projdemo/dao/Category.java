@@ -1,4 +1,4 @@
-package com.bronya.projdemo.pojo;
+package com.bronya.projdemo.dao;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotEmpty;

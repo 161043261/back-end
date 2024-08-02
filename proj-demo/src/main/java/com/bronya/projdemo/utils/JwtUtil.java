@@ -1,6 +1,6 @@
 package com.bronya.projdemo.utils;
 
-import com.bronya.projdemo.pojo.Result;
+import com.bronya.projdemo.dao.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import io.jsonwebtoken.Claims;

@@ -1,7 +1,7 @@
 package com.bronya.projdemo.controller;
 
-import com.bronya.projdemo.pojo.Result;
-import com.bronya.projdemo.pojo.User;
+import com.bronya.projdemo.dao.Result;
+import com.bronya.projdemo.dao.User;
 import com.bronya.projdemo.service.UserService;
 import com.bronya.projdemo.utils.JwtUtil;
 import com.bronya.projdemo.utils.ThreadLocalUtil;

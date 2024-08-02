@@ -1,6 +1,6 @@
 package com.bronya.projdemo.mapper;
 
-import com.bronya.projdemo.pojo.User;
+import com.bronya.projdemo.dao.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

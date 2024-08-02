@@ -1,7 +1,7 @@
 package com.bronya.projdemo.service.impl;
 
 import com.bronya.projdemo.mapper.CategoryMapper;
-import com.bronya.projdemo.pojo.Category;
+import com.bronya.projdemo.dao.Category;
 import com.bronya.projdemo.service.CategoryService;
 import com.bronya.projdemo.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;

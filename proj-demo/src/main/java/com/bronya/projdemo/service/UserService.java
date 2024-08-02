@@ -1,6 +1,6 @@
 package com.bronya.projdemo.service;
 
-import com.bronya.projdemo.pojo.User;
+import com.bronya.projdemo.dao.User;
 
 public interface UserService {
     User selectUserById(Integer id);

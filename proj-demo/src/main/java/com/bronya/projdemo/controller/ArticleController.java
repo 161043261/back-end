@@ -1,14 +1,14 @@
 package com.bronya.projdemo.controller;
 
-import com.bronya.projdemo.pojo.Article;
-import com.bronya.projdemo.pojo.Result;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.bronya.projdemo.dao.Article;
+import com.bronya.projdemo.dao.Result;
 import com.bronya.projdemo.service.ArticleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/article")
@@ -25,5 +25,13 @@ public class ArticleController {
     public Result<String> insertArticle(@RequestBody @Valid Article article) {
         int rowCount = articleService.insertArticle(article);
         return Result.ok("Insert Article OK", "rowCount=" + rowCount);
+    }
+
+    @GetMapping
+    public Result<List<Article>> selectArticleList(Integer pageNum, Integer pageSize,
+                                                   @RequestParam(required = false) Integer categoryId,
+                                                   @RequestParam(required = false) Integer state) {
+        Page<Article> articlePage = articleService.selectArticleList(pageNum, pageSize, categoryId, state);
+        return Result.ok("Select Article List OK", articlePage.getRecords());
     }
 }

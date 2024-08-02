@@ -5,18 +5,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.crypto.SecretKey;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Slf4j
 @SpringBootTest
 class ProjDemoApplicationTests {
 
@@ -51,16 +47,15 @@ class ProjDemoApplicationTests {
     }
 
     @Test
-    public void testThreadLocal() throws InterruptedException {
+    public void testThreadLocal() {
         ThreadLocal<String> threadLocal = new ThreadLocal<>();
         new Thread(() -> {
-            threadLocal.set(LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss")));
-            log.info("threadA: K={} V={}", Thread.currentThread().getName(), threadLocal.get());
-        }, "threadA").start();
-        Thread.sleep(5000);
+            threadLocal.set("ValueA");
+            System.out.println("K = " + Thread.currentThread().getName() + ", V = " + threadLocal.get());
+        }, "ThreadA").start(); // K = ThreadA, V = ValueA
         new Thread(() -> {
-            threadLocal.set(LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss")));
-            log.info("threadB: K={} V={}", Thread.currentThread().getName(), threadLocal.get());
-        }, "threadB").start();
+            threadLocal.set("ValueB");
+            System.out.println("K = " + Thread.currentThread().getName() + ", V = " + threadLocal.get());
+        }, "ThreadB").start(); // K = ThreadB, V = ValueB
     }
 }
