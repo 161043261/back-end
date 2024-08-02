@@ -49,10 +49,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int updateAvatar(String avatarUrl) {
-        Object claims = ThreadLocalUtil.get();
-        assert claims instanceof Map<?, ?>; // assert
-        Map<?, ?> claimsMap = (Map<?, ?>) claims;
-        return userMapper.updateAvatar(avatarUrl, (int) claimsMap.get("id"));
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        return userMapper.updateAvatar(avatarUrl, (int) claims.get("id"));
     }
 
     @Override

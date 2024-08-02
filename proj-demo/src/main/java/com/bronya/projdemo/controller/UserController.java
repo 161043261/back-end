@@ -30,24 +30,23 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public Result<String> register(@RequestParam("username") @Valid @Pattern(regexp = "^\\S{4,16}$") String username,
-                                   @RequestParam("password") @Valid @Pattern(regexp = "^\\S{4,16}$") String password) {
+    public Result<String> register(@RequestParam("username") @Valid @Pattern(regexp = "^\\S{4,16}$") String username, @RequestParam("password") @Valid @Pattern(regexp = "^\\S{4,16}$") String password) {
         User existingUser = userService.selectUserByUsername(username);
         if (existingUser != null) {
-            return Result.error("username is already taken");
+            return Result.error("Username Already Exists");
         }
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         int rowCount = userService.insertUser(user);
-        return Result.success("registration successful", "rowCount: " + rowCount);
+        return Result.success("Register OK", "rowCount=" + rowCount);
     }
 
     @PostMapping("/login")
     public Result<String> login(@RequestParam("username") @Valid @Pattern(regexp = "^\\S{4,16}$") String username, @RequestParam("password") @Valid @Pattern(regexp = "^\\S{4,16}$") String password) {
         User existingUser = userService.selectUserByUsername(username);
         if (existingUser == null) {
-            return Result.error("username or password is incorrect");
+            return Result.error("Username or Password ERROR");
         }
         String encryption = DigestUtils.md5DigestAsHex(password.getBytes());
         if (encryption.equals(existingUser.getPassword())) {
@@ -57,32 +56,30 @@ public class UserController {
             claims.put("username", existingUser.getUsername());
             String token = JwtUtil.genJwtString(claims);
             log.warn("token: {}", token);
-            return Result.success("login successful", token);
+            return Result.success("Login OK", token);
         }
-        return Result.error("password is incorrect");
+        return Result.error("Password ERROR");
     }
 
     @GetMapping("/userinfo")
     public Result<User> userInfo(@RequestHeader(name = "Authorization") String token) {
         log.info("JWT => username: {}", JwtUtil.parseJwtString(token).get("username", String.class));
-        Object claims = ThreadLocalUtil.get();
-        assert claims instanceof Map<?, ?>; // assert
-        Map<?, ?> claimsMap = (Map<?, ?>) claims;
-        log.info("ThreadLocal => username: {}", claimsMap.get("username"));
-        User user = userService.selectUserById((int) claimsMap.get("id"));
-        return Result.success("get user information successful", user);
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        log.info("ThreadLocal => username: {}", claims.get("username"));
+        User user = userService.selectUserById((int) claims.get("id"));
+        return Result.success("Get User Profile OK", user);
     }
 
     @PutMapping("/update")
-    public Result<String> update(@RequestBody @Valid User user) {
+    public Result<String> updateUser(@RequestBody @Valid User user) {
         int rowCount = userService.updateUser(user);
-        return Result.success("update successful", "rowCount: " + rowCount);
+        return Result.success("Update User Profile OK", "rowCount=" + rowCount);
     }
 
     @PatchMapping("/updateAvatar")
     public Result<String> updateAvatar(@RequestParam @URL String avatarUrl) {
         int rowCount = userService.updateAvatar(avatarUrl);
-        return Result.success("update avatar successful", "rowCount: " + rowCount);
+        return Result.success("Update User Avatar OK", "rowCount=" + rowCount);
     }
 
     // todo http://127.0.0.1:8080/user/updatePwd { "pwd": ?, "new_pwd": ?, "confirm_pwd": ? }
@@ -93,18 +90,16 @@ public class UserController {
         String newPwd = paramsMap.get("new_pwd");
         String confirmPwd = paramsMap.get("confirm_pwd");
         if (!java.util.regex.Pattern.matches("^\\S{4,16}$", newPwd) || newPwd.equals(pwd) || !newPwd.equals(confirmPwd)) {
-            return Result.error("invalid update");
+            return Result.error("Update ERROR");
         }
-        Object claims = ThreadLocalUtil.get();
-        assert claims instanceof Map<?, ?>;
-        Map<?, ?> claimsMap = (Map<?, ?>) claims;
-        int id = (int) claimsMap.get("id");
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        int id = (int) claims.get("id");
         User existingUser = userService.selectUserById(id);
         String encryption = DigestUtils.md5DigestAsHex(pwd.getBytes());
         if (!encryption.equals(existingUser.getPassword())) {
-            return Result.error("password error");
+            return Result.error("Password ERROR");
         }
         int rowCount = userService.updatePwd(existingUser.getId(), newPwd);
-        return Result.success("update password successful", "rowCount: " + rowCount);
+        return Result.success("Update Password OK", "rowCount=" + rowCount);
     }
 }

@@ -35,7 +35,7 @@ public class JwtUtil { // token: jwtString
         resp.setStatus(401);
         resp.setContentType("application/json");
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String jsonString = ow.writeValueAsString(Result.error("Unauthorized"));
+        String jsonString = ow.writeValueAsString(Result.error("Unauthorized ERROR"));
         PrintWriter writer = resp.getWriter();
         writer.write(jsonString);
     }

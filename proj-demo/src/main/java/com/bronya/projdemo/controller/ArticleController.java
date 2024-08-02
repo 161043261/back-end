@@ -15,4 +15,5 @@ public class ArticleController {
     public void setArticleMapper(ArticleMapper articleMapper) {
         this.articleMapper = articleMapper;
     }
+
 }
