@@ -11,7 +11,7 @@ public interface CategoryMapper {
     @Insert("insert into category (category_name, create_user, create_time, update_time) values (#{categoryName}, #{createUser}, #{createTime}, #{updateTime})")
     int insertCategory(Category category);
 
-    @Select("select * from category where create_user = #{id}")
+    @Select("select * from category where create_user = #{id} order by update_time desc")
     List<Category> selectCategoryList(Integer id);
 
     @Select("select * from category where id = #{id}")

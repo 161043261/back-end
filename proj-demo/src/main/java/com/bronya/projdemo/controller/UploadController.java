@@ -17,7 +17,7 @@ public class UploadController {
     @PostMapping("/upload")
     public Result<String> upload(@RequestParam("file") MultipartFile file) throws IOException {
         String filename = file.getOriginalFilename();
-        if (!StringUtils.hasLength(filename)) return Result.err("Filename is Empty");
+        if (!StringUtils.hasLength(filename)) return Result.err("Filename has NO Length");
         String extname = filename.substring(filename.lastIndexOf("."));
         filename = UUID.randomUUID() + extname;
         if (System.getProperty("os.name").startsWith("Windows")) {
