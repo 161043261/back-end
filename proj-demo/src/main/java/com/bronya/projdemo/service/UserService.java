@@ -9,7 +9,7 @@ public interface UserService {
 
     int updateUser(User user);
 
-    int updateAvatar(String avatarUrl);
+    int updateAvatar(String avatar);
 
     int updatePwd(Integer id, String newPwd);
 

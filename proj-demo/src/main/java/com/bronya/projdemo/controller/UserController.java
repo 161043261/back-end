@@ -37,6 +37,7 @@ public class UserController {
         }
         User user = new User();
         user.setUsername(username);
+        user.setName(username);
         user.setPassword(password);
         int rowCount = userService.insertUser(user);
         return Result.ok("Register OK", "rowCount=" + rowCount);
@@ -77,15 +78,15 @@ public class UserController {
         return Result.ok("Update User Profile OK", "rowCount=" + rowCount);
     }
 
-    @PatchMapping("/updateAvatar")
-    public Result<String> updateAvatar(@RequestParam String avatarUrl) {
-        int rowCount = userService.updateAvatar(avatarUrl);
+    @PatchMapping("/avatar")
+    public Result<String> updateAvatar(@RequestParam String avatar) {
+        int rowCount = userService.updateAvatar(avatar);
         return Result.ok("Update User Avatar OK", "rowCount=" + rowCount);
     }
 
-    // todo http://127.0.0.1:8080/user/updatePwd { "pwd": ?, "new_pwd": ?, "confirm_pwd": ? }
+    // todo http://127.0.0.1:8080/user/pwd { "pwd": ?, "new_pwd": ?, "confirm_pwd": ? }
     @Valid
-    @PatchMapping("/updatePwd")
+    @PatchMapping("/pwd")
     public Result<String> updatePwd(@RequestBody Map<String, String> paramsMap) {
         String pwd = paramsMap.get("pwd");
         String newPwd = paramsMap.get("new_pwd");

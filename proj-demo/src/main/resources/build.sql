@@ -34,7 +34,7 @@ create table article
     id          int unsigned primary key auto_increment comment 'id',
     title       varchar(32)   not null comment 'title',
     content     varchar(5120) not null comment 'content',
-    image       varchar(128)   not null comment 'image',
+    image       varchar(128)  not null comment 'image',
     state       int default 0 comment 'state: 0 as BETA, 1 as RELEASE',
     category_id int unsigned comment 'category id',
     create_user int unsigned  not null comment 'create user id',
