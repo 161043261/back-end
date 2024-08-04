@@ -32,7 +32,7 @@ public class CategoryController {
     }
 
     @GetMapping("/detail")
-    public Result<Category> detail(Integer id) {
+    public Result<Category> selectCategory(Integer id) {
         Category category = categoryService.selectCategoryById(id);
         return Result.ok("Get Category Detail OK", category);
     }

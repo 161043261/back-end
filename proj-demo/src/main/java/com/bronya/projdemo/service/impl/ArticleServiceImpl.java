@@ -46,4 +46,20 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         }
         return articleMapper.selectPage(page, queryWrapper);
     }
+
+    @Override
+    public int deleteArticleById(Integer id) {
+        return articleMapper.deleteArticleById(id);
+    }
+
+    @Override
+    public int updateArticle(Article article) {
+        article.setUpdateTime(LocalDateTime.now());
+        return articleMapper.updateArticle(article);
+    }
+
+    @Override
+    public Article selectArticleById(Integer id) {
+        return articleMapper.selectArticleById(id);
+    }
 }

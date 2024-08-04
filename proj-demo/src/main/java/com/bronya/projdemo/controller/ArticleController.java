@@ -38,4 +38,23 @@ public class ArticleController {
         PageBean<Article> pageBean = new PageBean<>(total, articleList);
         return Result.ok("Select Article List OK", pageBean);
     }
+
+
+    @DeleteMapping
+    public Result<String> deleteArticle(Integer id) {
+        int rowCount = articleService.deleteArticleById(id);
+        return Result.ok("Delete Article OK", "rowCount=" + rowCount);
+    }
+
+    @PutMapping
+    public Result<String> updateArticle(@RequestBody @Valid Article article) {
+        int rowCount = articleService.updateArticle(article);
+        return Result.ok("Update Article OK", "rowCount=" + rowCount);
+    }
+
+    @GetMapping("/detail")
+    public Result<Article> selectArticle(Integer id) {
+        Article article = articleService.selectArticleById(id);
+        return Result.ok("Select Article OK", article);
+    }
 }

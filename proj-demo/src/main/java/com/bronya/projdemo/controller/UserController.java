@@ -89,8 +89,8 @@ public class UserController {
     @PatchMapping("/pwd")
     public Result<String> updatePwd(@RequestBody Map<String, String> paramsMap) {
         String pwd = paramsMap.get("pwd");
-        String newPwd = paramsMap.get("new_pwd");
-        String confirmPwd = paramsMap.get("confirm_pwd");
+        String newPwd = paramsMap.get("newPwd");
+        String confirmPwd = paramsMap.get("confirmPwd");
         if (!java.util.regex.Pattern.matches("^\\S{4,16}$", newPwd) || newPwd.equals(pwd) || !newPwd.equals(confirmPwd)) {
             return Result.err("Invalid Update");
         }
