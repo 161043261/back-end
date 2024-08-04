@@ -15,17 +15,16 @@ import java.util.UUID;
 public class UploadController {
 
     @PostMapping("/upload")
-    public Result<String> upload(@RequestParam("file") MultipartFile file) throws IOException {
-        String filename = file.getOriginalFilename();
-        if (!StringUtils.hasLength(filename)) return Result.err("Filename has NO Length");
+    public Result<String> upload(@RequestParam("image") MultipartFile image) throws IOException {
+        String filename = image.getOriginalFilename();
+        if (!StringUtils.hasLength(filename)) return Result.err("Filename Error");
         String extname = filename.substring(filename.lastIndexOf("."));
         filename = UUID.randomUUID() + extname;
         if (System.getProperty("os.name").startsWith("Windows")) {
-            file.transferTo(new File("C:\\Users\\admin\\Downloads\\" + filename));
+            image.transferTo(new File("C:\\Users\\admin\\workspace\\frontend\\proj-demo\\public\\" + filename));
+        } else {
+            image.transferTo(new File("~/workspace/frontend/proj-demo/public/" + filename));
         }
-        if (System.getProperty("os.name").startsWith("Mac")) {
-            file.transferTo(new File("/Users/admin/Downloads/" + filename));
-        }
-        return Result.ok("Upload OK", "filename=" + filename);
+        return Result.ok("Upload OK", "/" + filename);
     }
 }

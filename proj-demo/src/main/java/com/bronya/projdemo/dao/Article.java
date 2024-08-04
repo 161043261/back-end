@@ -1,6 +1,7 @@
 package com.bronya.projdemo.dao;
 
 import com.bronya.projdemo.annotation.State;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,8 @@ public class Article {
     @NotNull
     private Integer categoryId;
     private Integer createUser;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 }
