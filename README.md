@@ -8,8 +8,8 @@
 5. Redis
 6. ✅ MySQL
 7. ✅ MyBatis
-8. Spring Boot
-9. Spring Security
+8. ✅ ~~Spring Boot~~
+9. ~~Spring Security~~
 10. ✅ Docker
 11. RabbitMQ
 12. CDN...
