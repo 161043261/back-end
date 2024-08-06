@@ -12,4 +12,6 @@
 9. ~~Spring Security~~
 10. ✅ Docker
 11. RabbitMQ
-12. CDN...
+12. ✅ Gorm
+13. Gin
+14. Grpc
