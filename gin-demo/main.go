@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bronya.com/gin-demo/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -80,7 +81,7 @@ func setupRouter() *gin.Engine {
 }
 
 func main() {
-	fmt.Println(base64("userA:pwdA"))
+	fmt.Println(utils.Base64("userA:pwdA"))
 	router := setupRouter() // Listen and Server in 0.0.0.0:8080
 	err := router.Run(":8080")
 	if err != nil {

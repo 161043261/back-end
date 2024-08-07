@@ -1,11 +1,11 @@
-package main
+package utils
 
 import (
 	b64 "encoding/base64"
 	"fmt"
 )
 
-func base64(data string) string {
+func Base64(data string) string {
 	sEnc := b64.StdEncoding.EncodeToString([]byte(data))
 	fmt.Println("str encoded", sEnc)
 	sDec, _ := b64.StdEncoding.DecodeString(sEnc)
