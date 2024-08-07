@@ -9,14 +9,10 @@ import (
 func main() {
 	udpConn, err := net.DialUDP(
 		// socket dialog
-		"udp", &net.UDPAddr{
-			// local address
-			IP:   net.IPv4(127, 0, 0, 1),
-			Port: 3300,
-		}, &net.UDPAddr{
+		"udp", nil, &net.UDPAddr{
 			// remote address
 			IP:   net.IPv4(127, 0, 0, 1),
-			Port: 3301,
+			Port: 3300,
 		},
 	)
 	if err != nil {
@@ -29,17 +25,17 @@ func main() {
 			fmt.Println(err)
 		}
 	}(udpConn)
+	var sendBuf [128]byte // send buffer
+	copy(sendBuf[:], "ping")
+	var recvBuf [128]byte // receive buffer
 
 	for i := 0; i < 1; i++ {
-		var sendBuffer [128]byte // send buffer
-		copy(sendBuffer[:], "Client: ping!")
-		_, err = udpConn.Write(sendBuffer[:])
+		_, err = udpConn.Write(sendBuf[:])
 		if err != nil {
 			panic(err)
 		}
 
-		var recvBuffer [128]byte // receive buffer
-		n, remoteAddr, err := udpConn.ReadFromUDP(recvBuffer[:])
+		n, remoteAddr, err := udpConn.ReadFromUDP(recvBuf[:])
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -48,7 +44,7 @@ func main() {
 				"Recieved message: %v\n"+
 				"Bytes count: %v\n"+
 				"Server address: %v\n",
-			time.Now().UnixNano(), string(recvBuffer[:n]), n, remoteAddr,
+			time.Now().UnixNano(), string(recvBuf[:n]), n, remoteAddr,
 		)
 	}
 }

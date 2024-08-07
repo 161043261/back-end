@@ -23,27 +23,28 @@ func main() {
 			fmt.Println(err)
 		}
 	}(udpConn)
+	var recvBuf [128]byte // receive buffer
+	var sendBuf [128]byte
+	copy(sendBuf[:], "pong")
 
 	fmt.Println("Go server listening on port 3302")
 	for {
-		var recvBuffer [128]byte // receive buffer
 
-		n, remoteAddr, err := udpConn.ReadFromUDP(recvBuffer[:])
+		n, remoteAddr, err := udpConn.ReadFromUDP(recvBuf[:])
 		if err != nil {
 			fmt.Println(err)
 		}
+		// receive
 		fmt.Printf(
 			"\nNanosecond timestamp: %v\n"+
 				"Recieved message: %v\n"+
 				"Bytes count: %v\n"+
 				"Client address: %v\n",
-			time.Now().UnixNano(), string(recvBuffer[:n]), n, remoteAddr,
+			time.Now().UnixNano(), string(recvBuf[:n]), n, remoteAddr,
 		)
 
-		var sendBuffer [128]byte
-		copy(sendBuffer[:], "Server: pong!")
 		// response
-		_, err = udpConn.WriteToUDP(sendBuffer[:], remoteAddr)
+		_, err = udpConn.WriteToUDP(sendBuf[:], remoteAddr)
 		if err != nil {
 			fmt.Println(err)
 		}
