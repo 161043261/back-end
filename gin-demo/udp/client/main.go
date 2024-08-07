@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net"
+	"time"
 )
 
 func main() {
@@ -29,22 +30,25 @@ func main() {
 		}
 	}(udpConn)
 
-	for i := 0; i < 3; i++ {
-		sendBuffer := []byte("Client requests message: Konnichiwa!") // send buffer
-		_, err = udpConn.Write(sendBuffer)
+	for i := 0; i < 1; i++ {
+		var sendBuffer [128]byte // send buffer
+		copy(sendBuffer[:], "Client: ping!")
+		_, err = udpConn.Write(sendBuffer[:])
 		if err != nil {
 			panic(err)
 		}
 
-		recvBuffer := make([]byte, 1024) // receive buffer
-		n, remoteAddr, err := udpConn.ReadFromUDP(recvBuffer)
+		var recvBuffer [128]byte // receive buffer
+		n, remoteAddr, err := udpConn.ReadFromUDP(recvBuffer[:])
 		if err != nil {
 			fmt.Println(err)
 		}
 		fmt.Printf(
-			"\nRecieved data: %v\n"+
+			"\nNanosecond timestamp: %v\n"+
+				"Recieved message: %v\n"+
 				"Bytes count: %v\n"+
-				"Server address: %v\n", string(recvBuffer[:n]), n, remoteAddr,
+				"Server address: %v\n",
+			time.Now().UnixNano(), string(recvBuffer[:n]), n, remoteAddr,
 		)
 	}
 }

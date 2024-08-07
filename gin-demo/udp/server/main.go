@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net"
+	"time"
 )
 
 func main() {
@@ -23,22 +24,26 @@ func main() {
 		}
 	}(udpConn)
 
-	fmt.Println("Server listening on port 3333")
+	fmt.Println("Go server listening on port 3302")
 	for {
-		var recvBuffer [1024]byte // receive buffer
+		var recvBuffer [128]byte // receive buffer
+
 		n, remoteAddr, err := udpConn.ReadFromUDP(recvBuffer[:])
 		if err != nil {
 			fmt.Println(err)
 		}
 		fmt.Printf(
-			"\nRecieved data: %v\n"+
+			"\nNanosecond timestamp: %v\n"+
+				"Recieved message: %v\n"+
 				"Bytes count: %v\n"+
-				"Client address: %v\n", string(recvBuffer[:n]), n, remoteAddr,
+				"Client address: %v\n",
+			time.Now().UnixNano(), string(recvBuffer[:n]), n, remoteAddr,
 		)
 
-		var sendBuffer = []byte("Server responses message: Hello!") // send buffer
+		var sendBuffer [128]byte
+		copy(sendBuffer[:], "Server: pong!")
 		// response
-		_, err = udpConn.WriteToUDP(sendBuffer, remoteAddr)
+		_, err = udpConn.WriteToUDP(sendBuffer[:], remoteAddr)
 		if err != nil {
 			fmt.Println(err)
 		}
