@@ -10,7 +10,7 @@ func main() {
 	udpConn, err := net.ListenUDP(
 		"udp", &net.UDPAddr{
 			IP:   net.IPv4(0, 0, 0, 0),
-			Port: 3333,
+			Port: 3302,
 		},
 	)
 	if err != nil {

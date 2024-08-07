@@ -12,11 +12,11 @@ func main() {
 		"udp", &net.UDPAddr{
 			// local address
 			IP:   net.IPv4(127, 0, 0, 1),
-			Port: 2222,
+			Port: 3300,
 		}, &net.UDPAddr{
 			// remote address
 			IP:   net.IPv4(127, 0, 0, 1),
-			Port: 3333,
+			Port: 3301,
 		},
 	)
 	if err != nil {
